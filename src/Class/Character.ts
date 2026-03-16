@@ -9,13 +9,13 @@ export class Character extends Attributes{
     private _afiliation: string;
     private _iq: number;
 
-    constructor( _id:string, _name: string, _species: Species, _dimension: Dimensions, _state: string, _afiliation: string, _iq: number, _desc: string) {
-        super(_id, _name, _desc);
-        this._species = _species;
-        this._dimension = _dimension;
-        this._state = _state;
-        this._afiliation = _afiliation;
-        this._iq = _iq;
+    constructor( id:string, name: string, species: Species, dimension: Dimensions, state: string, afiliation: string, iq: number, desc: string) {
+        super(id, name, desc);
+        this._species = species;
+        this._dimension = dimension;
+        this._state = state;
+        this._afiliation = afiliation;
+        this._iq = iq;
     }
 
     //Completar

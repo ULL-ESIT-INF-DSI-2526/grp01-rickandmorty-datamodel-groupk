@@ -5,10 +5,10 @@ export class Dimensions extends Attributes{
     private _state: DimensionState;
     private _techlevel: number;
 
-    constructor( _id: string, _name: string, _state: DimensionState, _techlevel: number, _desc: string){
-        super(_id, _name, _desc);
-        this._state = _state;
-        this._techlevel = _techlevel;
+    constructor( id: string, name: string, state: DimensionState, techlevel: number, desc: string){
+        super(id, name, desc);
+        this._state = state;
+        this._techlevel = techlevel;
     }
 
     get_state(): DimensionState {
