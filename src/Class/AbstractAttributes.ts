@@ -9,24 +9,24 @@ export abstract class Attributes {
         this._desc = desc;
     }
 
-    get_id(): string {
+    get id(): string {
         return this._id;
     }
 
-    get_name(): string {
+    get name(): string {
         return this._name;
     }
 
-    get_desc(): string {
+    get desc(): string {
         return this._desc;
     }
 
-    set_name(name: string) {
+    set name(name: string) {
         if (!name) throw new Error("El nombre no puede estar vacío");
         this._name = name;
     }
 
-    set_desc(desc: string) {
+    set desc(desc: string) {
         this._desc = desc;
     }
 }
