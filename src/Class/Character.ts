@@ -15,8 +15,42 @@ export class Character extends Attributes{
         this._dimension = dimension;
         this._state = state;
         this._afiliation = afiliation;
+        if (iq < 1 || iq > 10) {
+            throw new Error("El nivel de inteligencia debe estar entre 1 y 10");
+        }
         this._iq = iq;
     }
 
-    //Completar
+    get species(): Species { return this._species; }
+
+    get dimension(): Dimensions { return this._dimension; }
+
+    get state(): string { return this._state; }
+
+    get afiliation(): string { return this._afiliation; }
+
+    get iq(): number { return this._iq; }
+
+    set species(newSpec: Species) {
+        this._species = newSpec;
+    }
+
+    set dimension(newDim: Dimensions) {
+        this._dimension = newDim;
+    }
+
+    set state(newState: string) {
+        this._state = newState;
+    }
+
+    set afiliation(newAfil: string) {
+        this._afiliation = newAfil;
+    }
+
+    set iq(newIQ: number) {
+        if (newIQ < 1 || newIQ > 10) {
+            throw new Error("El nivel de inteligencia debe estar entre 1 y 10");
+        }
+        this._iq = newIQ;
+    }
 }

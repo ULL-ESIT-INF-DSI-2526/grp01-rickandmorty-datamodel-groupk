@@ -7,7 +7,13 @@ export class Dimensions extends Attributes{
 
     constructor( id: string, name: string, state: DimensionState, techlevel: number, desc: string){
         super(id, name, desc);
+        if (!Object.values(DimensionState).includes(state)) {
+            throw new Error("El estado de la dimensión no es válido")
+        }
         this._state = state;
+        if (techlevel < 1 || techlevel > 10) {
+            throw new Error("El nivel de la tecnología tiene que estar entre 1 y 10")
+        }
         this._techlevel = techlevel;
     }
 

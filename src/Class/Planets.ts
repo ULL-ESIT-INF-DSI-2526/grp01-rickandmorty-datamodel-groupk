@@ -13,5 +13,21 @@ export class Planets extends Attributes{
         this._population = population;
     }
 
-    //Completar
+    get type(): string { return this._type; }
+
+    get dimension(): Dimensions { return this._dimension; }
+
+    get population(): number { return this._population; }
+
+    set type(newType: string) {
+        this._type = newType;
+    }
+
+    set dimension(newDim: Dimensions) {
+        this._dimension = newDim;
+    }
+
+    set population(newPop: number) {
+        this._population = newPop;
+    }
 }

@@ -15,5 +15,21 @@ export class Species extends Attributes {
         
     }
 
-    //Completar
+    get origin(): Dimensions | Planets { return this._origin; }
+
+    get type(): string { return this._type; }
+
+    get expectancy(): number { return this._expectancy; }
+
+    set origin(newOrigin: Dimensions | Planets) {
+        this._origin = newOrigin;
+    }
+
+    set type(newType: string) {
+        this._type = newType;
+    }
+
+    set expectancy(newExpec: number) {
+        this._expectancy = newExpec;
+    }
 }
