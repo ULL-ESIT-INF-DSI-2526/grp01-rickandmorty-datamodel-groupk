@@ -1,26 +1,14 @@
 import { DimensionState } from "../Enums/DimensionState";
+import { Attributes } from "./AbstractAttributes";
 
-export class Dimensions {
-    private _id: string;
-    private _name: string;
+export class Dimensions extends Attributes{
     private _state: DimensionState;
     private _techlevel: number;
-    private _desc: string;
 
     constructor( _id: string, _name: string, _state: DimensionState, _techlevel: number, _desc: string){
-        this._id = _id;
-        this._name = _name;
+        super(_id, _name, _desc);
         this._state = _state;
         this._techlevel = _techlevel;
-        this._desc = _desc;
-    }
-
-    get_id(): string {
-        return this._id;
-    }
-
-    get_name(): string {
-        return this._name;
     }
 
     get_state(): DimensionState {
@@ -29,19 +17,6 @@ export class Dimensions {
 
     get_techlevel(): number {
         return this._techlevel;
-    }
-
-    get_desc(): string {
-        return this._desc;
-    }
-
-    set_name(name: string): void {
-
-        if (name.length <= 0) {
-            throw new Error("El nombre no puede estar vacío")
-        }
-
-        this._name = name;
     }
 
     set_state(state: DimensionState): void {
