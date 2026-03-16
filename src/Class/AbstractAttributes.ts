@@ -9,17 +9,11 @@ export abstract class Attributes {
         this._desc = desc;
     }
 
-    get id(): string {
-        return this._id;
-    }
+    get id(): string { return this._id; }
 
-    get name(): string {
-        return this._name;
-    }
+    get name(): string { return this._name; }
 
-    get desc(): string {
-        return this._desc;
-    }
+    get desc(): string { return this._desc; }
 
     set name(name: string) {
         if (!name) throw new Error("El nombre no puede estar vacío");

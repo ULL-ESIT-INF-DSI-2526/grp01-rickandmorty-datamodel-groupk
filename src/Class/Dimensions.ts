@@ -11,13 +11,9 @@ export class Dimensions extends Attributes{
         this._techlevel = techlevel;
     }
 
-    get state(): DimensionState {
-        return this._state;
-    }
+    get state(): DimensionState { return this._state; }
 
-    get techlevel(): number {
-        return this._techlevel;
-    }
+    get techlevel(): number { return this._techlevel; }
 
     set state(state: DimensionState) {
 
