@@ -12,4 +12,6 @@ export class Planets extends Attributes{
         this._dimension = _dimension;
         this._population = _population;
     }
+
+    //Completar
 }
