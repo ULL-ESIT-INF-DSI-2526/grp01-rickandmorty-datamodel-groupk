@@ -9,6 +9,10 @@ export class CharacterServices {
         this.characters = [];
     }
 
+    getAll(): Character[]{
+        return this.characters;
+    }
+
     addCharacter(character: Character): boolean {
         if (this.characters.push(character)) {
             return true;
