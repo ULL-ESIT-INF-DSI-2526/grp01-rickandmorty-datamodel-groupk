@@ -62,7 +62,7 @@ export class CharacterServices {
         if (sort == 1) {
             return this.sortByName(characters);
         } else if (sort == 2) {
-
+            return this.sortByName(characters);
         } else {
             return characters;
         }
