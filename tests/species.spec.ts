@@ -15,12 +15,15 @@ describe('Class Species', () => {
 
   test('Setters', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
+    const dimension2 = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Otra dimensión de prueba");
     const specie = new Species("123", "Gazorpiano", dimension, "amorfo", 50, "algo muy extraño");
     specie.name = "Cronenberg";
     specie.type = "Parásito";
     specie.expectancy = 70;
+    specie.origin = dimension2;
     expect(specie.name).toBe("Cronenberg");
     expect(specie.type).toBe("Parásito");
     expect(specie.expectancy).toEqual(70);
+    expect(specie.origin).toBe(dimension2);
   })
 });

@@ -16,14 +16,20 @@ describe('Class Invents', () => {
     invent.name = "Megasiembra";
     invent.inventor = "Morty Smith";
     invent.dangerLevel = 9;
+    invent.type = "biotech";
     expect(invent.name).toBe("Megasiembra");
     expect(invent.inventor).toBe("Morty Smith");
     expect(invent.dangerLevel).toEqual(9);
+    expect(invent.type).toBe("biotech");
   });
 
   test('Throw errors if needed', () => {
     expect(() => {
       let invent = new Invents("12", "Portal Gun", "Rick Sanchez", "arma", 18, "pesada y potente");
+    }).toThrowError("El nivel de peligrosidad debe estar entre 1 y 10");
+    expect(() => {
+      let invent = new Invents("12", "Portal Gun", "Rick Sanchez", "arma", 8, "pesada y potente");
+      invent.dangerLevel = 18;
     }).toThrowError("El nivel de peligrosidad debe estar entre 1 y 10");
   });
 });

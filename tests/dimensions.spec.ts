@@ -16,8 +16,10 @@ describe('Class Dimensions', () => {
     let dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     dimension.state = DimensionState.CUARENTENA;
     dimension.techlevel = 9;
+    dimension.desc = "Otra dimensión de prueba";
     expect(dimension.state).toBe("Cuarentena");
     expect(dimension.techlevel).toEqual(9);
+    expect(dimension.desc).toBe("Otra dimensión de prueba");
   });
 
   test('Throw errors if needed', () => {
@@ -28,5 +30,14 @@ describe('Class Dimensions', () => {
     expect(() => {
       dimension.techlevel = 17;
     }).toThrowError("El nivel de la tecnología tiene que estar entre 1 y 10");
+    expect(() => {
+      let dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ANIQUILADA, 7, "Dimension de prueba");
+    }).toThrowError("El estado de la dimensión no es válido");
+    expect(() => {
+      let dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 120, "Dimension de prueba");
+    }).toThrowError("El nivel de la tecnología tiene que estar entre 1 y 10");
+    expect(() => {
+      dimension.name = "";
+    }).toThrowError("El nombre no puede estar vacío");
   });
 });
