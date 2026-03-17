@@ -27,11 +27,20 @@ export class Dimensions extends Attributes{
         }
         this._techlevel = techlevel;
     }
-
+    
+    /**
+     * Getter del estado
+     */
     get state(): DimensionState { return this._state; }
 
+    /**
+     * Getter para el nivel de tecnología
+     */
     get techlevel(): number { return this._techlevel; }
 
+    /**
+     * Setter para el estado, que comprueba que sea un estado válido
+     */
     set state(state: DimensionState) {
 
         if (!Object.values(DimensionState).includes(state)) {
@@ -41,6 +50,9 @@ export class Dimensions extends Attributes{
         this._state = state;
     }
 
+    /**
+     * Setter para el nivel de tecnología que comprueba que esté entre 1 y 10
+     */
     set techlevel(level: number) {
         if (level < 1 || level > 10) {
             throw new Error("El nivel de la tecnología tiene que estar entre 1 y 10")

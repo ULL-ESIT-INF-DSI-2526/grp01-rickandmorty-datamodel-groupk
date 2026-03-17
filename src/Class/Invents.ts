@@ -1,10 +1,21 @@
 import { Attributes } from "./AbstractAttributes";
+import { Character } from "./Character";
 
 export class Invents extends Attributes {
-  private _inventor: string;
+  private _inventor: Character;
   private _type: string;
   private _dangerlevel: number;
-  constructor(id: string, name: string, inventor: string, type: string, danger: number, desc: string) {
+
+  /**
+   * Constructor para el objeto Invents
+   * @param id - ID del invento
+   * @param name - Nombre del invento
+   * @param inventor - Personaje que crea el invento
+   * @param type 
+   * @param danger 
+   * @param desc 
+   */
+  constructor(id: string, name: string, inventor: Character, type: string, danger: number, desc: string) {
     super(id, name, desc);
     this._inventor = inventor;
     this._type = type;
@@ -14,13 +25,13 @@ export class Invents extends Attributes {
     this._dangerlevel = danger;
   }
 
-  get inventor(): string { return this._inventor; }
+  get inventor(): Character { return this._inventor; }
 
   get type(): string { return this._type; }
 
   get dangerLevel(): number { return this._dangerlevel; }
 
-  set inventor(newInventor: string) {
+  set inventor(newInventor: Character) {
     this._inventor = newInventor;
   }
 
