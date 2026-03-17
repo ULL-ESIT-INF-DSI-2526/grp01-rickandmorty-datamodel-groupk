@@ -57,48 +57,98 @@ export class CharacterServices {
         return true;
     }
 
-    consultCharacterByName(name: string, direcction: boolean ,sort?: number): Character[] {
-        let characters: Character[] = this.characters.filter(character => character.name === name);
-        if (sort == 1) {
-            return this.sortByName(characters);
-        } else if (sort == 2) {
-            return this.sortByName(characters);
-        } else {
-            return characters;
+    consultCharacterByName(name: string, direcction: boolean = false ,sort?: number): Character[] {
+        const characters: Character[] = this.characters.filter(character => character.name === name);
+        return this.applySorting(characters, direcction, sort);
+    }
+
+    consultCharacterBySpecies(specie: Species, direcction: boolean = false, sort?: number): Character[] {
+        const characters: Character[] = this.characters.filter(character => character.species === specie);
+        return this.applySorting(characters, direcction, sort);
+    }
+
+    consultCharacterByAfilation(afiliation: string, direcction: boolean = false, sort?: number): Character[] {
+        const characters: Character[] = this.characters.filter(character => character.afiliation === afiliation);
+        return this.applySorting(characters, direcction, sort);
+    }
+
+    consultCharacterByState(state: string, direcction: boolean = false, sort?: number): Character[] {
+        const characters: Character[] = this.characters.filter(character => character.state === state);
+        return this.applySorting(characters, direcction, sort);
+    }
+
+    consultCharacterByDimension(dimension: Dimensions, direcction: boolean = false, sort?: number): Character[] {
+        const characters: Character[] = this.characters.filter(character => character.dimension === dimension);
+        return this.applySorting(characters, direcction, sort);
+    }
+
+    private applySorting(characters: Character[], direcction: boolean, sort?: number): Character[] {
+        if (sort === 1) {
+            return this.sortByName(characters, direcction);
         }
+
+        if (sort === 2) {
+            return this.sortByIq(characters, direcction);
+        }
+
+        return characters;
     }
 
-    consultCharacterBySpecies(specie: Species): Character[] {
-        return this.characters.filter(character => character.species === specie);
-    }
-
-    consultCharacterByAfilation(afiliation: string): Character[] {
-        return this.characters.filter(character => character.afiliation === afiliation);
-    }
-
-    consultCharacterByState(state: string): Character[] {
-        return this.characters.filter(character => character.state === state);
-    }
-
-    consultCharacterByDimension(dimension: Dimensions): Character[] {
-        return this.characters.filter(character => character.dimension === dimension);
-    }
-
-    sortByName(characters: Character[]): Character[] {
+    sortByName(characters: Character[], direction: boolean): Character[] {
         if (characters.length === 0) {
             return characters;
         }
+
         let names: string[] = [];
-        for (let name of Character.name) {
-            names.push(name);
+        for (const character of characters) {
+            names.push(character.name);
         }
+
         names.sort();
+
         let sortCharacters: Character[] = [];
-        // Mirara lo de undifiened
-        for(let i: number = 0; i < names.length; ++i) {
-            const character: Character = characters.find(c => c.name === names[i])!;
-            sortCharacters.push(character);
+        let remainingCharacters: Character[] = [...characters]; // copia
+
+        for (let i: number = 0; i < names.length; ++i) {
+            const index = remainingCharacters.findIndex(c => c.name === names[i]);
+            
+            if (index !== -1) {
+                sortCharacters.push(remainingCharacters[index]);
+                remainingCharacters.splice(index, 1); 
+            }
         }
-        return sortCharacters;
+
+        if (direction === false) {
+            return sortCharacters;
+        } else {
+            return sortCharacters.reverse();
+        }
+    }
+
+    sortByIq(characters: Character[], direcction: boolean = false): Character[] {
+        if (characters.length === 0) {
+            return characters;
+        }
+        let iqs: number[] = [];
+        for (const character of characters) {
+            iqs.push(character.iq);
+        }
+        iqs.sort();
+        let sortCharacters: Character[] = [];
+        let remainingCharacters: Character[] = [...characters]; // copia
+
+        for (let i: number = 0; i < iqs.length; ++i) {
+            const index = remainingCharacters.findIndex(c => c.iq === iqs[i]);
+            
+            if (index !== -1) {
+                sortCharacters.push(remainingCharacters[index]);
+                remainingCharacters.splice(index, 1); 
+            }
+        }
+        if (direcction == false) {
+            return sortCharacters;
+        } else {
+            return sortCharacters.reverse();
+        }
     }
 }
