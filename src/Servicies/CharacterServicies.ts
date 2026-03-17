@@ -13,18 +13,14 @@ export class CharacterServices {
         return this.characters;
     }
 
-    addCharacter(character: Character): boolean {
-        if (this.characters.push(character)) {
-            return true;
-        }
-        return false;
+    addCharacter(character: Character): void {
+        this.characters.push(character);
     }
 
-    removeCharacter(id: string): boolean  {
-        if (this.characters = this.characters.filter(c => c.id !== id)) {
-            return true;
-        }
-        return false;       
+    removeCharacter(id: string): boolean {
+        const before = this.characters.length;
+        this.characters = this.characters.filter(c => c.id !== id);
+        return this.characters.length < before;
     }
 
     modifyCharacter(id: string, name?: string, species?: Species, dimension?: Dimensions, afiliation?: string, iq?: number, desc?: string): boolean {

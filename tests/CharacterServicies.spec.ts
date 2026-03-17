@@ -16,11 +16,12 @@ describe ("class CharacterServicies", () => {
     const character5 = new Character("5", "Simple Rick", spec, dimension, "vivo", "consejo de ricks", 8, "secundario");
 
     const characters = new CharacterServices();
-    expect(characters.addCharacter(character1)).toBe(true);
-    expect(characters.addCharacter(character2)).toBe(true);
-    expect(characters.addCharacter(character3)).toBe(true);
-    expect(characters.addCharacter(character4)).toBe(true);
-    expect(characters.addCharacter(character5)).toBe(true);
+    characters.addCharacter(character1);
+    characters.addCharacter(character2);
+    characters.addCharacter(character3);
+    characters.addCharacter(character4);
+    characters.addCharacter(character5);
+    expect(characters.getAll().length).toBe(5);
   });
 
   test('RemoveCharacter', () => {
@@ -33,13 +34,14 @@ describe ("class CharacterServicies", () => {
     const character5 = new Character("5", "Simple Rick", spec, dimension, "vivo", "consejo de ricks", 8, "secundario");
 
     const characters = new CharacterServices();
-    expect(characters.addCharacter(character1)).toBe(true);
-    expect(characters.addCharacter(character2)).toBe(true);
-    expect(characters.addCharacter(character3)).toBe(true);
-    expect(characters.addCharacter(character4)).toBe(true);
-    expect(characters.addCharacter(character5)).toBe(true);
+    characters.addCharacter(character1);
+    characters.addCharacter(character2);
+    characters.addCharacter(character3);
+    characters.addCharacter(character4);
+    characters.addCharacter(character5);
     expect(characters.removeCharacter("2")).toBe(true);
     expect(characters.removeCharacter("3")).toBe(true);
+    expect(characters.removeCharacter("99")).toBe(false);
   });
 
   test('ModifiedCharacter', () => {
@@ -49,18 +51,20 @@ describe ("class CharacterServicies", () => {
     
     const characters = new CharacterServices();
 
-    expect(characters.addCharacter(character1)).toBe(true);
+    characters.addCharacter(character1);
     
     const all1: Character[] = characters.getAll();
     expect(all1.length).toBe(1);
     expect(all1[0].name).toBe("Rick Sanchez");
-    
-   
    
     expect(characters.modifyCharacter("1", "Rick Mod", undefined, undefined, "muerto")).toBe(true);
 
     const all2: Character[] = characters.getAll();
     expect(all2.length).toBe(1);
     expect(all2[0].name).toBe("Rick Mod");
+
+    expect(characters.modifyCharacter("2", "Rick Prime", spec, dimension, "consejo de ricks", 10, "antagonista")).toBe(false);
+
+    expect(characters.modifyCharacter("1", "Rick Prime", spec, dimension, "consejo de ricks", 10, "antagonista")).toBe(true);
   });
 });
