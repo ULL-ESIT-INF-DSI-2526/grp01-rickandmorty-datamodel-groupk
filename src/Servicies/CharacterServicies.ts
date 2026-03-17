@@ -133,7 +133,7 @@ export class CharacterServices {
         for (const character of characters) {
             iqs.push(character.iq);
         }
-        iqs.sort();
+        iqs.sort((a, b) => a - b);
         let sortCharacters: Character[] = [];
         let remainingCharacters: Character[] = [...characters]; // copia
 

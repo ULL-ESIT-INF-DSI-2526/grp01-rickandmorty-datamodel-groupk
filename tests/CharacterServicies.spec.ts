@@ -67,4 +67,53 @@ describe ("class CharacterServicies", () => {
 
     expect(characters.modifyCharacter("1", "Rick Prime", spec, dimension, "consejo de ricks", 10, "antagonista")).toBe(true);
   });
+
+  test ("Consultas", () => {
+    const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
+    const spec = new Species("JSC1", "humano", dimension, "humanoide", 80, "simple");
+    const character1 = new Character("1", "Rick Sanchez", spec, dimension, "vivo", "consejo de ricks", 9, "protagonista");
+    const character2 = new Character("2", "Rick Prime", spec, dimension, "vivo", "consejo de ricks", 10, "antagonista");
+    const character3 = new Character("3", "Cop Rick", spec, dimension, "vivo", "consejo de ricks", 7, "secundario");
+    const character4 = new Character("4", "Doofus Rick", spec, dimension, "vivo", "consejo de ricks", 6, "secundario");
+    const character5 = new Character("5", "Simple Rick", spec, dimension, "vivo", "consejo de ricks", 8, "secundario");
+
+    const characters = new CharacterServices();
+    characters.addCharacter(character1);
+    characters.addCharacter(character2);
+    characters.addCharacter(character3);
+    characters.addCharacter(character4);
+    characters.addCharacter(character5);
+
+    expect(characters.consultCharacterByName("Cop Rick")).toEqual([character3]);
+    expect(characters.consultCharacterByAfilation("consejo de ricks", false, 1)).toEqual([
+      character3,
+      character4,
+      character2,
+      character1,
+      character5,
+    ]);
+    expect(characters.consultCharacterByDimension(dimension, false, 2)).toEqual([
+      character4,
+      character3,
+      character5,
+      character1,
+      character2,
+    ]);
+    expect(characters.consultCharacterBySpecies(spec, true, 2)).toEqual([
+      character2,
+      character1,
+      character5,
+      character3,
+      character4,
+    ]);
+    expect(characters.consultCharacterByState("vivo", true, 1)).toEqual([
+      character5,
+      character1,
+      character2,
+      character4,
+      character3,
+    ]);
+    expect(characters.consultCharacterByAfilation("humano", true, 1)).toEqual([]);
+    expect(characters.consultCharacterByName("Jerry", false, 2)).toEqual([]);
+  });
 });
