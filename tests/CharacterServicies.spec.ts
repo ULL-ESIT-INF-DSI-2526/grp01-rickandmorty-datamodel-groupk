@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import {CharacterServices} from "../src/Servicies/CharacterServicies";
+import {CharacterServices} from "../src/Servicies/CharacterServicies/CharacterServicies";
 import { Dimensions } from "../src/Class/Dimensions";
 import { DimensionState } from "../src/Enums/DimensionState";
 import { Character } from "../src/Class/Character";

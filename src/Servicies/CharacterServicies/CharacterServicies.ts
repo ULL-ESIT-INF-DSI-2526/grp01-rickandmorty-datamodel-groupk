@@ -1,6 +1,10 @@
-import { Character } from "../Class/Character";
-import { Dimensions } from "../Class/Dimensions";
-import { Species } from "../Class/Species";
+/** Falta comentar
+ * Falta refactorizar para cumplir mejor los principios SOLID
+ */
+
+import { Character } from "../../Class/Character";
+import { Dimensions } from "../../Class/Dimensions";
+import { Species } from "../../Class/Species";
 
 export class CharacterServices {
     private characters: Character[];
