@@ -193,11 +193,6 @@ export class CharacterServices {
         }
     }
 
-    /*
-    sortByIntelligence(direction: boolean = false): Character[] {
-        return [...this.characters].sort((a, b) => direction ? b.name - a.name : a.name - b.name);
-    }
-    */
     /**
      * Método para ordenar personajes por su nivel de inteligencia
      * @param characters - array de personajes a ordenar
@@ -231,7 +226,7 @@ export class CharacterServices {
         }
     }
     /*
-    sortByIntelligence(direction: boolean = false): Character[] {
+    sortByIq(direction: boolean = false): Character[] {
         return [...this.characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
     }
     */
