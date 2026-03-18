@@ -2,9 +2,9 @@
  * Falta refactorizar para cumplir mejor los principios SOLID
  */
 
-import { Character } from "../../Class/Character";
-import { Dimensions } from "../../Class/Dimensions";
-import { Species } from "../../Class/Species";
+import { Character } from "../Class/Character";
+import { Dimensions } from "../Class/Dimensions";
+import { Species } from "../Class/Species";
 
 export class CharacterServices {
     private characters: Character[];
@@ -129,6 +129,12 @@ export class CharacterServices {
         }
     }
 
+    /*
+    sortByIntelligence(direction: boolean = false): Character[] {
+        return [...this.characters].sort((a, b) => direction ? b.name - a.name : a.name - b.name);
+    }
+    */
+
     sortByIq(characters: Character[], direcction: boolean = false): Character[] {
         if (characters.length === 0) {
             return characters;
@@ -155,4 +161,9 @@ export class CharacterServices {
             return sortCharacters.reverse();
         }
     }
+    /*
+    sortByIntelligence(direction: boolean = false): Character[] {
+        return [...this.characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
+    }
+    */
 }
