@@ -3,7 +3,7 @@ import { Dimensions } from "../src/Class/Dimensions";
 import { DimensionState } from "../src/Enums/DimensionState";
 import { Species } from "../src/Class/Species";
 
-describe('Class Species', () => {
+describe('Clase Species', () => {
   test('Constructor', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     const specie = new Species("123", "Gazorpiano", dimension, "amorfo", 50, "algo muy extraño");

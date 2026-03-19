@@ -5,7 +5,7 @@ import { DimensionState } from "../src/Enums/DimensionState";
 import { Character } from "../src/Class/Character";
 import { Species } from "../src/Class/Species";
 
-describe ("class CharacterServicies", () => {
+describe ("Clase CharacterServicies", () => {
   test('AddCharacter', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     const spec = new Species("JSC1", "humano", dimension, "humanoide", 80, "simple");

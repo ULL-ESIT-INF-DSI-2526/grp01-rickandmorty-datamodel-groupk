@@ -5,7 +5,7 @@ import { Species } from "../src/Class/Species";
 import { Dimensions } from "../src/Class/Dimensions";
 import { DimensionState } from "../src/Enums/DimensionState";
 
-describe('Class Invents', () => {
+describe('Clase Invents', () => {
   const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
   const spec = new Species("JSC1", "humano", dimension, "humanoide", 80, "simple");
   const character = new Character("1", "Rick Sanchez", spec, dimension, "vivo", "consejo de ricks", 9, "protagonista");
@@ -31,7 +31,7 @@ describe('Class Invents', () => {
     expect(invent.type).toBe("biotech");
   });
 
-  test('Throw errors if needed', () => {
+  test('Lanzamos errores si es necesario', () => {
     expect(() => {
       let invent = new Invents("12", "Portal Gun", character, "arma", 18, "pesada y potente");
     }).toThrowError("El nivel de peligrosidad debe estar entre 1 y 10");

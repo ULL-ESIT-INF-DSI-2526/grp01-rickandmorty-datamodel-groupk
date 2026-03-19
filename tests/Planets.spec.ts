@@ -3,7 +3,7 @@ import { Dimensions } from "../src/Class/Dimensions";
 import { DimensionState } from "../src/Enums/DimensionState";
 import { Planets } from "../src/Class/Planets";
 
-describe('Class Planets', () => {
+describe('Clase Planets', () => {
   test('Constructor', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     const planet = new Planets("2", "Tierra C-137", "planeta", dimension, 123456, "tranquilo, vivo y activo");

@@ -4,7 +4,7 @@ import { DimensionState } from "../src/Enums/DimensionState";
 import { Character } from "../src/Class/Character";
 import { Species } from "../src/Class/Species";
 
-describe('Class Character', () => {
+describe('Clase Character', () => {
   test('Constructor', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     const spec = new Species("JSC1", "humano", dimension, "humanoide", 80, "simple");
@@ -33,7 +33,7 @@ describe('Class Character', () => {
     expect(character.state).toBe(DimensionState.CUARENTENA);
   });
 
-  test('Throw errors if needed', () => {
+  test('Lanzamos errores si es necesario', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     const spec = new Species("JSC1", "humano", dimension, "humanoide", 80, "simple");
     let character = new Character("1", "Rick Sanchez", spec, dimension, "vivo", "consejo de ricks", 9, "protagonista");

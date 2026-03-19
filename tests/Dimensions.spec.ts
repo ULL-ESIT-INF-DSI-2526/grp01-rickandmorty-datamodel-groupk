@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { Dimensions } from "../src/Class/Dimensions";
 import { DimensionState } from "../src/Enums/DimensionState";
 
-describe('Class Dimensions', () => {
+describe('Clase Dimensions', () => {
   test('Constructor', () => {
     const dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     expect(dimension.id).toBe("C-137");
@@ -22,7 +22,7 @@ describe('Class Dimensions', () => {
     expect(dimension.desc).toBe("Otra dimensión de prueba");
   });
 
-  test('Throw errors if needed', () => {
+  test('Lanzamos errores si es necesario', () => {
     let dimension = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
     expect(() => {
       dimension.state = DimensionState.ANIQUILADA;
