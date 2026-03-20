@@ -23,4 +23,4 @@ export const defaultData: Data = {
     species: []
 }
 
-export const db: Low<Data> = await JSONFilePreset<Data>("src/DataBase/db.json", defaultData);
+export const db: Low<Data> = await JSONFilePreset<Data>("src/DataBase/dbPrueba.json", defaultData);
