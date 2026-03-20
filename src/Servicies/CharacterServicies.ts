@@ -230,4 +230,17 @@ export class CharacterServices {
         return [...this.characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
     }
     */
+
+    
+    /**
+     * Localiza todas las versiones alternativas de un personaje por nombre.
+     * @param name - nombre del personaje a buscar
+     * @returns array de Character que coinciden con el nombre en distintas dimensiones
+     */
+    /*
+    async findAllVersions(name: string): Promise<Character[]> {
+        await this._db.read();
+        return this._db.data.characters.filter(c => c.name === name);
+    }
+    */
 }

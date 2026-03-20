@@ -1,52 +1,60 @@
-import { describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
+
+import { Low } from "lowdb";
+import { Data } from "../../src/DataBase/db";
+import { JSONFilePreset } from "lowdb/node";
+import { defaultData } from "../../src/DataBase/db";
+
 import { DimensionServices } from "../../src/Servicies/DimensionServices";
 import { Dimensions } from "../../src/Class/Dimensions";
 import { DimensionState } from "../../src/Enums/DimensionState";
 
-const dimension1 = new Dimensions("D-001", "C-137", DimensionState.ACTIVA, 7, "Dimensión de prueba");
-const dimension2 = new Dimensions("D-002", "J19ζ7", DimensionState.CUARENTENA, 5, "Dimensión experimental");
-
 describe("Test para la clase DimensionServices (de Dimensiones)", () => {
-  test("Test para getAll, add y remove", () => {
-    const locations = new DimensionServices([dimension1]);
-    locations.add(dimension2);
-    expect(locations.getAll().length).toBe(2);
-    locations.remove("D-001");
-    expect(locations.getAll().length).toBe(1);
-    expect(locations.getAll()[0].id).toBe("D-002");
+  let dimension1: Dimensions;
+  let dimension2: Dimensions;
+  let dimensions: DimensionServices;
+
+  beforeEach(async () => {
+    let newdb: Low<Data> = await JSONFilePreset("src/DataBase/dbTest.json", defaultData); //Creamos nueva base de datos para los test, así no se sobreescribe la original
+    
+    dimension1 = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
+    dimension2 = new Dimensions("J19ζ7", "Dimensión Burbuja de Mantequilla", DimensionState.CUARENTENA, 5, "Dimensión experimental");
+
+    newdb.data.dimensions = [dimension1];
+    await newdb.write();
+
+    dimensions= new DimensionServices(newdb);
   });
 
-  test("Test para las funciones de modificar", () => {
-    const dim1 = new Dimensions("D-001", "C-137", DimensionState.ACTIVA, 7, "Original 1");
-    const dim2 = new Dimensions("D-002", "J19ζ7", DimensionState.CUARENTENA, 5, "Original 2");
-    const locations = new DimensionServices([dim1, dim2]);
-    // Modificamos la primera dimensión con múltiples campos a la vez
-    locations.modify("D-001", { 
-      name: "Nombre modificado", 
-      state: DimensionState.CUARENTENA, 
-      techlevel: 10, 
-      desc: "Descripción modificada" 
-    });
-    locations.modify("D-002", { name: "Dim 2" });
-    locations.modify("D-002", { state: DimensionState.ACTIVA });
-    locations.modify("D-002", { techlevel: 1 });
-    locations.modify("D-002", { desc: "Desc 2" });
-    // Comprobamos la primera dimensión (modificaciones múltiples)
-    const loc: Dimensions[] = locations.getAll();
-    expect(loc[0].id).toBe("D-001"); 
-    expect(loc[0].name).toBe("Nombre modificado");
-    expect(loc[0].state).toBe(DimensionState.CUARENTENA);
-    expect(loc[0].techlevel).toBe(10);
-    expect(loc[0].desc).toBe("Descripción modificada");
-    // Comprobamos la segunda dimensión (modificaciones individuales)
-    expect(loc[1].name).toBe("Dim 2");
-    expect(loc[1].state).toBe(DimensionState.ACTIVA);
-    expect(loc[1].techlevel).toBe(1);
-    expect(loc[1].desc).toBe("Desc 2");
-    // Comprobamos el valor del return de modify
-    const locTrue = locations.modify("D-001", { name: "Otro nombre" });
-    expect(locTrue).toBe(true);
-    const locFalse = locations.modify("ID no válido", { name: "Fallo" });
-    expect(locFalse).toBe(false);
+  test("Test para getAll, add y remove", async () => {
+    await dimensions.add(dimension2);
+    expect((await dimensions.getAll()).length).toBe(2);
+    expect(dimensions.add(dimension1)).rejects.toThrow("No se puede añadir esa dimensión porque ya existe");
+    await dimensions.remove("C-137");
+    expect((await dimensions.getAll()).length).toBe(1);
+    expect(dimensions.remove("No existe")).rejects.toThrow("No se puede eliminar una dimensión que no existe");
+  });
+
+  test("Test para las funciones de modificar", async () => {
+    await dimensions.add(dimension2);
+
+    await dimensions.modify("C-137",{ name: "Nombre modificado", state: DimensionState.CUARENTENA, techlevel: 10, desc: "Descripción modificada" });
+    
+    await dimensions.modify("J19ζ7",{name: "Nombre modificado"}); // Modificamos sólo un campo a la vez para que compruebe los undefined.
+    await dimensions.modify("J19ζ7",{state: DimensionState.CUARENTENA});
+    await dimensions.modify("J19ζ7",{techlevel: 10});
+    await dimensions.modify("J19ζ7",{desc: "Descripción modificada"});
+
+    const dim: Dimensions[] = await dimensions.getAll();
+    expect(dim[0].id).toBe("C-137");
+    expect(dim[0].name).toBe("Nombre modificado");
+    expect(dim[0].state).toBe(DimensionState.CUARENTENA);
+    expect(dim[0].techlevel).toBe(10);
+    expect(dim[0].desc).toBe("Descripción modificada");
+
+    const dimTrue = await dimensions.modify("C-137",{ name: "Nombre modificado", state: DimensionState.CUARENTENA, techlevel: 10, desc: "Descripción modificada" });
+    expect(dimTrue).toBe(true);
+    const dimFalse = await dimensions.modify("ID no válido",{ name: "Nombre modificado", state: DimensionState.CUARENTENA, techlevel: 10, desc: "Descripción modificada" });
+    expect(dimFalse).toBe(false);
   });
 });

@@ -11,7 +11,6 @@ import { Dimensions } from "../../src/Class/Dimensions";
 import { DimensionState } from "../../src/Enums/DimensionState";
 
 describe ("Test para la clase LocationServices", () => {
-  let newdb: Low<Data>;
   let location1: Planets;
   let location2: Planets;
   let dimension1: Dimensions;

@@ -75,13 +75,4 @@ export class DimensionServices implements Services<Dimensions> {
         await this._db.write();
         return true;
     }
-
-    /**
-     * Buscar versiones alternativas de un personaje en esta dimensión
-     * (Solo si quieres implementar la lógica aquí)
-     */
-    async findAlternativeVersions(name: string): Promise<Dimensions[]> {
-        await this._db.read();
-        return this._db.data.dimensions.filter(d => d.name === name);
-    }
 }
