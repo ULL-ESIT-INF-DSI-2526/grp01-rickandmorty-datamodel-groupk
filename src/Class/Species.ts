@@ -1,6 +1,6 @@
-import { Dimensions } from "./Dimensions";
-import { Planets } from "./Planets";
-import { Attributes } from "./AbstractAttributes";
+import { Dimensions } from "./Dimensions.js";
+import { Planets } from "./Planets.js";
+import { Attributes } from "./AbstractAttributes.js";
 /**
  * Clase para definir especies, extiende de la clase Attributes
  */

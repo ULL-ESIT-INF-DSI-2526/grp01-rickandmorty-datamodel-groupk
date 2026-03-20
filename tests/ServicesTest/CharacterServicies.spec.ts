@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
-import {CharacterServices} from "../src/Servicies/CharacterServicies";
-import { Dimensions } from "../src/Class/Dimensions";
-import { DimensionState } from "../src/Enums/DimensionState";
-import { Character } from "../src/Class/Character";
-import { Species } from "../src/Class/Species";
+import {CharacterServices} from "../../src/Servicies/CharacterServicies";
+import { Dimensions } from "../../src/Class/Dimensions";
+import { DimensionState } from "../../src/Enums/DimensionState";
+import { Character } from "../../src/Class/Character";
+import { Species } from "../../src/Class/Species";
 
 describe ("Clase CharacterServicies", () => {
   test('AddCharacter', () => {

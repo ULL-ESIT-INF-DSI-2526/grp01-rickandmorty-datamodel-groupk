@@ -1,5 +1,5 @@
-import { Attributes } from "./AbstractAttributes";
-import { Character } from "./Character";
+import { Attributes } from "./AbstractAttributes.js";
+import { Character } from "./Character.js";
 
 export class Invents extends Attributes {
   private _inventor: Character;

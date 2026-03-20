@@ -1,5 +1,5 @@
-import { Dimensions } from "../Class/Dimensions";
-import { Services } from "../Interface/IServices";
+import { Dimensions } from "../Class/Dimensions.js";
+import { Services } from "../Interface/IServices.js";
 
 export class LocationServices implements Services<Dimensions>{  //En esta clase hay que poner función para localizar versiones alternativas??
     private _dimension: Dimensions[];

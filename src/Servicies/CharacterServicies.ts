@@ -2,9 +2,9 @@
  * Falta refactorizar para cumplir mejor los principios SOLID
  */
 
-import { Character } from "../Class/Character";
-import { Dimensions } from "../Class/Dimensions";
-import { Species } from "../Class/Species";
+import { Character } from "../Class/Character.js";
+import { Dimensions } from "../Class/Dimensions.js";
+import { Species } from "../Class/Species.js";
 /**
  * Clase para los servicios de los personajes
  */

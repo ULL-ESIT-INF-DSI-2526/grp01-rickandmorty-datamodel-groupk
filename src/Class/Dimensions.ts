@@ -1,5 +1,5 @@
-import { DimensionState } from "../Enums/DimensionState";
-import { Attributes } from "./AbstractAttributes";
+import { DimensionState } from "../Enums/DimensionState.js";
+import { Attributes } from "./AbstractAttributes.js";
 
 /**
  * Clase para definir las dimensiones que extiende a la clase abstracta Attributes

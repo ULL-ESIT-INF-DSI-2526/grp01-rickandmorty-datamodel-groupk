@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { LocationServices } from "../src/Servicies/InventServices"; 
-import { Invents } from "../src/Class/Invents";
-import { Character } from "../src/Class/Character";
-import { Species } from "../src/Class/Species";
-import { Dimensions } from "../src/Class/Dimensions";
-import { DimensionState } from "../src/Enums/DimensionState";
+import { LocationServices } from "../../src/Servicies/InventServices"; 
+import { Invents } from "../../src/Class/Invents";
+import { Character } from "../../src/Class/Character";
+import { Species } from "../../src/Class/Species";
+import { Dimensions } from "../../src/Class/Dimensions";
+import { DimensionState } from "../../src/Enums/DimensionState";
 
 
 const dimensionRick = new Dimensions("D-001", "C-137", DimensionState.ACTIVA, 10, "Dimensión original");

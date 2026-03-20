@@ -1,6 +1,6 @@
-import { Dimensions } from "../Class/Dimensions";
-import { Planets } from "../Class/Planets";
-import { Services } from "../Interface/IServices";
+import { Dimensions } from "../Class/Dimensions.js";
+import { Planets } from "../Class/Planets.js";
+import { Services } from "../Interface/IServices.js";
 /**
  * Clase LocationServices que implementa la interfaz Services con Planets
  */

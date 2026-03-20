@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { LocationServices } from "../src/Servicies/LocationServicies"
-import { Planets } from "../src/Class/Planets";
-import { Dimensions } from "../src/Class/Dimensions";
-import { DimensionState } from "../src/Enums/DimensionState";
+import { LocationServices } from "../../src/Servicies/LocationServicies"
+import { Planets } from "../../src/Class/Planets";
+import { Dimensions } from "../../src/Class/Dimensions";
+import { DimensionState } from "../../src/Enums/DimensionState";
 
 const dimension1 = new Dimensions("C-137", "Cronenberg", DimensionState.ACTIVA, 7, "Dimension de prueba");
 const dimension2 = new Dimensions("J19ζ7", "Dimensión Burbuja de Mantequilla", DimensionState.CUARENTENA, 5, "Dimensión experimental");

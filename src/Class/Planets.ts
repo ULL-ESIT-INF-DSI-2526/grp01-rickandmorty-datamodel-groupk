@@ -1,5 +1,5 @@
-import { Dimensions } from "./Dimensions";
-import { Attributes } from "./AbstractAttributes";
+import { Dimensions } from "./Dimensions.js";
+import { Attributes } from "./AbstractAttributes.js";
 
 /**
  * Clase para definir los planetas, extiende de la clase Atttributes

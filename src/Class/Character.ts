@@ -1,6 +1,6 @@
-import { Species } from "./Species";
-import { Dimensions } from "./Dimensions";
-import { Attributes } from "./AbstractAttributes";
+import { Species } from "./Species.js";
+import { Dimensions } from "./Dimensions.js";
+import { Attributes } from "./AbstractAttributes.js";
 
 /**
  * Clase para definir los personajes que extiende a la clase abstracta Attributes

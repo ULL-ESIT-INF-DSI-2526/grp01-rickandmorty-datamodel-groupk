@@ -1,6 +1,6 @@
-import { Invents } from "../Class/Invents";
-import { Character } from "../Class/Character";
-import { Services } from "../Interface/IServices";
+import { Invents } from "../Class/Invents.js";
+import { Character } from "../Class/Character.js";
+import { Services } from "../Interface/IServices.js";
 
 export class LocationServices implements Services<Invents>{
     private _invent: Invents[];

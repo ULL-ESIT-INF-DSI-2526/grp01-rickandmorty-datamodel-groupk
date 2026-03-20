@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
-import { LocationServices } from "../src/Servicies/DimensionServices";
-import { Dimensions } from "../src/Class/Dimensions";
-import { DimensionState } from "../src/Enums/DimensionState";
+import { LocationServices } from "../../src/Servicies/DimensionServices";
+import { Dimensions } from "../../src/Class/Dimensions";
+import { DimensionState } from "../../src/Enums/DimensionState";
 
 const dimension1 = new Dimensions("D-001", "C-137", DimensionState.ACTIVA, 7, "Dimensión de prueba");
 const dimension2 = new Dimensions("D-002", "J19ζ7", DimensionState.CUARENTENA, 5, "Dimensión experimental");
