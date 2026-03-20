@@ -7,7 +7,7 @@ import { Services } from "../Interface/IServices.js";
 /**
  * Clase LocationServices que ahora usa Lowdb para guardar especies
  */
-export class DimensionServices implements Services<Species> {
+export class SpeciesServices implements Services<Species> {
     private _db: Low<Data>;
 
     /**
