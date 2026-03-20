@@ -8,7 +8,7 @@ import { Species } from "../Class/Species.js";
 /**
  * Clase para los servicios de los personajes
  */
-export class CharacterServices {
+export class CharacterServices { //Hay que aplicarle la interfaz y descomentar la ultima funcion cuando se meta la base de datos
     private characters: Character[];
     /**
      * Constructor de la clase sin parámetros
