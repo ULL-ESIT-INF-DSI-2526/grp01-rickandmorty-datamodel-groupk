@@ -15,7 +15,7 @@ export type Data = {
     species: Species[];
 }
 
-const defaultData: Data = {
+export const defaultData: Data = {
     characters: [],
     dimensions: [],
     invents: [],

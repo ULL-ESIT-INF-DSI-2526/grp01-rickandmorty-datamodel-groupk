@@ -1,3 +1,6 @@
+import { Low } from "lowdb";
+import { Data } from "../DataBase/db.js";
+
 import { Dimensions } from "../Class/Dimensions.js";
 import { Planets } from "../Class/Planets.js";
 import { Services } from "../Interface/IServices.js";
@@ -5,34 +8,50 @@ import { Services } from "../Interface/IServices.js";
  * Clase LocationServices que implementa la interfaz Services con Planets
  */
 export class LocationServices implements Services<Planets>{
-    private _location: Planets[];
+    private _db: Low<Data>;
+
     /**
-     * Constructor de la clase
-     * @param location - localización 
+     * Constructor que recibe la referencia a la base de datos
+     * @param database - instancia de Low<Data>
      */
-    constructor(location: Planets[]) {
-        this._location = location;
+    constructor(database: Low<Data>) {
+        this._db = database;
     }
     /**
      * Getter para la localización (array de planetas)
      * @returns - localización
      */
-    getAll(): Planets[] {
-        return this._location;
+    async getAll(): Promise<Planets[]> {
+        await this._db.read();
+        return this._db.data.planets;
     }
     /**
      * Método que añade una nueva localización
      * @param location - localización a añadir
      */
-    add(location: Planets): void {
-        this._location.push(location);
+    async add(location: Planets): Promise<void> {
+        await this._db.read();
+
+        if(this._db.data.planets.find(l => l.id === location.id)) {
+            throw new Error("No se puede añadir esa localización porque ya existe")
+        }
+
+        this._db.data.planets.push(location);
+        await this._db.write();
     }
     /**
      * Método que elimina una localización por identificador
      * @param id - identificador de la localización a eliminar
      */
-    remove(id: string): void {
-        this._location = this._location.filter(d => d.id !== id);
+    async remove(id: string): Promise<void> {
+        await this._db.read();
+
+        if(this._db.data.planets.findIndex(l => l.id === id) === -1) {
+            throw new Error("No se puede eliminar una localización que no existe")
+        }
+
+        this._db.data.planets = this._db.data.planets.filter(l => l.id !== id);
+        await this._db.write();
     }
     /**
      * Método para modificar una localización por identificador
@@ -40,8 +59,9 @@ export class LocationServices implements Services<Planets>{
      * @param mod - objeto con las propiedades a modificar
      * @returns - true o false, dependiendo de si se modificó o no la localización
      */
-    modify(id: string, mod: Partial<Planets>): boolean {
-        const location = this._location.find(d => d.id === id);
+    async modify(id: string, mod: Partial<Planets>): Promise<boolean> {
+        await this._db.read();
+        const location = this._db.data.planets.find(l => l.id === id);
 
         if(!location) { return false; }
         if(mod.name !== undefined) { location.name = mod.name; }
@@ -50,6 +70,7 @@ export class LocationServices implements Services<Planets>{
         if(mod.population !== undefined) { location.population = mod.population; }
         if(mod.desc !== undefined) { location.desc = mod.desc; }
         
+        await this._db.write();
         return true;
     }
     /**
@@ -57,24 +78,27 @@ export class LocationServices implements Services<Planets>{
      * @param name - nombre de la localización a consultar
      * @returns - array de localizaciones que coinciden con el nombre
      */
-    consultLocationByName(name: string): Planets[] {
-        return this._location.filter(l => l.name === name);
+    async consultLocationByName(name: string): Promise<Planets[]> {
+        await this._db.read();
+        return this._db.data.planets.filter(l => l.name === name);
     }
     /**
      * Método para consultar una localización por su tipo
      * @param type - tipo de la localización a consultar
      * @returns - array de localizaciones que coinciden con el tipo
      */
-    consultLocationByType(type: string): Planets[] {
-        return this._location.filter(l => l.type === type);
+    async consultLocationByType(type: string): Promise<Planets[]> {
+        await this._db.read();
+        return this._db.data.planets.filter(l => l.type === type);
     }
     /**
      * Método para consultar una localización por su dimensión
      * @param dimension - dimensión de la localización a consultar
      * @returns - array de localizaciones que coinciden con la dimensión
      */
-    consultLocationByDimension(dimension: Dimensions): Planets[] {
-        return this._location.filter(l => l.dimension === dimension);
+    async consultLocationByDimension(dimension: Dimensions): Promise<Planets[]> {
+        await this._db.read();
+        return this._db.data.planets.filter(l => l.dimension === dimension);
     }
 
 }
