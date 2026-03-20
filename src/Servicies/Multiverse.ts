@@ -5,6 +5,7 @@ import { LocationServices } from "./LocationServicies.js";
 import { DimensionServices } from "./DimensionServices.js";
 import { InventServices } from "./InventServices.js";
 import { CharacterServices } from "./CharacterServicies.js";
+import { SpeciesServices } from "./SpeciesServices.js";
 
 export class MultiverseManager {
     private _db: Low<Data>;
@@ -12,6 +13,7 @@ export class MultiverseManager {
     //public characters: CharacterServices; //Descomentar cuando esté completa la clase CharacterServices
     public localitations: LocationServices;
     public invents: InventServices;
+    public species: SpeciesServices;
 
     /**
      * El constructor toma la base de datos como parámetro y la usa para inicializar los "Services",
@@ -24,6 +26,7 @@ export class MultiverseManager {
         //this.characters = new CharacterServices(dataBase); //Descomentar cuando esté completa la clase CharacterServices
         this.localitations = new LocationServices(dataBase);
         this.invents = new InventServices(dataBase);
+        this.species = new SpeciesServices(dataBase);
     }
 
     /*
