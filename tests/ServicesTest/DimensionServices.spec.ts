@@ -29,10 +29,10 @@ describe("Test para la clase DimensionServices (de Dimensiones)", () => {
   test("Test para getAll, add y remove", async () => {
     await dimensions.add(dimension2);
     expect((await dimensions.getAll()).length).toBe(2);
-    expect(dimensions.add(dimension1)).rejects.toThrow("No se puede añadir esa dimensión porque ya existe");
+    await expect(dimensions.add(dimension1)).rejects.toThrow("No se puede añadir esa dimensión porque ya existe");
     await dimensions.remove("C-137");
     expect((await dimensions.getAll()).length).toBe(1);
-    expect(dimensions.remove("No existe")).rejects.toThrow("No se puede eliminar una dimensión que no existe");
+    await expect(dimensions.remove("No existe")).rejects.toThrow("No se puede eliminar una dimensión que no existe");
   });
 
   test("Test para las funciones de modificar", async () => {

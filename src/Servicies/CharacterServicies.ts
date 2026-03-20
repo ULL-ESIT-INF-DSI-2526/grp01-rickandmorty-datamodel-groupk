@@ -1,246 +1,205 @@
-/** Falta comentar
- * Falta refactorizar para cumplir mejor los principios SOLID
- */
+import { Low } from "lowdb";
+import { Data } from "../DataBase/db.js";
 
 import { Character } from "../Class/Character.js";
 import { Dimensions } from "../Class/Dimensions.js";
 import { Species } from "../Class/Species.js";
+import { Services } from "../Interface/IServices.js";
+
 /**
- * Clase para los servicios de los personajes
+ * Clase para los servicios de los personajes que ahora usa Lowdb
  */
-export class CharacterServices { //Hay que aplicarle la interfaz y descomentar la ultima funcion cuando se meta la base de datos
-    private characters: Character[];
+export class CharacterServices implements Services<Character> {
+    private _db: Low<Data>;
+
     /**
-     * Constructor de la clase sin parámetros
+     * Constructor que recibe la referencia a la base de datos
+     * @param database - instancia de Low<Data>
      */
-    constructor() {
-        this.characters = [];
+    constructor(database: Low<Data>) {
+        this._db = database;
     }
+
     /** 
-     * Getter para los personajes
+     * Devuelve todos los personajes de la base de datos
+     * @returns array de personajes
      */
-    getAll(): Character[]{
-        return this.characters;
+    async getAll(): Promise<Character[]> {
+        await this._db.read();
+        return this._db.data.characters;
     }
+
     /**
-     * Método que añade un personaje al array
-     * @param character - nuevo personaje a añadir
+     * Añade un nuevo personaje
+     * @param character - personaje a añadir
      */
-    addCharacter(character: Character): void {
-        this.characters.push(character);
+    async add(character: Character): Promise<void> {
+        await this._db.read();
+
+        if (this._db.data.characters.find(c => c.id === character.id)) {
+            throw new Error("No se puede añadir ese personaje porque ya existe");
+        }
+
+        this._db.data.characters.push(character);
+        await this._db.write();
     }
+
     /**
-     * Método para eliminar un personaje por su id
-     * @param id - id por el que filtramos el personaje
-     * @returns - true o false, dependiendo de si el personaje se eliminó o no
+     * Elimina un personaje por id
+     * @param id - id del personaje a eliminar
      */
-    removeCharacter(id: string): boolean {
-        const before = this.characters.length;
-        this.characters = this.characters.filter(c => c.id !== id);
-        return this.characters.length < before;
+    async remove(id: string): Promise<void> {
+        await this._db.read();
+
+        if (this._db.data.characters.findIndex(c => c.id === id) === -1) {
+            throw new Error("No se puede eliminar un personaje que no existe");
+        }
+
+        this._db.data.characters = this._db.data.characters.filter(c => c.id !== id);
+        await this._db.write();
     }
+
     /**
-     * Método para modificar un personaje
+     * Modifica un personaje por id
      * @param id - identificador del personaje
-     * @param name - nombre del personaje
-     * @param species - especie del personaje
-     * @param dimension - dimensión de la que proviene
-     * @param afiliation - afiliación a la que pertenece
-     * @param iq - nivel de inteligencia
-     * @param desc - breve descripción del personaje
-     * @returns - true o false, dependiendo de si el personaje se modificó o no
+     * @param mod - objeto Partial con las propiedades a modificar
+     * @returns - true si se modificó, false si no se encontró
      */
-    modifyCharacter(id: string, name?: string, species?: Species, dimension?: Dimensions, afiliation?: string, iq?: number, desc?: string): boolean {
-        const character: Character | undefined = this.characters.find(c => c.id === id);
+    async modify(id: string, mod: Partial<Character>): Promise<boolean> {
+        await this._db.read();
+        const character = this._db.data.characters.find(c => c.id === id);
         
         if (!character) {
             return false;
         }
 
-        if (name !== undefined) {
-            character.name = name;
-        }
+        if (mod.name !== undefined) { character.name = mod.name; }
+        if (mod.species !== undefined) { character.species = mod.species; }
+        if (mod.dimension !== undefined) { character.dimension = mod.dimension; }
+        if (mod.state !== undefined) { character.state = mod.state; }
+        if (mod.afiliation !== undefined) { character.afiliation = mod.afiliation; }
+        if (mod.iq !== undefined) { character.iq = mod.iq; }
+        if (mod.desc !== undefined) { character.desc = mod.desc; }
 
-        if (species !== undefined) {
-            character.species = species;
-        }
-
-        if (dimension !== undefined) {
-            character.dimension = dimension;
-        }
-
-        if (afiliation !== undefined) {
-            character.afiliation = afiliation;
-        }
-        
-        if (iq !== undefined) {
-            character.iq = iq;
-        }
-
-        if (desc !== undefined) {
-            character.desc = desc;
-        }
-
+        await this._db.write();
         return true;
     }
+
     /**
      * Método para consultar personaje por su nombre
      * @param name - nombre del personaje
-     * @param direction - dirección en la que ordenamos
-     * @param sort - ordena el personaje
-     * @returns - el personaje ordenado
+     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
+     * @returns array de personajes que coinciden con el nombre 
      */
-    consultCharacterByName(name: string, direction: boolean = false ,sort?: number): Character[] {
-        const characters: Character[] = this.characters.filter(character => character.name === name);
+    async consultCharacterByName(name: string, direction: boolean = false, sort?: number): Promise<Character[]> {
+        await this._db.read();
+        const characters = this._db.data.characters.filter(c => c.name === name);
         return this.applySorting(characters, direction, sort);
     }
+
     /**
      * Método para consultar personaje por su especie
      * @param specie - especie del personaje
-     * @param direcction - dirección en la que ordenamos
-     * @param sort - ordena el personaje
-     * @returns - el personaje ordenado
+     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
+     * @returns array de personajes que coinciden con la especie
      */
-    consultCharacterBySpecies(specie: Species, direcction: boolean = false, sort?: number): Character[] {
-        const characters: Character[] = this.characters.filter(character => character.species === specie);
-        return this.applySorting(characters, direcction, sort);
+    async consultCharacterBySpecies(specie: Species, direction: boolean = false, sort?: number): Promise<Character[]> {
+        await this._db.read();
+        // Comparamos por ID para evitar problemas de referencias de objetos en memoria vs BBDD
+        const characters = this._db.data.characters.filter(c => c.species.id === specie.id);
+        return this.applySorting(characters, direction, sort);
     }
+
     /**
      * Método para consultar personaje por su afiliación
-     * @param afiliation - aficiliación del personaje
-     * @param direcction - dirección en la qu ordenamos
-     * @param sort - ordena el personaje
-     * @returns - el personaje ordenado
+     * @param afiliation - afiliación del personaje
+     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
      */
-    consultCharacterByAfilation(afiliation: string, direcction: boolean = false, sort?: number): Character[] {
-        const characters: Character[] = this.characters.filter(character => character.afiliation === afiliation);
-        return this.applySorting(characters, direcction, sort);
+    async consultCharacterByAfilation(afiliation: string, direction: boolean = false, sort?: number): Promise<Character[]> {
+        await this._db.read();
+        const characters = this._db.data.characters.filter(c => c.afiliation === afiliation);
+        return this.applySorting(characters, direction, sort);
     }
+
     /**
      * Método para consultar un personaje por su estado
-     * @param state - estado del personaje
-     * @param direcction - dirección en la que ordenamos
-     * @param sort - ordena el personaje
-     * @returns - el personaje ordenado
+     * @param state - estado del personaje 
+     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
+     * @returns array de personajes que coinciden con el estado
      */
-    consultCharacterByState(state: string, direcction: boolean = false, sort?: number): Character[] {
-        const characters: Character[] = this.characters.filter(character => character.state === state);
-        return this.applySorting(characters, direcction, sort);
+    async consultCharacterByState(state: string, direction: boolean = false, sort?: number): Promise<Character[]> {
+        await this._db.read();
+        const characters = this._db.data.characters.filter(c => c.state === state);
+        return this.applySorting(characters, direction, sort);
     }
+
     /**
      * Método para consultar un personaje por su dimensión
      * @param dimension - dimensión del personaje
-     * @param direcction - dirección en la que ordenamos
-     * @param sort - ordena el personaje
-     * @returns - personaje ordenado
+     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
+     * @returns array de personajes que coinciden con la dimensión
      */
-    consultCharacterByDimension(dimension: Dimensions, direcction: boolean = false, sort?: number): Character[] {
-        const characters: Character[] = this.characters.filter(character => character.dimension === dimension);
-        return this.applySorting(characters, direcction, sort);
-    }
-    /**
-     * Método para ordenar los personajes
-     * @param characters - array de personajes a ordenar
-     * @param direcction - dirección en la que ordenamos
-     * @param sort - ordena el personaje
-     * @returns - personajes ordenados
-     */
-    private applySorting(characters: Character[], direcction: boolean, sort?: number): Character[] {
-        if (sort === 1) {
-            return this.sortByName(characters, direcction);
-        }
-
-        if (sort === 2) {
-            return this.sortByIq(characters, direcction);
-        }
-
-        return characters;
-    }
-    /**
-     * Método para ordenar personajes por nombre
-     * @param characters - array de personajes a ordenar
-     * @param direction - dirección en la que ordenamos
-     * @returns - personajes ordenados
-     */
-    sortByName(characters: Character[], direction: boolean): Character[] {
-        if (characters.length === 0) {
-            return characters;
-        }
-
-        let names: string[] = [];
-        for (const character of characters) {
-            names.push(character.name);
-        }
-
-        names.sort();
-
-        let sortCharacters: Character[] = [];
-        let remainingCharacters: Character[] = [...characters]; // copia
-
-        for (let i: number = 0; i < names.length; ++i) {
-            const index = remainingCharacters.findIndex(c => c.name === names[i]);
-            
-            if (index !== -1) {
-                sortCharacters.push(remainingCharacters[index]);
-                remainingCharacters.splice(index, 1); 
-            }
-        }
-
-        if (direction === false) {
-            return sortCharacters;
-        } else {
-            return sortCharacters.reverse();
-        }
+    async consultCharacterByDimension(dimension: Dimensions, direction: boolean = false, sort?: number): Promise<Character[]> {
+        await this._db.read();
+        // Comparamos por ID para evitar problemas de referencias
+        const characters = this._db.data.characters.filter(c => c.dimension.id === dimension.id);
+        return this.applySorting(characters, direction, sort);
     }
 
-    /**
-     * Método para ordenar personajes por su nivel de inteligencia
-     * @param characters - array de personajes a ordenar
-     * @param direcction - dirección en la que ordenamos
-     * @returns - personajes ordenados
-     */
-    sortByIq(characters: Character[], direcction: boolean = false): Character[] {
-        if (characters.length === 0) {
-            return characters;
-        }
-        let iqs: number[] = [];
-        for (const character of characters) {
-            iqs.push(character.iq);
-        }
-        iqs.sort((a, b) => a - b);
-        let sortCharacters: Character[] = [];
-        let remainingCharacters: Character[] = [...characters]; // copia
-
-        for (let i: number = 0; i < iqs.length; ++i) {
-            const index = remainingCharacters.findIndex(c => c.iq === iqs[i]);
-            
-            if (index !== -1) {
-                sortCharacters.push(remainingCharacters[index]);
-                remainingCharacters.splice(index, 1); 
-            }
-        }
-        if (direcction == false) {
-            return sortCharacters;
-        } else {
-            return sortCharacters.reverse();
-        }
-    }
-    /*
-    sortByIq(direction: boolean = false): Character[] {
-        return [...this.characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
-    }
-    */
-
-    
     /**
      * Localiza todas las versiones alternativas de un personaje por nombre.
      * @param name - nombre del personaje a buscar
-     * @returns array de Character que coinciden con el nombre en distintas dimensiones
+     * @returns array de personajes que coinciden con el nombre, incluyendo versiones alternativas
      */
-    /*
     async findAllVersions(name: string): Promise<Character[]> {
         await this._db.read();
         return this._db.data.characters.filter(c => c.name === name);
     }
-    */
+
+    /**
+     * Método centralizado para aplicar la ordenación
+     * @param characters - array de personajes a ordenar
+     * @param direction - dirección de ordenación (false = asc, true = desc)
+     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
+     * @returns array de personajes ordenados 
+     */
+    private applySorting(characters: Character[], direction: boolean, sort?: number): Character[] {
+        if (sort === 1) {
+            return this.sortByName(characters, direction);
+        }
+
+        if (sort === 2) {
+            return this.sortByIq(characters, direction);
+        }
+
+        return characters;
+    }
+
+    /**
+     * Ordena personajes por nombre
+     * @param characters - array de personajes a ordenar
+     * @param direction - dirección de ordenación (false = asc, true = desc)
+     * @returns array de personajes ordenados por nombre
+     */
+    private sortByName(characters: Character[], direction: boolean): Character[] {
+        // Usamos el método moderno y limpio de JS para ordenar (más seguro que el for manual)
+        const sorted = [...characters].sort((a, b) => a.name.localeCompare(b.name));
+        return direction ? sorted.reverse() : sorted;
+    }
+
+    /**
+     * Ordena personajes por su nivel de inteligencia
+     * @param characters - array de personajes a ordenar
+     * @param direction - dirección de ordenación (false = asc, true = desc)
+     * @returns array de personajes ordenados por IQ
+     */
+    private sortByIq(characters: Character[], direction: boolean = false): Character[] {
+        // Usamos tu método comentado que es mucho más limpio y cumple SOLID
+        return [...characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
+    }
 }

@@ -35,10 +35,10 @@ describe ("Test para la clase LocationServices", () => {
   test(" Test para getAll, add y remove", async () => {
     await locations.add(location2);
     expect((await locations.getAll()).length).toBe(2);
-    expect(locations.add(location1)).rejects.toThrow("No se puede añadir esa localización porque ya existe");
+    await expect(locations.add(location1)).rejects.toThrow("No se puede añadir esa localización porque ya existe");
     await locations.remove("P-001");
     expect((await locations.getAll()).length).toBe(1);
-    expect(locations.remove("No existe")).rejects.toThrow("No se puede eliminar una localización que no existe");
+    await expect(locations.remove("No existe")).rejects.toThrow("No se puede eliminar una localización que no existe");
   });
 
   test("Test para las funciones de modificar", async () => {

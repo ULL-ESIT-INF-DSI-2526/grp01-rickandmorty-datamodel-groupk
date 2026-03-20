@@ -41,10 +41,10 @@ describe("Test para la clase LocationServices", () => {
   test("Debe obtener todos, añadir y eliminar inventos correctamente", async () => {
     await invents.add(invent2);
     expect((await invents.getAll()).length).toBe(2);
-    expect(invents.add(invent1)).rejects.toThrow("No se puede añadir ese invento porque ya existe");
+    await expect(invents.add(invent1)).rejects.toThrow("No se puede añadir ese invento porque ya existe");
     await invents.remove("I-001");
     expect((await invents.getAll()).length).toBe(1);
-    expect(invents.remove("No existe")).rejects.toThrow("No se puede eliminar un invento que no existe");
+    await expect(invents.remove("No existe")).rejects.toThrow("No se puede eliminar un invento que no existe");
   });
 
   test("Debe modificar las propiedades de los inventos correctamente", async () => {
