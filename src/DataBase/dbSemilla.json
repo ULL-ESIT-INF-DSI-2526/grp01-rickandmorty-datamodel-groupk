@@ -60,21 +60,21 @@
   ],
 
   "invents": [
-    { "id": "A1", "name": "Portal Gun", "inventor": "C1", "type": "Viaje", "dangerlevel": 10, "desc": "Dimensiones" },
-    { "id": "A2", "name": "Plumbus", "inventor": "C1", "type": "Objeto", "dangerlevel": 1, "desc": "Raro" },
-    { "id": "A3", "name": "Meeseeks Box", "inventor": "C1", "type": "Dispositivo", "dangerlevel": 5, "desc": "Invoca" },
-    { "id": "A4", "name": "Cronenberg Serum", "inventor": "C1", "type": "Biotech", "dangerlevel": 9, "desc": "Mutación" },
-    { "id": "A5", "name": "Time Crystal", "inventor": "C3", "type": "Tiempo", "dangerlevel": 8, "desc": "Control" },
-    { "id": "A6", "name": "Laser Gun", "inventor": "C1", "type": "Arma", "dangerlevel": 7, "desc": "Disparo" },
-    { "id": "A7", "name": "Mind Control Hat", "inventor": "C18", "type": "Control", "dangerlevel": 8, "desc": "Control mental" },
-    { "id": "A8", "name": "Nano Suit", "inventor": "C3", "type": "Tecnología", "dangerlevel": 6, "desc": "Mejora" },
-    { "id": "A9", "name": "Gravity Boots", "inventor": "C16", "type": "Tecnología", "dangerlevel": 4, "desc": "Gravedad" },
-    { "id": "A10", "name": "Teleport Pad", "inventor": "C1", "type": "Viaje", "dangerlevel": 7, "desc": "Teletransporte" },
-    { "id": "A11", "name": "AI Core", "inventor": "C26", "type": "IA", "dangerlevel": 9, "desc": "IA avanzada" },
-    { "id": "A12", "name": "Mutation Ray", "inventor": "C5", "type": "Biotech", "dangerlevel": 8, "desc": "Mutación" },
-    { "id": "A13", "name": "Hologram Projector", "inventor": "C3", "type": "Tecnología", "dangerlevel": 3, "desc": "Ilusión" },
-    { "id": "A14", "name": "Dark Energy Cube", "inventor": "C18", "type": "Energía", "dangerlevel": 10, "desc": "Oscuro" },
-    { "id": "A15", "name": "Hive Connector", "inventor": "C30", "type": "Colectivo", "dangerlevel": 9, "desc": "Conecta mentes" }
+    { "id": "A1", "name": "Portal Gun", "inventor": "Rick Sanchez", "type": "Viaje", "dangerlevel": 10, "desc": "Dimensiones" },
+    { "id": "A2", "name": "Plumbus", "inventor": "Morty Smith", "type": "Objeto", "dangerlevel": 1, "desc": "Raro" },
+    { "id": "A3", "name": "Meeseeks Box", "inventor": "Rick Sanchez", "type": "Dispositivo", "dangerlevel": 5, "desc": "Invoca" },
+    { "id": "A4", "name": "Cronenberg Serum", "inventor": "Rick Sanchez", "type": "Biotech", "dangerlevel": 9, "desc": "Mutación" },
+    { "id": "A5", "name": "Time Crystal", "inventor": "Rick Sanchez", "type": "Tiempo", "dangerlevel": 8, "desc": "Control" },
+    { "id": "A6", "name": "Laser Gun", "inventor": "Morty Smith", "type": "Arma", "dangerlevel": 7, "desc": "Disparo" },
+    { "id": "A7", "name": "Mind Control Hat", "inventor": "Morty Smith", "type": "Control", "dangerlevel": 8, "desc": "Control mental" },
+    { "id": "A8", "name": "Nano Suit", "inventor": "Rick Sanchez", "type": "Tecnología", "dangerlevel": 6, "desc": "Mejora" },
+    { "id": "A9", "name": "Gravity Boots", "inventor": "Morty Smith", "type": "Tecnología", "dangerlevel": 4, "desc": "Gravedad" },
+    { "id": "A10", "name": "Teleport Pad", "inventor": "Morty Smith", "type": "Viaje", "dangerlevel": 7, "desc": "Teletransporte" },
+    { "id": "A11", "name": "AI Core", "inventor": "Rick Sanchez", "type": "IA", "dangerlevel": 9, "desc": "IA avanzada" },
+    { "id": "A12", "name": "Mutation Ray", "inventor": "Morty Smith", "type": "Biotech", "dangerlevel": 8, "desc": "Mutación" },
+    { "id": "A13", "name": "Hologram Projector", "inventor": "Rick Sanchez", "type": "Tecnología", "dangerlevel": 3, "desc": "Ilusión" },
+    { "id": "A14", "name": "Dark Energy Cube", "inventor": "Morty Smith", "type": "Energía", "dangerlevel": 10, "desc": "Oscuro" },
+    { "id": "A15", "name": "Hive Connector", "inventor": "Morty Smith", "type": "Colectivo", "dangerlevel": 9, "desc": "Conecta mentes" }
   ],
 
   "planets": [

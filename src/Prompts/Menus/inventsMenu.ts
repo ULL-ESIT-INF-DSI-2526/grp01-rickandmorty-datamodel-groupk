@@ -2,6 +2,7 @@ import prompts from "prompts";
 
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Invents } from "../../Class/Invents.js";
+import { Character } from "../../Class/Character.js";
 
 export async function inventsMenu(manager: MultiverseManager) {
     let back = false;
@@ -50,7 +51,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                     await consutlByType(manager);
                     break;
 
-                case 'consult by dimension':
+                case 'consult by inventor':
                     await consultByInventor(manager);
                     break;
 
@@ -284,16 +285,16 @@ export async function inventsMenu(manager: MultiverseManager) {
             const data = await prompts([
                 {
                     type: 'text',
-                    name: 'inverntor',
+                    name: 'inventor',
                     message: 'Introduce el id del inventor a consultar:',
-                    validate: inventor => inventor.length > 0 ? true : "Debe de tener una dimensión"
+                    validate: inventor => inventor.length > 0 ? true : "Debe de tener un inventor"
                 }
             ]);
 
             try {
-            const inventor = data.inverntor;
+            const inventor: Character = data.inventor;
 
-            const res: Invents[] = await manager.invents.consultInventByInventor(inventor.trym());
+            const res: Invents[] = await manager.invents.consultInventByInventor(inventor);
 
             if(res.length == 0) {
                     console.log('No se encontraron resultados');
