@@ -5,6 +5,9 @@ import { Invents } from "../Class/Invents.js";
 import { Character } from "../Class/Character.js";
 import { Services } from "../Interface/IServices.js";
 
+/**
+ * Clase que gestiona las funciones de los inventos
+ */
 export class InventServices implements Services<Invents>{
     private _db: Low<Data>;
 

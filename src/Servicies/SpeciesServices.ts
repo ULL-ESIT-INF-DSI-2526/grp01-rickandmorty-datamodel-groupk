@@ -28,7 +28,7 @@ export class SpeciesServices implements Services<Species> {
 
     /**
      * Añade una nueva despecie
-     * @param especie - Especie a añadir
+     * @param specie - Especie a añadir
      */
     async add(specie: Species): Promise<void> {
         await this._db.read();
