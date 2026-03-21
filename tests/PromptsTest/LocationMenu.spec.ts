@@ -30,7 +30,7 @@ describe('LocationMenu', () => {
         name: string;
         type: string;
         dimension: Dimensions | null;
-        population: number;
+        population: number | null;
         desc: string;
     }
 
@@ -38,7 +38,25 @@ describe('LocationMenu', () => {
         id: string;
     }
 
-    type PromptAnswer = MenuAnswer | LocationFormAnswer | RemoveAnswer;
+    interface ConsultByNameAnswer {
+        name: string;
+    }
+
+    interface ConsultByTypeAnswer {
+        type: string;
+    }
+
+    interface ConsultByDimensionAnswer {
+        dimension: Dimensions;
+    }
+
+    type PromptAnswer =
+        | MenuAnswer
+        | LocationFormAnswer
+        | RemoveAnswer
+        | ConsultByNameAnswer
+        | ConsultByTypeAnswer
+        | ConsultByDimensionAnswer;
 
     interface MockedManager {
         localitations: {
@@ -201,5 +219,166 @@ describe('LocationMenu', () => {
             desc: 'Versión alternativa'
         });
         expect(consoleLogSpy).toHaveBeenCalledWith('La localización L-002 ha sido modificada correctamente\n');
+    });
+
+    test('muestra error al eliminar localización', async () => {
+        manager.characters.remove.mockRejectedValue(new Error('No se puede eliminar esa localización'));
+
+        queuePrompts(
+            { option: 'remove' },
+            { id: 'L-404' },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.characters.remove).toHaveBeenCalledWith('L-404');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se puede eliminar esa localización');
+    });
+
+    test('muestra aviso al añadir sin dimensiones disponibles', async () => {
+        manager.dimensions.getAll.mockResolvedValue([]);
+
+        queuePrompts(
+            { option: 'add' },
+            {
+                id: 'L-100',
+                name: 'Sin dimensión',
+                type: 'Planeta',
+                dimension: baseDimension,
+                population: 1,
+                desc: 'Sin catálogo'
+            },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(consoleLogSpy).toHaveBeenCalledWith('No hay dimensiones disponibles');
+    });
+
+    test('muestra aviso al modificar sin dimensiones disponibles', async () => {
+        manager.dimensions.getAll.mockResolvedValue([]);
+
+        queuePrompts(
+            { option: 'modify' },
+            {
+                id: 'L-101',
+                name: 'Cambio',
+                type: 'Planeta',
+                dimension: baseDimension,
+                population: 2,
+                desc: 'Sin catálogo'
+            },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(consoleLogSpy).toHaveBeenCalledWith('No hay dimensiones disponibles');
+    });
+
+    test('muestra error al modificar localización', async () => {
+        manager.localitations.modify.mockRejectedValue(new Error('No se puede modificar esa localización'));
+
+        queuePrompts(
+            { option: 'modify' },
+            {
+                id: 'L-102',
+                name: 'Cambio X',
+                type: 'Planeta',
+                dimension: baseDimension,
+                population: 10,
+                desc: 'Error esperado'
+            },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.localitations.modify).toHaveBeenCalledTimes(1);
+        expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se puede modificar esa localización');
+    });
+
+    test('consulta por nombre con resultados', async () => {
+        const mockLocations: Planets[] = [
+            new Planets('L-200', 'Tierra', 'Planeta', baseDimension, 1000, 'Planeta azul')
+        ];
+        manager.localitations.consultLocationByName.mockResolvedValue(mockLocations);
+
+        queuePrompts(
+            { option: 'consult by name' },
+            { name: 'Tierra' },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.localitations.consultLocationByName).toHaveBeenCalledWith('Tierra');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones con el nombre Tierra\n');
+    });
+
+    test('consulta por nombre sin resultados', async () => {
+        manager.localitations.consultLocationByName.mockResolvedValue([]);
+
+        queuePrompts(
+            { option: 'consult by name' },
+            { name: 'NoExiste' },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(consoleLogSpy).toHaveBeenCalledWith('No se encontraron resultados');
+    });
+
+    test('consulta por tipo con resultados', async () => {
+        const mockLocations: Planets[] = [
+            new Planets('L-201', 'Gazorpazorp', 'Planeta', baseDimension, 500, 'Hostil')
+        ];
+        manager.localitations.consultLocationByName.mockResolvedValue(mockLocations);
+
+        queuePrompts(
+            { option: 'consult by type' },
+            { type: 'Planeta' },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.localitations.consultLocationByName).toHaveBeenCalledWith('Planeta');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones con el tipoPlaneta\n');
+    });
+
+    test('consulta por dimensión con resultados', async () => {
+        const mockLocations: Planets[] = [
+            new Planets('L-202', 'Cronenberg World', 'Planeta', baseDimension, 300, 'Mutado')
+        ];
+        manager.localitations.consultLocationByDimension.mockResolvedValue(mockLocations);
+
+        queuePrompts(
+            { option: 'consult by dimension' },
+            { dimension: baseDimension },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.localitations.consultLocationByDimension).toHaveBeenCalledWith(baseDimension);
+        expect(consoleLogSpy).toHaveBeenCalledWith(`Se encontraron 1 localizaciones en la dimensión ${baseDimension}\n`);
+    });
+
+    test('consulta por dimensión sin resultados', async () => {
+        manager.localitations.consultLocationByDimension.mockResolvedValue([]);
+
+        queuePrompts(
+            { option: 'consult by dimension' },
+            { dimension: baseDimension },
+            { option: 'back' }
+        );
+
+        await localitationMenu(manager as unknown as MultiverseManager);
+
+        expect(consoleLogSpy).toHaveBeenCalledWith('No se encontraron resultados');
     });
 });
