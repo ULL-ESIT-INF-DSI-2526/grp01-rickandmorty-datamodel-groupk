@@ -37,8 +37,8 @@ export class InventServices implements Services<Invents>{
         this._db.data.invents.push({
             id: invent.id,
             name: invent.name,
-            type: invent.type,
             inventor: invent.inventor,
+            type: invent.type,
             dangerLevel: invent.dangerLevel,
             desc: invent.desc,
         } as Invents);

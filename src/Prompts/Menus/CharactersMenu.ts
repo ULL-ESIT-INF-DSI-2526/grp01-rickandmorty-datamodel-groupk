@@ -3,7 +3,7 @@ import prompts from 'prompts';
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Character } from '../../Class/Character.js';
 import { Dimensions } from '../../Class/Dimensions.js';
-import { DataFileSync } from 'lowdb/node';
+import { Species } from '../../Class/Species.js';
 
 export async function charactersMenu(manager: MultiverseManager) {
     let back = false;
@@ -50,6 +50,18 @@ export async function charactersMenu(manager: MultiverseManager) {
 
             case 'consult by name':
                 await consutlByName(manager);
+                break;
+            
+            case 'consult by afiliation':
+                await consutlByAfiliation(manager);
+                break;
+
+            case 'consult by specie':
+                await consutlBySpecies(manager);
+                break;
+
+            case 'consult by state':
+                await consutlByState(manager);
                 break;
 
             case 'back':
@@ -144,7 +156,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             );
 
             await manager.characters.add(newCharacter);
-            console.log(`El personaje ${data.id} ha sido añadido correctamente`);
+            console.log(`El personaje ${data.id} ha sido añadido correctamente\n`);
 
         } catch (error: any) {
             console.log("Error", error.message);
@@ -161,7 +173,7 @@ export async function charactersMenu(manager: MultiverseManager) {
 
         try {
             await manager.characters.remove(id);
-            console.log(`El personaje ${id} ha sido eliminado correctamente`)
+            console.log(`El personaje ${id} ha sido eliminado correctamente\n`)
         } catch (error: any) {
             console.log("Error", error.message);
         }
@@ -247,13 +259,146 @@ export async function charactersMenu(manager: MultiverseManager) {
             if(data.desc) mod.desc = data.desc;
 
             const res = await manager.characters.modify(data.id, mod);
-            console.log(`El personaje ${data.id} ha sido modificado correctamente`);
+            console.log(`El personaje ${data.id} ha sido modificado correctamente\n`);
         } catch (error: any) {
             console.log("Error", error.message);
         } 
     }
 
     async function consutlByName(manager: MultiverseManager) {
-        
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'name',
+                message: 'Introduce el nombre del personaje a consultar:',
+                validate: name => name.length > 0 ? true : "Debe de tener un nombre"
+            }
+        ]);
+        try {
+        const names: string = data.name;
+
+        const res: Character[] = await manager.characters.consultCharacterByName(names.trim());
+
+        if(res.length == 0) {
+            console.log('No se encontraron resultados');
+        } else {
+            console.log(`Se encontraron ${res.length} personajes con el nombre ${names}\n`);
+            res.forEach((c: Character, index: number) => {
+            console.log(`${index + 1}. ${c.name} 
+                         ID: ${c.id} 
+                         Dimensión: ${c.dimension} 
+                         Especie: ${c.species} 
+                         Afiliación: ${c.afiliation} 
+                         IQ: ${c.iq}
+                         Descripción: ${c.desc}\n`);
+                        });
+        }
+
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
     }
+
+    async function consutlByAfiliation(manager: MultiverseManager) {
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'afiliation',
+                message: 'Introduce el nombre de la afiliación a consultar:',
+                validate: afiliation => afiliation.length > 0 ? true : "Debe de tener una afiliación"
+            }
+        ]);
+        try {
+        const affs: string = data.afiliation;
+
+        const res: Character[] = await manager.characters.consultCharacterByAfilation(affs.trim());
+
+        if(res.length == 0) {
+            console.log('No se encontraron resultados');
+        } else {
+            console.log(`Se encontraron ${res.length} personajes con la afiliación ${affs}\n`);
+            res.forEach((c: Character, index: number) => {
+            console.log(`${index + 1}. ${c.name} 
+                         ID: ${c.id} 
+                         Dimensión: ${c.dimension} 
+                         Especie: ${c.species} 
+                         Afiliación: ${c.afiliation} 
+                         IQ: ${c.iq}
+                         Descripción: ${c.desc}\n`);
+                        });
+        }
+
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
+    }
+
+    async function consutlBySpecies(manager: MultiverseManager) {
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'specie',
+                message: 'Introduce el nombre de la especie a consultar:',
+                validate: specie => specie.length > 0 ? true : "Debe de tener una especie"
+            }
+        ]);
+        try {
+        const species: Species = data.specie;
+
+        const res: Character[] = await manager.characters.consultCharacterBySpecies(species);
+
+        if(res.length == 0) {
+            console.log('No se encontraron resultados');
+        } else {
+            console.log(`Se encontraron ${res.length} personajes con la especie ${species}\n`);
+            res.forEach((c: Character, index: number) => {
+            console.log(`${index + 1}. ${c.name} 
+                         ID: ${c.id} 
+                         Dimensión: ${c.dimension} 
+                         Especie: ${c.species} 
+                         Afiliación: ${c.afiliation} 
+                         IQ: ${c.iq}
+                         Descripción: ${c.desc}\n`);
+                        });
+        }
+
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
+    }
+
+    async function consutlByState(manager: MultiverseManager) {
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'state',
+                message: 'Introduce el nombre del estado a consultar:',
+                validate: state => state.length > 0 ? true : "Debe de tener un estado"
+            }
+        ]);
+        try {
+        const state: string = data.state;
+
+        const res: Character[] = await manager.characters.consultCharacterByState(state.trim());
+
+        if(res.length == 0) {
+            console.log('No se encontraron resultados');
+        } else {
+            console.log(`Se encontraron ${res.length} personajes con el estado ${state}\n`);
+            res.forEach((c: Character, index: number) => {
+            console.log(`${index + 1}. ${c.name} 
+                         ID: ${c.id} 
+                         Dimensión: ${c.dimension} 
+                         Especie: ${c.species} 
+                         Afiliación: ${c.afiliation} 
+                         IQ: ${c.iq}
+                         Descripción: ${c.desc}\n`);
+                        });
+        }
+
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
+    }
+
 }
