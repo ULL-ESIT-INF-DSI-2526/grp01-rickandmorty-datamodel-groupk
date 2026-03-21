@@ -10,6 +10,7 @@ export async function mainMenu(): Promise<string> {
             { title: 'Personajes', value: 'characters' },
             { title: 'Localizaciones', value: 'localitations' },
             { title: 'Especies', value: 'species' },
+            { title: 'Inventos', value: 'invents' },
             { title: 'Informes', value: 'reports' },
             { title: 'Salir', value: 'exit' }
         ]
