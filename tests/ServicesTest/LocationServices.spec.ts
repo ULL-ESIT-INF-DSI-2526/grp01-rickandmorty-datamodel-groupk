@@ -69,9 +69,18 @@ describe ("Test para la clase LocationServices", () => {
   test("Test para las funciones de consultas", async () => {
     await locations.add(location2);
     const res = await locations.consultLocationByName("Citadela de los Ricks");
-
     expect(res.length).toBe(1);
     expect(res[0].id).toBe("P-002");
     expect(res[0].name).toBe("Citadela de los Ricks");
+
+    const res2 = await locations.consultLocationByType("Estación espacial");
+    expect(res.length).toBe(1);
+    expect(res[0].id).toBe("P-002");
+    expect(res[0].type).toBe("Estación espacial");
+
+    const res3 = await locations.consultLocationByDimension(dimension2);
+    expect(res.length).toBe(1);
+    expect(res[0].id).toBe("P-002");
+    expect(res[0].dimension).toBe(dimension2);
   });
 });
