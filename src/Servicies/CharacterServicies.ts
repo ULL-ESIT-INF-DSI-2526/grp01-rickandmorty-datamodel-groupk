@@ -179,7 +179,7 @@ export class CharacterServices implements Services<Character> {
      * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
      * @returns array de personajes ordenados 
      */
-    private applySorting(characters: Character[], direction: boolean, sort?: number): Character[] {
+    async applySorting(characters: Character[], direction: boolean, sort?: number): Promise<Character[]> {
         if (sort === 1) {
             return this.sortByName(characters, direction);
         }
@@ -197,7 +197,7 @@ export class CharacterServices implements Services<Character> {
      * @param direction - dirección de ordenación (false = asc, true = desc)
      * @returns array de personajes ordenados por nombre
      */
-    private sortByName(characters: Character[], direction: boolean): Character[] {
+    async sortByName(characters: Character[], direction: boolean): Promise<Character[]>{
         // Usamos el método moderno y limpio de JS para ordenar (más seguro que el for manual)
         const sorted = [...characters].sort((a, b) => a.name.localeCompare(b.name));
         return direction ? sorted.reverse() : sorted;
@@ -209,7 +209,7 @@ export class CharacterServices implements Services<Character> {
      * @param direction - dirección de ordenación (false = asc, true = desc)
      * @returns array de personajes ordenados por IQ
      */
-    private sortByIq(characters: Character[], direction: boolean = false): Character[] {
+    async sortByIq(characters: Character[], direction: boolean = false): Promise<Character[]> {
         // Usamos tu método comentado que es mucho más limpio y cumple SOLID
         return [...characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
     }

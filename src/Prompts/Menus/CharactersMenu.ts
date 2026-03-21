@@ -2,7 +2,6 @@ import prompts from 'prompts';
 
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Character } from '../../Class/Character.js';
-import { Dimensions } from '../../Class/Dimensions.js';
 import { Species } from '../../Class/Species.js';
 
 export async function charactersMenu(manager: MultiverseManager) {
@@ -24,8 +23,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 { title: 'Consultar personajes por estado', value: 'consult by state'},
                 { title: 'Consultar personajes por dimensión', value: 'consult by dimension'},
                 { title: 'Encontrar versiones alternativas', value: 'fins alternative versions'},
-                { title: 'Ordenar personajes por IQ', value: 'sort by iq'},
-                { title: 'Ordenar personajes por nombre', value: 'sort by name'},
+                { title: 'Ordenar personajes', value: 'sort characters'},
                 { title: 'Volver', value: 'back' }
             ]
         });
@@ -62,6 +60,13 @@ export async function charactersMenu(manager: MultiverseManager) {
 
             case 'consult by state':
                 await consutlByState(manager);
+                break;
+
+            case 'consult by dimension':
+                await consultByDimension(manager);
+
+            case 'sort characters':
+                await sort(manager);
                 break;
 
             case 'back':
@@ -405,4 +410,89 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    async function consultByDimension(manager: MultiverseManager) {
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'dimension',
+                message: 'Introduce el nombre de la dimensión a consultar:',
+                validate: dimension => dimension.length > 0 ? true : "Debe de tener una dimensión"
+            }
+        ]);
+
+        try {
+        const dimension: string = data.dimension;
+
+        const res: Character[] = await manager.characters.consultCharacterByState(dimension.trim());
+
+        if(res.length == 0) {
+            console.log('No se encontraron resultados');
+        } else {
+            console.log(`Se encontraron ${res.length} personajes con la dimensión ${dimension}\n`);
+            res.forEach((c: Character, index: number) => {
+            console.log(`${index + 1}. ${c.name} 
+                         ID: ${c.id} 
+                         Dimensión: ${c.dimension} 
+                         Especie: ${c.species} 
+                         Afiliación: ${c.afiliation} 
+                         IQ: ${c.iq}
+                         Descripción: ${c.desc}\n`);
+                        });
+        }
+
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
+    }
+
+    async function sort(manager: MultiverseManager) {
+        const data = await prompts([
+            {
+                type: 'select',
+                name: 'sortType',
+                message: 'Elige sobre qué quieres ordenar:',
+                choices: [
+                    { title: 'Nombre del personaje', value: 1 },
+                    { title: 'IQ del personaje', value: 2 }
+                ]
+            },
+            {
+                type: 'select',
+                name: 'sortDir',
+                message: 'Elige el orden (Ascendente o Descendente):',
+                choices: [
+                    { title: 'Ascendente', value: false },
+                    { title: 'Descendente', value: true }
+                ]
+            }
+        ]);
+
+        try {
+            const character = await manager.characters.getAll();
+            const sort = await manager.characters.applySorting(character, data.sortDir, data.sortType);
+            console.log("\nPersonajes ordenados:\n");
+
+            if(sort.length === 0) { console.log('No hay personajes para ordenar'); }
+
+            if(data.sortType === 1) {
+                sort.forEach((c, index) => {
+                console.log(`${index + 1}. ${c.name}
+                    ID: ${c.id}
+                    Name: ${c.name}
+                    -------------------------`);
+                });
+            } else {
+                sort.forEach((c, index) => {
+                console.log(`${index + 1}. ${c.name}
+                    ID: ${c.id}
+                    IQ: ${c.iq}
+                    -------------------------`);
+                });
+            }
+
+        } catch (error: any) {
+            console.log("Error al ordenar:", error.message);
+        }
+
+    }
 }

@@ -1,6 +1,6 @@
 # Repositorio para el primer trabajo en grupo - Rick & Morty
 
-Modo de ejecución:ç
+Modo de ejecución:
 
 ```
 node dist/index.js 
