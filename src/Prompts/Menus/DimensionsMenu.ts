@@ -2,6 +2,7 @@ import prompts from "prompts";
 
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Dimensions } from "../../Class/Dimensions.js";
+import { DimensionState } from "../../Enums/DimensionState.js";
 
 export async function dimensionsMenu(manager: MultiverseManager) {
     let back = false;
@@ -63,9 +64,9 @@ export async function dimensionsMenu(manager: MultiverseManager) {
                 name: 'state',
                 message: 'Estado:',
                 choices: [
-                    { title: 'Activa', value: 'activa' },
-                    { title: 'Cuatentena', value: 'cuatentena'},
-                    { title: 'Destruida', value: 'destruida'},
+                    { title: 'Activa', value: DimensionState.ACTIVA },
+                    { title: 'Cuatentena', value: DimensionState.CUARENTENA},
+                    { title: 'Destruida', value: DimensionState.DESTRUIDA},
                 ]
             },
             {
@@ -95,12 +96,24 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             console.log("La nueva dimensión ha sido añadida correctamente");
 
         } catch (error: any) {
-            console.log ("Error", error.message);
+            console.log("Error", error.message);
         }
     }
 
     async function removeDimension(manager: MultiverseManager) {
-        
+        const {id} = await prompts({
+            type: 'text',
+            name: 'id',
+            message: 'ID de la dimensión a eliminar',
+            validate: id => id.length > 0 ? true : "Debe de tener un ID"
+        });
+
+        try {
+            await manager.dimensions.remove(id);
+        } catch (error: any) {
+            console.log("Error", error.message);
+        }
+
     }
 
     async function modifyDimension(manager: MultiverseManager) {

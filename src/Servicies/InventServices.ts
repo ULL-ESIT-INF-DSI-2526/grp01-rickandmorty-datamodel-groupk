@@ -33,7 +33,16 @@ export class InventServices implements Services<Invents>{
             throw new Error("No se puede añadir ese invento porque ya existe")
         }
 
-        this._db.data.invents.push(invent);
+        // Guardamos un objeto plano para evitar serializar atributos privados (_id, _name, ...)
+        this._db.data.invents.push({
+            id: invent.id,
+            name: invent.name,
+            type: invent.type,
+            inventor: invent.inventor,
+            dangerLevel: invent.dangerLevel,
+            desc: invent.desc,
+        } as Invents);
+        
         await this._db.write();
     }
     /**

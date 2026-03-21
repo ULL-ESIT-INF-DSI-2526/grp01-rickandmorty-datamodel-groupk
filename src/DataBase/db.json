@@ -1,0 +1,113 @@
+{
+  "characters": [],
+  "dimensions": [
+    {
+      "id": "C-137",
+      "name": "Dimensión Principal",
+      "state": "ACTIVA",
+      "techlevel": 9,
+      "desc": "Origen de Rick"
+    },
+    {
+      "id": "C-500A",
+      "name": "Postapocalíptica",
+      "state": "DESTRUIDA",
+      "techlevel": 4,
+      "desc": "Devastada"
+    },
+    {
+      "id": "J19Z7",
+      "name": "Mutante",
+      "state": "CUARENTENA",
+      "techlevel": 7,
+      "desc": "Mutaciones"
+    },
+    {
+      "id": "D-101",
+      "name": "Futurista",
+      "state": "ACTIVA",
+      "techlevel": 10,
+      "desc": "Alta tecnología"
+    },
+    {
+      "id": "D-202",
+      "name": "Medieval",
+      "state": "ACTIVA",
+      "techlevel": 2,
+      "desc": "Baja tecnología"
+    },
+    {
+      "id": "D-303",
+      "name": "Robot",
+      "state": "ACTIVA",
+      "techlevel": 10,
+      "desc": "IA dominante"
+    },
+    {
+      "id": "D-404",
+      "name": "Perdida",
+      "state": "DESTRUIDA",
+      "techlevel": 5,
+      "desc": "Desaparecida"
+    },
+    {
+      "id": "D-505",
+      "name": "Hivemind",
+      "state": "ACTIVA",
+      "techlevel": 6,
+      "desc": "Mente colectiva"
+    },
+    {
+      "id": "D-606",
+      "name": "Oscura",
+      "state": "CUARENTENA",
+      "techlevel": 8,
+      "desc": "Energía oscura"
+    },
+    {
+      "id": "D-707",
+      "name": "Alien",
+      "state": "ACTIVA",
+      "techlevel": 7,
+      "desc": "Extraterrestres"
+    },
+    {
+      "id": "D-808",
+      "name": "Simulación",
+      "state": "ACTIVA",
+      "techlevel": 9,
+      "desc": "Virtual"
+    },
+    {
+      "id": "D-909",
+      "name": "Caótica",
+      "state": "ACTIVA",
+      "techlevel": 5,
+      "desc": "Sin leyes"
+    },
+    {
+      "id": "D-010",
+      "name": "Mini",
+      "state": "ACTIVA",
+      "techlevel": 6,
+      "desc": "Pequeño"
+    },
+    {
+      "id": "D-111",
+      "name": "Gigante",
+      "state": "ACTIVA",
+      "techlevel": 6,
+      "desc": "Grande"
+    },
+    {
+      "id": "D-222",
+      "name": "Acuática",
+      "state": "ACTIVA",
+      "techlevel": 5,
+      "desc": "Agua total"
+    }
+  ],
+  "invents": [],
+  "planets": [],
+  "species": []
+}

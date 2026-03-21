@@ -37,7 +37,16 @@ export class SpeciesServices implements Services<Species> {
             throw new Error("No se puede añadir esa especie porque ya existe")
         }
 
-        this._db.data.species.push(specie);
+        // Guardamos un objeto plano para evitar serializar atributos privados (_id, _name, ...)
+        this._db.data.species.push({
+            id: specie.id,
+            name: specie.name,
+            origin: specie.origin,
+            type: specie.type,
+            expectancy: specie.expectancy,
+            desc: specie.desc,
+        } as Species);
+
         await this._db.write();
     }
 
