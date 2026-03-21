@@ -14,7 +14,7 @@ vi.mock('prompts', () => ({
 	default: vi.fn()
 }));
 
-describe('charactersMenu', () => {
+describe('CharactersMenu', () => {
 	interface MenuAnswer {
 		option:
 		  'list'
@@ -125,7 +125,9 @@ describe('charactersMenu', () => {
 
 		await charactersMenu(manager as unknown as MultiverseManager);
 
-		expect(manager.characters.getAll).toHaveBeenCalledTimes(1);
+        // Comprueba que se ha llamado solo una vez
+		expect(manager.characters.getAll).toHaveBeenCalledTimes(1); 
+        // Comprueba que se hizo un console.log
 		expect(consoleLogSpy).toHaveBeenCalledWith(mockCharacters);
 	});
 
@@ -192,7 +194,7 @@ describe('charactersMenu', () => {
 		expect(consoleLogSpy).toHaveBeenCalledWith('El personaje C-003 ha sido eliminado correctamente\n');
 	});
 
-	test('modifica un personaje enviando solo los campos editados', async () => {
+	test('modifica un personaje', async () => {
 		queuePrompts(
 			{ option: 'modify' },
 			{
