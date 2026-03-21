@@ -10,7 +10,7 @@ import { SpeciesServices } from "./SpeciesServices.js";
 export class MultiverseManager {
     private _db: Low<Data>;
     public dimensions: DimensionServices;
-    //public characters: CharacterServices; //Descomentar cuando esté completa la clase CharacterServices
+    public characters: CharacterServices; //Descomentar cuando esté completa la clase CharacterServices
     public localitations: LocationServices;
     public invents: InventServices;
     public species: SpeciesServices;
@@ -23,7 +23,7 @@ export class MultiverseManager {
     constructor(dataBase: Low<Data>) {
         this._db = dataBase;
         this.dimensions = new DimensionServices(dataBase);
-        //this.characters = new CharacterServices(dataBase); //Descomentar cuando esté completa la clase CharacterServices
+        this.characters = new CharacterServices(dataBase); //Descomentar cuando esté completa la clase CharacterServices
         this.localitations = new LocationServices(dataBase);
         this.invents = new InventServices(dataBase);
         this.species = new SpeciesServices(dataBase);
