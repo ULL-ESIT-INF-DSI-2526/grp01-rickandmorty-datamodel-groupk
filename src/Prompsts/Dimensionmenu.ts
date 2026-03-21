@@ -93,9 +93,6 @@ export async function addDimension(): Promise<void> {
         name: "techlevel",
         message: "Nivel tecnologico (1-10):",
         validate: (value: number) => {
-            if (!Number.isInteger(value)) {
-                return "Introduce un numero entero";
-            }
             if (value < 1 || value > 10) {
                 return "Debe estar entre 1 y 10";
             }
@@ -126,10 +123,36 @@ export async function addDimension(): Promise<void> {
         await dimensionService.add(newDimension);
         console.log("Dimension anadida correctamente");
     } catch (error) {
+        // No usar thorw new Error para que el menu siga funcionando
         if (error instanceof Error) {
             console.log(error.message);
             return;
         }
-        console.log("Error desconocido al anadir dimension");
+        console.log("Error al anadir dimension");
+    }
+}
+
+export async function remove(): Promise<void> {
+    const idResponse = await prompts<"id">({
+        type: "text",
+        name: "id",
+        message: "ID de la dimension:",
+    });
+
+    if (!idResponse.id?.trim()) {
+        console.log("Operacion cancelada");
+        return;
+    }
+
+    try {
+        await dimensionService.remove(idResponse.id);
+        console.log("Dimension eliminada correctamente");
+    } catch (error) {
+        // No usar thorw new Error para que el menu siga funcionando
+        if (error instanceof Error) {
+            console.log(error.message);
+            return;
+        }
+        console.log("Error al eliminar dimension");
     }
 }
