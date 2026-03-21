@@ -37,14 +37,7 @@ export class DimensionServices implements Services<Dimensions> {
             throw new Error("No se puede añadir esa dimensión porque ya existe")
         }
 
-        // Guardamos un objeto plano para evitar serializar atributos privados (_id, _name, ...)
-        this._db.data.dimensions.push({
-            id: dimension.id,
-            name: dimension.name,
-            state: dimension.state,
-            techlevel: dimension.techlevel,
-            desc: dimension.desc,
-        } as Dimensions);
+        this._db.data.dimensions.push(dimension);
         await this._db.write();
     }
 
