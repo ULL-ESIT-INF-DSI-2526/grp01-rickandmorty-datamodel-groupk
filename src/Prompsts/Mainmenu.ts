@@ -19,7 +19,7 @@ const speciesService = new SpeciesServices(db);
 const characterService = new CharacterServices(db);
 const inventService = new InventServices(db);
 
-export type MainMenuOption = "dimensions" | "characters" | "species" | "locations" | "invents" | "exit";
+export type MainMenuOption = "dimensions" | "characters" | "species" | "locations" | "invents" | "consultar" | "exit";
 
 type MainMenuChoice = {
     title: string;
@@ -32,12 +32,13 @@ type MainMenuPromptResponse = {
 
 export async function mainMenu(): Promise<MainMenuOption> {
     const choices: MainMenuChoice[] = [
-        { title: "Gestionar Dimensiones", value: "dimensions" },
-        { title: "Gestionar Personajes", value: "characters" },
-        { title: "Gestionar Especies", value: "species" },
-        { title: "Gestionar Localizaciones", value: "locations" },
-        { title: "Gestionar Inventos", value: "invents" },
-        { title: "Salir", value: "exit" },
+        { title: "Gestionar Dimensiones", value: "dimensions"},
+        { title: "Gestionar Personajes", value: "characters"},
+        { title: "Gestionar Especies", value: "species"},
+        { title: "Gestionar Localizaciones", value: "locations"},
+        { title: "Gestionar Inventos", value: "invents"},
+        { title: "Consultar", value: "consultar"},
+        { title: "Salir", value: "exit"},
     ];
 
     const response: MainMenuPromptResponse = await prompts<"option">({
@@ -50,37 +51,32 @@ export async function mainMenu(): Promise<MainMenuOption> {
     return response.option ?? "exit";
 }
 
-export async function startApp(): Promise<void> {
+export async function startInterface(): Promise<void> {
     let exit: boolean = false;
+
     while (!exit) {
         const option: MainMenuOption = await mainMenu();
-
         switch (option) {
-        case "dimensions":
-            console.log("Menú dimensiones (pendiente)");
-            break;
+            case "dimensions":
+                break;
 
-        case "characters":
-            console.log("Menú personajes (pendiente)");
-            break;
+            case "characters":
+                break;
 
-        case "species":
-            console.log("Menú especies (pendiente)");
-            break;
+            case "species":
+                break;
 
-        case "locations":
-            console.log("Menú localizaciones (pendiente)");
-            break;
+            case "locations":
+                break;
 
-        case "invents":
-            console.log("Menú inventos (pendiente)");
-            break;
+            case "invents":
+                break;
 
-        case "exit":
-            exit = true;
-            break;
+            case "exit":
+                exit = true;
+                break;
         }
     }
 
-    console.log("👋 Saliendo...");
+    console.log("Salir");
 }
