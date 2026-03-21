@@ -1,17 +1,8 @@
 import prompts from "prompts";
 
-
-import { db } from "../../DataBase/db.js";
-import { Dimensions } from "../../Class/Dimensions.js";
-import { DimensionState } from "../../Enums/DimensionState.js";
-import { DimensionServices } from "../../Servicies/DimensionServices.js";
-import { ObjectMenuChoice, IdPromptResponse, DescPromptResponse, NamePromptResponse, 
-        StatePromptResponse, DimensionMenuResponse, StateOrKeepPromptResponse,
-        TechlevelTextPromptResponse, TechlevelNumberPromptResponse} from "../DimensionPrompt/DimensionType.js"
+import { ObjectMenuChoice, DimensionMenuResponse} from "../DimensionPrompt/DimensionType.js"
 import { ObjectMenuOption } from "../../Prompsts/Mainmenu.js";
-import { add, remove, mod} from "../DimensionPrompt/DimensionFunctions.js"
-
-const dimensionService = new DimensionServices(db);
+import { add, list, remove, mod} from "../DimensionPrompt/DimensionFunctions.js"
 
 export async function dimensionsMenu(): Promise<ObjectMenuOption> {
     const choices: ObjectMenuChoice[] = [
@@ -51,6 +42,7 @@ export async function startDimension(): Promise<void> {
                 break;
 
             case "list":
+                await list();
                 break;
 
             case "back":

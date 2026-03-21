@@ -429,6 +429,27 @@
       "state": "ACTIVA",
       "techlevel": 5,
       "desc": "Agua total"
+    },
+    {
+      "_id": "Hola",
+      "_name": "Hola",
+      "_desc": "Hola",
+      "_state": "Activa",
+      "_techlevel": 2
+    },
+    {
+      "_id": "233",
+      "_name": "Hola",
+      "_desc": "Hola",
+      "_state": "Activa",
+      "_techlevel": 2
+    },
+    {
+      "id": "hola",
+      "name": "prueba",
+      "state": "Activa",
+      "techlevel": 2,
+      "desc": "hecho"
     }
   ],
   "invents": [

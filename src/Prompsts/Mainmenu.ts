@@ -1,18 +1,12 @@
 import prompts from "prompts";
 
-import { Character } from "../Class/Character.js";
-import { Dimensions } from "../Class/Dimensions.js";
-import { Invents } from "../Class/Invents.js";
-import { Planets } from "../Class/Planets.js";
-import { Species } from "../Class/Species.js";
 import { db } from "../DataBase/db.js";
-import { DimensionState } from "../Enums/DimensionState.js";
 import { CharacterServices } from "../Servicies/CharacterServicies.js";
 import { DimensionServices } from "../Servicies/DimensionServices.js";
 import { InventServices } from "../Servicies/InventServices.js";
 import { LocationServices } from "../Servicies/LocationServicies.js";
 import { SpeciesServices } from "../Servicies/SpeciesServices.js";
-import {startDimension} from "../Prompsts/Dimensionmenu.js";
+import { startDimension } from "./DimensionPrompt/DimensionMenu.js";
 
 const dimensionService = new DimensionServices(db);
 const locationService = new LocationServices(db);
