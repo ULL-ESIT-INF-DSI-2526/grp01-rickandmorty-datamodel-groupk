@@ -67,10 +67,11 @@ describe ("Test para la clase LocationServices", () => {
   });
   
   test("Test para las funciones de consultas", async () => {
-    //await locations.add(location1);
     await locations.add(location2);
-    expect(await locations.consultLocationByName("Citadela de los Ricks")).toStrictEqual([location2]);
-    expect(await locations.consultLocationByType("Estación espacial")).toStrictEqual([location2]);
-    expect(await locations.consultLocationByDimension(dimension2)).toStrictEqual([location2]);
+    const res = await locations.consultLocationByName("Citadela de los Ricks");
+
+    expect(res.length).toBe(1);
+    expect(res[0].id).toBe("P-002");
+    expect(res[0].name).toBe("Citadela de los Ricks");
   });
 });

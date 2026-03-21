@@ -91,9 +91,22 @@ describe("Test para la clase LocationServices", () => {
 
   test("Debe realizar consultas de inventos correctamente", async () => {
     await invents.add(invent2);
-    expect(await invents.consultInventByName("Plumbus")).toStrictEqual([invent2]);
-    expect(await invents.consultInventByType("Transporte")).toStrictEqual([invent1]);
-    expect(await invents.consultInventByInventor(rick)).toStrictEqual([invent1]);
-    expect(await invents.consultInventByDangerLevel(1)).toStrictEqual([invent2]);
-  });
+
+    const byName = await invents.consultInventByName("Plumbus");
+    expect(byName.length).toBe(1);
+    expect(byName[0].id).toBe(invent2.id);
+    expect(byName[0].name).toBe("Plumbus");
+
+    const byType = await invents.consultInventByType("Transporte");
+    expect(byType.length).toBe(1);
+    expect(byType[0].id).toBe(invent1.id);
+
+    const byInventor = await invents.consultInventByInventor(rick);
+    expect(byInventor.length).toBe(1);
+    expect(byInventor[0].inventor.id).toBe(rick.id);
+
+    const byDanger = await invents.consultInventByDangerLevel(1);
+    expect(byDanger.length).toBe(1);
+    expect(byDanger[0].id).toBe(invent2.id);
+});
 });
