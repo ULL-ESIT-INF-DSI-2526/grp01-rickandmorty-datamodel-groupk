@@ -102,9 +102,9 @@
     {
       "id": "D-222",
       "name": "Acuática",
-      "state": "ACTIVA",
-      "techlevel": 5,
-      "desc": "Agua total"
+      "state": "Destruida",
+      "techlevel": "7",
+      "desc": "Hola"
     }
   ],
   "invents": [],

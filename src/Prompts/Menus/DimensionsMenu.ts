@@ -93,7 +93,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             );
 
             await manager.dimensions.add(newDimension);
-            console.log("La nueva dimensión ha sido añadida correctamente");
+            console.log(`La dimensión ${data.id} ha sido eliminada correctamente`);
 
         } catch (error: any) {
             console.log("Error", error.message);
@@ -110,6 +110,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
 
         try {
             await manager.dimensions.remove(id);
+            console.log(`La dimensión ${id} ha sido eliminada correctamente`)
         } catch (error: any) {
             console.log("Error", error.message);
         }
@@ -117,6 +118,52 @@ export async function dimensionsMenu(manager: MultiverseManager) {
     }
 
     async function modifyDimension(manager: MultiverseManager) {
-        
+        const data = await prompts([
+            {
+                type: 'text',
+                name: 'id',
+                message: 'Introduce el ID de la dimensión a modificar:',
+                validate: id => id.length > 0 ? true : "Debe de tener un ID"
+            },
+            {
+                type: 'text',
+                name: 'name',
+                message: 'Nuevo nombre (Enter para no modificar):',
+            },
+            {
+                type: 'select',
+                name: 'state',
+                message: 'Nuevo estado:',
+                choices: [
+                    { title: 'No cambiar', value: null },
+                    { title: 'Activa', value: DimensionState.ACTIVA },
+                    { title: 'Cuatentena', value: DimensionState.CUARENTENA},
+                    { title: 'Destruida', value: DimensionState.DESTRUIDA},
+                ]
+            },
+            {
+                type: 'text',
+                name: 'techlevel',
+                message: 'Nuevo nivel tecnológico (Enter para no modificar):'            
+            },
+            {
+                type: 'text',
+                name: 'desc',
+                message: 'Nueva descripción (Enter para no modificar):'
+            }
+        ]);
+
+        try {
+            const mod: any = {};
+            if(data.name) mod.name = data.name;
+            if(data.state !== null) mod.state = data.state;
+            if(!isNaN(data.techlevel)) mod.techlevel = data.techlevel;
+            if(data.desc) mod.desc = data.desc;
+
+            const res = await manager.dimensions.modify(data.id, mod);
+            console.log(`La dimensión ${data.id} ha sido modificada correctamente`);
+        } catch (error: any) {
+            console.log("Error", error.message);
+        } 
     }
 }
