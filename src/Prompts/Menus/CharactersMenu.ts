@@ -18,7 +18,14 @@ export async function charactersMenu(manager: MultiverseManager) {
                 { title: 'Añadir personaje', value: 'add' },
                 { title: 'Eliminar personaje', value: 'remove' },
                 { title: 'Modificar personaje', value: 'modify' },
-                { title: 'Hacer consultas sobre el personaje', value: 'consult'},
+                { title: 'Consultar personajes por nombre', value: 'consult by name'},
+                { title: 'Consultar personajes por afiliación', value: 'consult by afiliation'},
+                { title: 'Consultar personajes por especie', value: 'consult by specie'},
+                { title: 'Consultar personajes por estado', value: 'consult by state'},
+                { title: 'Consultar personajes por dimensión', value: 'consult by dimension'},
+                { title: 'Encontrar versiones alternativas', value: 'fins alternative versions'},
+                { title: 'Ordenar personajes por IQ', value: 'sort by iq'},
+                { title: 'Ordenar personajes por nombre', value: 'sort by name'},
                 { title: 'Volver', value: 'back' }
             ]
         });
@@ -41,7 +48,9 @@ export async function charactersMenu(manager: MultiverseManager) {
                 await modifyCharacter(manager);
                 break;
 
-            case 'consult':
+            case 'consult by name':
+                await consutlByName(manager);
+                break;
 
             case 'back':
                 back = true;
@@ -242,5 +251,9 @@ export async function charactersMenu(manager: MultiverseManager) {
         } catch (error: any) {
             console.log("Error", error.message);
         } 
+    }
+
+    async function consutlByName(manager: MultiverseManager) {
+        
     }
 }
