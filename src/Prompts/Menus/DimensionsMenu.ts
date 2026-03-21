@@ -77,10 +77,11 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'desc',
-                message: 'Descripción:'
+                message: 'Descripción:',
+                validate: desc => desc.length > 0 ? true : "Debe de tener descripción"
             }
         ]);
-        
+
         try {
             const newDimension = new Dimensions(
                 data.id,
