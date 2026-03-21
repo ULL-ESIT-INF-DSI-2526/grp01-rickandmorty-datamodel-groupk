@@ -93,7 +93,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             );
 
             await manager.dimensions.add(newDimension);
-            console.log(`La dimensión ${data.id} ha sido eliminada correctamente`);
+            console.log(`La dimensión ${data.id} ha sido añadida correctamente`);
 
         } catch (error: any) {
             console.log("Error", error.message);

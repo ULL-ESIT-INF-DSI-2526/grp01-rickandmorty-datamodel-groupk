@@ -2,6 +2,7 @@ import { db } from "./DataBase/db.js";
 import { MultiverseManager } from "./Servicies/Multiverse.js";
 import { dimensionsMenu } from "./Prompts/Menus/DimensionsMenu.js";
 import { mainMenu } from "./Prompts/mainMenu.js";
+import { charactersMenu } from "./Prompts/Menus/CharactersMenu.js";
 
 async function main() {
     await db.read();
@@ -16,6 +17,9 @@ async function main() {
         switch (option) {
             case 'dimensions':
                 await dimensionsMenu(manager);
+                break;
+            case 'characters':
+                await charactersMenu(manager);
                 break;
             case 'exit':
                 exit = true;
