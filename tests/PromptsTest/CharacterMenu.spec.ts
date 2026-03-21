@@ -51,7 +51,37 @@ describe('CharactersMenu', () => {
 		name: string;
 	}
 
-	type PromptAnswer = MenuAnswer | CharacterFormAnswer | RemoveAnswer | ConsultByNameAnswer;
+	interface ConsultByAfiliationAnswer {
+		afiliation: string;
+	}
+
+	interface ConsultBySpecieAnswer {
+		specie: string;
+	}
+
+	interface ConsultByStateAnswer {
+		state: string;
+	}
+
+	interface ConsultByDimensionAnswer {
+		dimension: Dimensions;
+	}
+
+	interface SortAnswer {
+		sortType: 1 | 2;
+		sortDir: boolean;
+	}
+
+	type PromptAnswer =
+		| MenuAnswer
+		| CharacterFormAnswer
+		| RemoveAnswer
+		| ConsultByNameAnswer
+		| ConsultByAfiliationAnswer
+		| ConsultBySpecieAnswer
+		| ConsultByStateAnswer
+		| ConsultByDimensionAnswer
+		| SortAnswer;
 
 	interface MockedManager {
 		characters: {
@@ -60,6 +90,11 @@ describe('CharactersMenu', () => {
 			remove: ReturnType<typeof vi.fn>;
 			modify: ReturnType<typeof vi.fn>;
 			consultCharacterByName: ReturnType<typeof vi.fn>;
+			consultCharacterByAfilation: ReturnType<typeof vi.fn>;
+			consultCharacterBySpecies: ReturnType<typeof vi.fn>;
+			consultCharacterByState: ReturnType<typeof vi.fn>;
+			consultCharacterByDimension: ReturnType<typeof vi.fn>;
+			applySorting: ReturnType<typeof vi.fn>;
 		};
 		dimensions: {
 			getAll: ReturnType<typeof vi.fn>;
@@ -81,7 +116,12 @@ describe('CharactersMenu', () => {
 			add: vi.fn(),
 			remove: vi.fn(),
 			modify: vi.fn(),
-			consultCharacterByName: vi.fn()
+			consultCharacterByName: vi.fn(),
+			consultCharacterByAfilation: vi.fn(),
+			consultCharacterBySpecies: vi.fn(),
+			consultCharacterByState: vi.fn(),
+			consultCharacterByDimension: vi.fn(),
+			applySorting: vi.fn()
 		},
 		dimensions: {
 			getAll: vi.fn()
@@ -108,6 +148,11 @@ describe('CharactersMenu', () => {
 		manager.characters.remove.mockResolvedValue(undefined);
 		manager.characters.modify.mockResolvedValue(true);
 		manager.characters.consultCharacterByName.mockResolvedValue([]);
+		manager.characters.consultCharacterByAfilation.mockResolvedValue([]);
+		manager.characters.consultCharacterBySpecies.mockResolvedValue([]);
+		manager.characters.consultCharacterByState.mockResolvedValue([]);
+		manager.characters.consultCharacterByDimension.mockResolvedValue([]);
+		manager.characters.applySorting.mockResolvedValue([]);
 		manager.dimensions.getAll.mockResolvedValue([baseDimension]);
 		manager.species.getAll.mockResolvedValue([baseSpecies]);
 	});
@@ -235,5 +280,249 @@ describe('CharactersMenu', () => {
 		expect(manager.characters.add).not.toHaveBeenCalled();
 		expect(manager.characters.remove).not.toHaveBeenCalled();
 		expect(manager.characters.modify).not.toHaveBeenCalled();
+	});
+
+	test('consult by name muestra resultados', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-010', 'Evil Morty', baseSpecies, baseDimension, 'Vivo', 'Ciudadela', 9, 'Presidente')
+		];
+		manager.characters.consultCharacterByName.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'consult by name' },
+			{ name: 'Evil Morty' },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.consultCharacterByName).toHaveBeenCalledWith('Evil Morty');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 personajes con el nombre Evil Morty\n');
+	});
+
+	test('consult by afiliation muestra resultados', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-011', 'Morty', baseSpecies, baseDimension, 'Vivo', 'Ciudadela', 7, 'Aliado')
+		];
+		manager.characters.consultCharacterByAfilation.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'consult by afiliation' },
+			{ afiliation: 'Ciudadela' },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.consultCharacterByAfilation).toHaveBeenCalledWith('Ciudadela');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 personajes con la afiliación Ciudadela\n');
+	});
+
+	test('consult by specie muestra resultados', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-012', 'Birdperson', baseSpecies, baseDimension, 'Vivo', 'Resistencia', 8, 'Guerrero')
+		];
+		manager.characters.consultCharacterBySpecies.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'consult by specie' },
+			{ specie: 'Humano' },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.consultCharacterBySpecies).toHaveBeenCalledWith('Humano');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 personajes con la especie Humano\n');
+	});
+
+	test('consult by state muestra resultados', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-013', 'Summer', baseSpecies, baseDimension, 'Vivo', 'Smith', 6, 'Exploradora')
+		];
+		manager.characters.consultCharacterByState.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'consult by state' },
+			{ state: 'Vivo' },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.consultCharacterByState).toHaveBeenCalledWith('Vivo');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 personajes con el estado Vivo\n');
+	});
+
+	test('consult by dimension muestra resultados', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-014', 'Beth', baseSpecies, baseDimension, 'Vivo', 'Smith', 7, 'Doctora')
+		];
+		manager.characters.consultCharacterByDimension.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'consult by dimension' },
+			{ dimension: baseDimension },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.consultCharacterByDimension).toHaveBeenCalledWith(baseDimension);
+		expect(consoleLogSpy).toHaveBeenCalledWith(`Se encontraron 1 personajes con la dimensión ${baseDimension}\n`);
+	});
+
+	test('muestra avisos al añadir sin dimensiones ni especies', async () => {
+		manager.dimensions.getAll.mockResolvedValue([]);
+		manager.species.getAll.mockResolvedValue([]);
+
+		queuePrompts(
+			{ option: 'add' },
+			{
+				id: 'C-020',
+				name: 'NoData',
+				specie: baseSpecies,
+				dimension: baseDimension,
+				state: 'Vivo',
+				afiliation: 'Ninguna',
+				iq: 5,
+				desc: 'Sin catálogos'
+			},
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('No hay dimensiones disponibles');
+		expect(consoleLogSpy).toHaveBeenCalledWith('No hay especies disponibles');
+	});
+
+	test('muestra error al eliminar personaje', async () => {
+		manager.characters.remove.mockRejectedValue(new Error('No se pudo eliminar'));
+
+		queuePrompts(
+			{ option: 'remove' },
+			{ id: 'C-404' },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se pudo eliminar');
+	});
+
+	test('muestra avisos al modificar sin dimensiones ni especies', async () => {
+		manager.dimensions.getAll.mockResolvedValue([]);
+		manager.species.getAll.mockResolvedValue([]);
+
+		queuePrompts(
+			{ option: 'modify' },
+			{
+				id: 'C-021',
+				name: 'Cambio',
+				specie: baseSpecies,
+				dimension: baseDimension,
+				state: 'Vivo',
+				afiliation: 'Ninguna',
+				iq: 4,
+				desc: 'Sin catálogos'
+			},
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('No hay dimensiones disponibles');
+		expect(consoleLogSpy).toHaveBeenCalledWith('No hay especies disponibles');
+	});
+
+	test('muestra error al modificar personaje', async () => {
+		manager.characters.modify.mockRejectedValue(new Error('No se pudo modificar'));
+
+		queuePrompts(
+			{ option: 'modify' },
+			{
+				id: 'C-022',
+				name: 'Morty X',
+				specie: baseSpecies,
+				dimension: baseDimension,
+				state: 'Vivo',
+				afiliation: 'Ninguna',
+				iq: 5,
+				desc: 'Alternativo'
+			},
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se pudo modificar');
+	});
+
+	test('sort characters por nombre', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-030', 'Rick', baseSpecies, baseDimension, 'Vivo', 'Ninguna', 10, 'Genio')
+		];
+		manager.characters.getAll.mockResolvedValue(mockCharacters);
+		manager.characters.applySorting.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'sort characters' },
+			{ sortType: 1, sortDir: false },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.applySorting).toHaveBeenCalledWith(mockCharacters, false, 1);
+		expect(consoleLogSpy).toHaveBeenCalledWith('\nPersonajes ordenados:\n');
+	});
+
+	test('sort characters por IQ', async () => {
+		const mockCharacters: Character[] = [
+			new Character('C-031', 'Morty', baseSpecies, baseDimension, 'Vivo', 'Ninguna', 7, 'Aventurero')
+		];
+		manager.characters.getAll.mockResolvedValue(mockCharacters);
+		manager.characters.applySorting.mockResolvedValue(mockCharacters);
+
+		queuePrompts(
+			{ option: 'sort characters' },
+			{ sortType: 2, sortDir: true },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.characters.applySorting).toHaveBeenCalledWith(mockCharacters, true, 2);
+		expect(consoleLogSpy).toHaveBeenCalledWith('\nPersonajes ordenados:\n');
+	});
+
+	test('sort characters sin personajes', async () => {
+		manager.characters.getAll.mockResolvedValue([]);
+		manager.characters.applySorting.mockResolvedValue([]);
+
+		queuePrompts(
+			{ option: 'sort characters' },
+			{ sortType: 1, sortDir: false },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('No hay personajes para ordenar');
+	});
+
+	test('sort characters muestra error al fallar', async () => {
+		manager.characters.applySorting.mockRejectedValue(new Error('No se pudo ordenar'));
+
+		queuePrompts(
+			{ option: 'sort characters' },
+			{ sortType: 1, sortDir: false },
+			{ option: 'back' }
+		);
+
+		await charactersMenu(manager as unknown as MultiverseManager);
+
+		expect(consoleLogSpy).toHaveBeenCalledWith('Error al ordenar:', 'No se pudo ordenar');
 	});
 });
