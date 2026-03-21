@@ -274,6 +274,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 validate: name => name.length > 0 ? true : "Debe de tener un nombre"
             }
         ]);
+        
         try {
         const names: string = data.name;
 
@@ -308,6 +309,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 validate: afiliation => afiliation.length > 0 ? true : "Debe de tener una afiliación"
             }
         ]);
+
         try {
         const affs: string = data.afiliation;
 
@@ -342,6 +344,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 validate: specie => specie.length > 0 ? true : "Debe de tener una especie"
             }
         ]);
+
         try {
         const species: Species = data.specie;
 
@@ -376,6 +379,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 validate: state => state.length > 0 ? true : "Debe de tener un estado"
             }
         ]);
+
         try {
         const state: string = data.state;
 
