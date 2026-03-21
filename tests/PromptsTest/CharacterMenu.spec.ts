@@ -27,6 +27,7 @@ describe('CharactersMenu', () => {
 			| 'consult by state'
 			| 'consult by dimension'
 			| 'fins alternative versions'
+			| 'sort characters'
 			| 'sort by iq'
 			| 'sort by name'
 			| 'back';

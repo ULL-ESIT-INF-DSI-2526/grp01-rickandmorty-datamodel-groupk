@@ -25,8 +25,8 @@ describe('DimensionMenu', () => {
 	interface DimensionFormAnswer {
 		id: string;
 		name: string;
-		state: DimensionState;
-		techlevel: number;
+        state: DimensionState | null;
+        techlevel: number;
 		desc: string;
 	}
 
@@ -169,6 +169,21 @@ describe('DimensionMenu', () => {
             desc: 'Antiguo Origen de Rick'
         }));
          expect(consoleLogSpy).toHaveBeenCalledWith("La dimensión C-137 ha sido modificada correctamente");
+    });
+
+    test('muestra error al eliminar dimensión', async () => {
+        manager.dimensions.remove.mockRejectedValue(new Error('No se puede eliminar esa dimensión'));
+
+        queuePrompts(
+            { option: 'remove' },
+            { id: 'D-999' },
+            { option: 'back' }
+        );
+
+        await dimensionsMenu(manager as unknown as MultiverseManager);
+
+        expect(manager.dimensions.remove).toHaveBeenCalledWith('D-999');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se puede eliminar esa dimensión');
     });
         
 
