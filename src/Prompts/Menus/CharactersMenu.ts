@@ -3,6 +3,7 @@ import prompts from 'prompts';
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Character } from '../../Class/Character.js';
 import { Species } from '../../Class/Species.js';
+import { Dimensions } from '../../Class/Dimensions.js';
 
 export async function charactersMenu(manager: MultiverseManager) {
     let back = false;
@@ -64,6 +65,7 @@ export async function charactersMenu(manager: MultiverseManager) {
 
             case 'consult by dimension':
                 await consultByDimension(manager);
+                break;
 
             case 'sort characters':
                 await sort(manager);
@@ -101,7 +103,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'id',
-                message: 'Introduce el ID de la personaje a añadir:',
+                message: 'Introduce el ID de la personaje a modificar:',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             },
             {
@@ -234,7 +236,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'state',
-                message: 'Nuevo estado:'
+                message: 'Nuevo estado (Enter para no modificar):'
             },
             {
                 type: 'text',
@@ -415,15 +417,15 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'dimension',
-                message: 'Introduce el nombre de la dimensión a consultar:',
+                message: 'Introduce el id de la dimensión a consultar:',
                 validate: dimension => dimension.length > 0 ? true : "Debe de tener una dimensión"
             }
         ]);
 
         try {
-        const dimension: string = data.dimension;
+        const dimension: Dimensions = data.dimension;
 
-        const res: Character[] = await manager.characters.consultCharacterByState(dimension.trim());
+        const res: Character[] = await manager.characters.consultCharacterByDimension(dimension);
 
         if(res.length == 0) {
             console.log('No se encontraron resultados');

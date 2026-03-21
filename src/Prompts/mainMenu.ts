@@ -8,7 +8,8 @@ export async function mainMenu(): Promise<string> {
         choices: [
             { title: 'Dimensiones', value: 'dimensions' },
             { title: 'Personajes', value: 'characters' },
-            { title: 'Localizaciones', value: 'locations' },
+            { title: 'Localizaciones', value: 'localitations' },
+            { title: 'Especies', value: 'species' },
             { title: 'Informes', value: 'reports' },
             { title: 'Salir', value: 'exit' }
         ]
