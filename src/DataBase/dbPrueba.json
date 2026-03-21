@@ -429,6 +429,13 @@
       "state": "ACTIVA",
       "techlevel": 5,
       "desc": "Agua total"
+    },
+    {
+      "_id": "A",
+      "_name": "FA",
+      "_desc": "fads",
+      "_state": "Activa",
+      "_techlevel": 2
     }
   ],
   "invents": [

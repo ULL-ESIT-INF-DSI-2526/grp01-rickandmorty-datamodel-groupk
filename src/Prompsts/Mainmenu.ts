@@ -12,6 +12,7 @@ import { DimensionServices } from "../Servicies/DimensionServices.js";
 import { InventServices } from "../Servicies/InventServices.js";
 import { LocationServices } from "../Servicies/LocationServicies.js";
 import { SpeciesServices } from "../Servicies/SpeciesServices.js";
+import {startDimension} from "../Prompsts/Dimensionmenu.js";
 
 const dimensionService = new DimensionServices(db);
 const locationService = new LocationServices(db);
@@ -20,6 +21,8 @@ const characterService = new CharacterServices(db);
 const inventService = new InventServices(db);
 
 export type MainMenuOption = "dimensions" | "characters" | "species" | "locations" | "invents" | "consultar" | "exit";
+
+export type ObjectMenuOption = "add" | "remove" | "mod" | "list" | "back";
 
 type MainMenuChoice = {
     title: string;
@@ -58,6 +61,7 @@ export async function startInterface(): Promise<void> {
         const option: MainMenuOption = await mainMenu();
         switch (option) {
             case "dimensions":
+                await startDimension();
                 break;
 
             case "characters":
