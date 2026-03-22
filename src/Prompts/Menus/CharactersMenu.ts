@@ -11,7 +11,7 @@ import { Dimensions } from '../../Class/Dimensions.js';
  */
 export async function charactersMenu(manager: MultiverseManager) {
     let back = false;
-    /** Bucle para elefir la opcion que se va a realizar */
+    /** Bucle para elegir la opcion que se va a realizar */
     while(!back) {
         const res = await prompts({
             type: 'select',
@@ -33,7 +33,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             ]
         });
 
-        // Selección de la opción a realizar
+        /** Selección de la opción a realizar */
         switch (res.option) {
             case 'list':
                 const characters = await manager.characters.getAll();

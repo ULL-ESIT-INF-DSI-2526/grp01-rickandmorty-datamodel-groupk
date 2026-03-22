@@ -4,9 +4,14 @@ import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Invents } from "../../Class/Invents.js";
 import { Character } from "../../Class/Character.js";
 
+/**
+ * Función del menu principal de inventos
+ * @param manager 
+ */
+
 export async function inventsMenu(manager: MultiverseManager) {
     let back = false;
-    
+        /** Bucle para elegir la opción que se va a realizar */
         while(!back) {
             const res = await prompts({
                 type: 'select',
@@ -25,6 +30,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                 ]
             });
     
+            /** Seleccion de la opcion a realizar */
             switch (res.option) {
                 case 'list':
                     const invents = await manager.invents.getAll();
@@ -64,7 +70,11 @@ export async function inventsMenu(manager: MultiverseManager) {
                     break;
             }
         }
-        
+
+        /**
+         * Prompt para anadir un nuevo invento
+         * @param manager
+         */
         async function addInvent(manager: MultiverseManager) {
             const character = await manager.characters.getAll();
     
@@ -115,7 +125,8 @@ export async function inventsMenu(manager: MultiverseManager) {
                     validate: desc => desc.length > 0 ? true : "Debe de tener descripción"
                 }
             ]);
-    
+
+            /** Construye invento y validacion de error */
             try {
                 const newInvent = new Invents(
                     data.id,
@@ -133,7 +144,11 @@ export async function inventsMenu(manager: MultiverseManager) {
                 console.log("Error", error.message);
             }
         }
-    
+
+        /**
+         * Prompt para eliminar un invento
+         * @param manager
+         */
         async function removeInvent(manager: MultiverseManager) {
             const {id} = await prompts({
                 type: 'text',
@@ -141,16 +156,21 @@ export async function inventsMenu(manager: MultiverseManager) {
                 message: 'ID del invento a eliminar',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             });
-    
+
+            /** Notifica que se elimino invento o error */
             try {
                 await manager.invents.remove(id);
                 console.log(`El invento ${id} ha sido eliminado correctamente\n`)
             } catch (error: any) {
                 console.log("Error", error.message);
             }
-    
+
         }
-    
+
+        /**
+         * Prompt para modificar un invento
+         * @param manager
+         */
         async function modifyInvent(manager: MultiverseManager) {
             const character = await manager.characters.getAll();
     
@@ -197,7 +217,8 @@ export async function inventsMenu(manager: MultiverseManager) {
                     message: 'Nueva escripción (Enter para no modificar):'
                 }
             ]);
-    
+
+            /** Modifica el invento y validacion de error */
             try {
                 const mod: any = {};
                 if(data.name) mod.name = data.name;
@@ -212,7 +233,11 @@ export async function inventsMenu(manager: MultiverseManager) {
                 console.log("Error", error.message);
             } 
         }
-    
+
+        /**
+         * Prompt para buscar invento por el nombre
+         * @param manager
+         */
         async function consutlByName(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -222,7 +247,8 @@ export async function inventsMenu(manager: MultiverseManager) {
                     validate: name => name.length > 0 ? true : "Debe de tener un nombre"
                 }
             ]);
-            
+
+            /** Busca el invento, ya sea que lo encuentre o no y validacion de error */
             try {
             const names: string = data.name;
     
@@ -247,6 +273,10 @@ export async function inventsMenu(manager: MultiverseManager) {
             }
         }
 
+        /**
+         * Prompt para buscar invento por el tipo
+         * @param manager
+         */
         async function consutlByType(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -256,7 +286,8 @@ export async function inventsMenu(manager: MultiverseManager) {
                     validate: type => type.length > 0 ? true : "Debe de tener un tipo"
                 }
             ]);
-            
+
+            /** Busca el invento, ya sea que lo encuentre o no y validacion de error */
             try {
             const types: string = data.type;
     
@@ -281,6 +312,10 @@ export async function inventsMenu(manager: MultiverseManager) {
             }
         }
 
+        /**
+         * Prompt para buscar invento por el inventor
+         * @param manager
+         */
         async function consultByInventor(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -291,6 +326,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                 }
             ]);
 
+            /** Busca el invento, ya sea que lo encuentre o no y validacion de error */
             try {
             const inventor: Character = data.inventor;
 
@@ -315,6 +351,10 @@ export async function inventsMenu(manager: MultiverseManager) {
             }
         }
 
+        /**
+         * Prompt para buscar invento por el nivel de peligrosidad
+         * @param manager
+         */
         async function consultByDangerLevel(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -324,7 +364,8 @@ export async function inventsMenu(manager: MultiverseManager) {
                     validate: techlevel => techlevel >= 1 && techlevel <= 10 ? true : "Debe ser entre 1-10"
                 }
             ]);
-            
+
+            /** Busca el invento, ya sea que lo encuentre o no y validacion de error */
             try {
             const dangerlevel: number = data.dangerlevel;
     
