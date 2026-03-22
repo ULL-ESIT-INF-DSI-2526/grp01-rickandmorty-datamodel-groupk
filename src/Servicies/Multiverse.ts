@@ -1,16 +1,27 @@
 import { Low } from "lowdb";
-import { Data } from "../DataBase/db.js";
+import { Data, EventType, MultiverseEvent } from "../DataBase/db.js";
+import { DimensionState } from "../Enums/DimensionState.js";
+import { Character } from "../Class/Character.js";
+import { Dimensions } from "../Class/Dimensions.js";
+import { Invents } from "../Class/Invents.js";
 
-import { LocationServices } from "./LocationServicies.js";
+// Importamos todos los servicios
+import { LocationServices } from "./LocationServicies.js"; 
 import { DimensionServices } from "./DimensionServices.js";
 import { InventServices } from "./InventServices.js";
 import { CharacterServices } from "./CharacterServicies.js";
 import { SpeciesServices } from "./SpeciesServices.js";
 
+/**
+ * Gestor central del Multiverso.
+ * Contiene todos los servicios y la lógica avanzada de eventos e informes.
+ */
 export class MultiverseManager {
     private _db: Low<Data>;
+    
+    // Instancias públicas de los servicios para acceso directo desde el gestor
     public dimensions: DimensionServices;
-    public characters: CharacterServices; //Descomentar cuando esté completa la clase CharacterServices
+    public characters: CharacterServices;
     public localitations: LocationServices;
     public invents: InventServices;
     public species: SpeciesServices;
@@ -23,13 +34,175 @@ export class MultiverseManager {
     constructor(dataBase: Low<Data>) {
         this._db = dataBase;
         this.dimensions = new DimensionServices(dataBase);
-        this.characters = new CharacterServices(dataBase); //Descomentar cuando esté completa la clase CharacterServices
+        this.characters = new CharacterServices(dataBase); 
         this.localitations = new LocationServices(dataBase);
         this.invents = new InventServices(dataBase);
         this.species = new SpeciesServices(dataBase);
     }
 
-    /*
-    Aquí hay que poner las funciones que se piden para el gestor en el guión
-    */
+    /**
+     * Detecta personajes cuya dimensión de origen ha sido destruida o borrada de los registros
+     * @returns Array de personajes 
+     */
+    async checkOrphanCharacters(): Promise<Character[]> {
+        await this._db.read();
+        const orphans: Character[] = [];
+
+        for (const char of this._db.data.characters) {
+            const homeDim = this._db.data.dimensions.find(d => d.id === char.dimension.id);
+            if (!homeDim || homeDim.state === DimensionState.DESTRUIDA) {
+                orphans.push(char);
+            }
+        }
+        return orphans;
+    }
+
+    /**
+     * Registra el viaje de un personaje de una dimensión a otra
+     * @param characterId - ID del personaje que viaja
+     * @param fromDimId - ID de la dimensión de origen
+     * @param toDimId - ID de la dimensión de destino
+     * @param reason - Motivo del viaje 
+     */
+    async registerTravel(characterId: string, fromDimId: string, toDimId: string, reason: string): Promise<void> {
+        await this._db.read();
+        
+        const newEvent: MultiverseEvent = {
+            id: `EVT-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+            type: EventType.TRAVEL,
+            date: new Date().toISOString(),
+            description: `Viaje interdimensional por motivo: ${reason}`,
+            payload: { characterId, fromDimId, toDimId }
+        };
+
+        this._db.data.events.push(newEvent);
+        await this._db.write();
+    }
+
+    /**
+     * Registra la creación o destrucción de una dimensión 
+     * @param dimensionId - ID de la dimensión afectada
+     * @param isDestruction - true si es destrucción, false si es creación
+     * @param reason - Motivo de la creación o destrucción
+     */
+    async registerDimensionAnomaly(dimensionId: string, isDestruction: boolean, reason: string): Promise<void> {
+        await this._db.read();
+        
+        const action = isDestruction ? "Destrucción" : "Creación";
+        const newEvent: MultiverseEvent = {
+            id: `EVT-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+            type: EventType.DIMENSION_CHANGE,
+            date: new Date().toISOString(),
+            description: `${action} de dimensión. Causa registrada: ${reason}`,
+            payload: { dimensionId, isDestruction: isDestruction.toString() } 
+        };
+
+        this._db.data.events.push(newEvent);
+        await this._db.write();
+    }
+
+    /**
+     * Registra cuando un invento se despliega en una localización, o cuando es neutralizado
+     * @param inventId - ID del invento afectado
+     * @param locationId - ID de la localización donde se despliega o neutraliza
+     * @param isDeployed - true si se despliega, false si se neutraliza
+     */
+    async registerArtifactDeployment(inventId: string, locationId: string, isDeployed: boolean): Promise<void> {
+        await this._db.read();
+
+        const status = isDeployed ? "Desplegado" : "Neutralizado";
+        const newEvent: MultiverseEvent = {
+            id: `EVT-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+            type: EventType.ARTIFACT_DEPLOYMENT,
+            date: new Date().toISOString(),
+            description: `Artefacto ${status} en la localización especificada.`,
+            payload: { inventId, locationId, isDeployed: isDeployed.toString() } 
+        };
+
+        this._db.data.events.push(newEvent);
+        await this._db.write();
+    }
+
+
+    /**
+     * Informe 1: Listado de dimensiones activas con su nivel tecnológico medio
+     * @returns Objeto con las dimensiones activas y la media matemática de su tecnología
+     */
+    async getActiveDimensionsReport(): Promise<{ activeDimensions: Dimensions[], averageTechLevel: number }> {
+        await this._db.read();
+        
+        const active = this._db.data.dimensions.filter(d => d.state === DimensionState.ACTIVA);
+        
+        if (active.length === 0) {
+            return { activeDimensions: [], averageTechLevel: 0 };
+        }
+
+        const totalTech = active.reduce((sum, dim) => sum + dim.techlevel, 0);
+        const avgTech = totalTech / active.length;
+
+        return { activeDimensions: active, averageTechLevel: avgTech };
+    }
+
+    /**
+     * Informe 2: Personajes con mayor número de versiones alternativas registradas
+     * Agrupa por nombre exacto y cuenta cuántos existen
+     * @returns Array de objetos con el nombre del personaje y la cantidad de versiones
+     */
+    async getCharactersWithMostVersions(): Promise<{ name: string, count: number }[]> {
+        await this._db.read();
+
+        const versionCounts: Record<string, number> = {};
+        this._db.data.characters.forEach(char => {
+            versionCounts[char.name] = (versionCounts[char.name] || 0) + 1;
+        });
+        return Object.entries(versionCounts)
+            .map(([name, count]) => ({ name, count }))
+            .filter(item => item.count > 1)
+            .sort((a, b) => b.count - a.count);
+    }
+
+    /**
+     * Informe 3: Inventos más peligrosos desplegados actualmente y su localización.
+     * Lee el historial temporal para saber si un artefacto sigue desplegado o si ya fue neutralizado.
+     * @returns Array de objetos con el invento y la localización donde está desplegado
+     */
+    async getMostDangerousDeployedArtifacts(): Promise<{ invent: Invents, locationId: string }[]> {
+        await this._db.read();
+
+        const deploymentStatus = new Map<string, string>(); 
+        const sortedEvents = this._db.data.events
+            .filter(e => e.type === EventType.ARTIFACT_DEPLOYMENT)
+            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+            
+        sortedEvents.forEach(e => {
+            const isDeployed = e.payload.isDeployed === "true";
+            if (isDeployed) {
+                deploymentStatus.set(e.payload.inventId, e.payload.locationId);
+            } else {
+                deploymentStatus.delete(e.payload.inventId); 
+            }
+        });
+        
+        const dangerousArtifacts: { invent: Invents, locationId: string }[] = [];
+        for (const [inventId, locationId] of deploymentStatus.entries()) {
+            const invent = this._db.data.invents.find(i => i.id === inventId);
+            if (invent) {
+                dangerousArtifacts.push({ invent, locationId });
+            }
+        }
+        return dangerousArtifacts.sort((a, b) => b.invent.dangerLevel - a.invent.dangerLevel);
+    }
+
+    /**
+     * Informe 4: Historial de viajes interdimensionales de un personaje específico
+     * Filtra los eventos de tipo TRAVEL por el ID del personaje y ordena por fecha descendente
+     * @param characterId - ID del personaje a consultar
+     * @returns Array de eventos de viaje relacionados con el personaje 
+     */
+    async getCharacterTravelHistory(characterId: string): Promise<MultiverseEvent[]> {
+        await this._db.read();
+        return this._db.data.events
+            .filter(e => e.type === EventType.TRAVEL && e.payload.characterId === characterId)
+            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); 
+    }
 }
