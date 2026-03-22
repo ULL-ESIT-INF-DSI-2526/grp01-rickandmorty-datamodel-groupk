@@ -5,7 +5,6 @@ import { Character } from "../Class/Character.js";
 import { Dimensions } from "../Class/Dimensions.js";
 import { Invents } from "../Class/Invents.js";
 
-// Importamos todos los servicios
 import { LocationServices } from "./LocationServicies.js"; 
 import { DimensionServices } from "./DimensionServices.js";
 import { InventServices } from "./InventServices.js";
@@ -27,7 +26,7 @@ export class MultiverseManager {
     public species: SpeciesServices;
 
     /**
-     * El constructor toma la base de datos como parámetro y la usa para inicializar los "Services",
+     * El constructor toma la base de datos como parámetro y la usa para inicializar los servicios,
      * de esta forma el gestor tiene acceso a todo el multiverso
      * @param dataBase - Base de datos
      */
@@ -49,8 +48,19 @@ export class MultiverseManager {
         const orphans: Character[] = [];
 
         for (const char of this._db.data.characters) {
-            const homeDim = this._db.data.dimensions.find(d => d.id === char.dimension.id);
-            if (!homeDim || homeDim.state === DimensionState.DESTRUIDA) {
+            // Leemos el ID de la dimensión de forma segura
+            const rawChar = char as unknown as { dimension?: { id?: string }, _dimension?: { _id?: string } };
+            const dimId = rawChar.dimension?.id ?? rawChar._dimension?._id;
+
+            const homeDim = this._db.data.dimensions.find(d => {
+                const rawD = d as unknown as { id?: string, _id?: string };
+                return (rawD.id ?? rawD._id) === dimId;
+            });
+            
+            const rawHomeDim = homeDim as { state?: string, _state?: string } | undefined;
+            const state = rawHomeDim?.state ?? rawHomeDim?._state;
+
+            if (!homeDim || state === DimensionState.DESTRUIDA || state === "Destruida") {
                 orphans.push(char);
             }
         }
@@ -131,13 +141,21 @@ export class MultiverseManager {
     async getActiveDimensionsReport(): Promise<{ activeDimensions: Dimensions[], averageTechLevel: number }> {
         await this._db.read();
         
-        const active = this._db.data.dimensions.filter(d => d.state === DimensionState.ACTIVA);
+        const active = this._db.data.dimensions.filter(d => {
+            const rawD = d as unknown as { state?: string, _state?: string };
+            const state = rawD.state ?? rawD._state;
+            return state === DimensionState.ACTIVA || state === "Activa";
+        });
         
         if (active.length === 0) {
             return { activeDimensions: [], averageTechLevel: 0 };
         }
 
-        const totalTech = active.reduce((sum, dim) => sum + dim.techlevel, 0);
+        const totalTech = active.reduce((sum, dim) => {
+            const rawD = dim as unknown as { techlevel?: number, _techlevel?: number };
+            return sum + Number(rawD.techlevel ?? rawD._techlevel ?? 0);
+        }, 0);
+        
         const avgTech = totalTech / active.length;
 
         return { activeDimensions: active, averageTechLevel: avgTech };
@@ -153,7 +171,11 @@ export class MultiverseManager {
 
         const versionCounts: Record<string, number> = {};
         this._db.data.characters.forEach(char => {
-            versionCounts[char.name] = (versionCounts[char.name] || 0) + 1;
+            const rawChar = char as unknown as { name?: string, _name?: string };
+            const name = rawChar.name ?? rawChar._name;
+            if (name) {
+                versionCounts[name] = (versionCounts[name] || 0) + 1;
+            }
         });
         return Object.entries(versionCounts)
             .map(([name, count]) => ({ name, count }))
@@ -185,12 +207,23 @@ export class MultiverseManager {
         
         const dangerousArtifacts: { invent: Invents, locationId: string }[] = [];
         for (const [inventId, locationId] of deploymentStatus.entries()) {
-            const invent = this._db.data.invents.find(i => i.id === inventId);
+            const invent = this._db.data.invents.find(i => {
+                const rawI = i as unknown as { id?: string, _id?: string };
+                return (rawI.id ?? rawI._id) === inventId;
+            });
+
             if (invent) {
                 dangerousArtifacts.push({ invent, locationId });
             }
         }
-        return dangerousArtifacts.sort((a, b) => b.invent.dangerLevel - a.invent.dangerLevel);
+        
+        return dangerousArtifacts.sort((a, b) => {
+            const rawA = a.invent as { dangerLevel?: number, _dangerLevel?: number, _level?: number };
+            const rawB = b.invent as { dangerLevel?: number, _dangerLevel?: number, _level?: number };
+            const levelA = Number(rawA.dangerLevel ?? rawA._dangerLevel ?? rawA._level ?? 0);
+            const levelB = Number(rawB.dangerLevel ?? rawB._dangerLevel ?? rawB._level ?? 0);
+            return levelB - levelA;
+        });
     }
 
     /**

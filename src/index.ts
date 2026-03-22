@@ -6,6 +6,7 @@ import { charactersMenu } from "./Prompts/Menus/CharactersMenu.js";
 import { localitationMenu } from "./Prompts/Menus/LocalitationMenu.js";
 import { speciesMenu } from "./Prompts/Menus/SpeciesMenu.js";
 import { inventsMenu } from "./Prompts/Menus/InventsMenu.js";
+import { reportsMenu } from "./Prompts/Menus/ReportMenu.js";
 
 /**
  * Función principal para los menús que llama a los diferentes menús.
@@ -46,7 +47,10 @@ async function main() {
             case 'invents':
                 await inventsMenu(manager);
                 break;
-
+            case 'reports':
+                await reportsMenu(manager);
+                break;
+                
             case 'exit':
                 exit = true;
                 console.log("Saliendo del gestor...");
