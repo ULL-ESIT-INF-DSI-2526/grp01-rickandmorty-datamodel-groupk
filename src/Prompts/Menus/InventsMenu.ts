@@ -357,7 +357,7 @@ export async function inventsMenu(manager: MultiverseManager) {
         async function consultByDangerLevel(manager: MultiverseManager) {
             const data = await prompts([
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'dangerlevel',
                     message: 'Introduce el nivel de peligrosidad del invento a consultar:',
                     validate: dangerlevel => dangerlevel >= 1 && dangerlevel <= 10 ? true : "Debe ser entre 1-10"

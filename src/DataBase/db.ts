@@ -7,6 +7,9 @@ import { Invents } from "../Class/Invents.js";
 import { Planets } from "../Class/Planets.js";
 import { Species } from "../Class/Species.js";
 
+/**
+ * Tipo de datos para formar la db
+ */
 export type Data = {
     characters: Character[];
     dimensions: Dimensions[];
@@ -15,6 +18,9 @@ export type Data = {
     species: Species[];
 }
 
+/**
+ * Base de datos por defecto
+ */
 export const defaultData: Data = {
     characters: [],
     dimensions: [],
@@ -23,4 +29,7 @@ export const defaultData: Data = {
     species: []
 }
 
+/**
+ * Crea la bade de datos con la estructura que le hemos dado
+ */
 export const db: Low<Data> = await JSONFilePreset<Data>("src/DataBase/db.json", defaultData);

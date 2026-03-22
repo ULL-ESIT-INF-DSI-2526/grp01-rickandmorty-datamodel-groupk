@@ -414,7 +414,7 @@
       "name": "Portal Gun",
       "inventor": "Rick Sanchez",
       "type": "Viaje",
-      "dangerlevel": 10,
+      "dangerLevel": 10,
       "desc": "Dimensiones"
     },
     {
@@ -422,7 +422,7 @@
       "name": "Plumbus",
       "inventor": "Morty Smith",
       "type": "Objeto",
-      "dangerlevel": 1,
+      "dangerLevel": 1,
       "desc": "Raro"
     },
     {
@@ -430,7 +430,7 @@
       "name": "Meeseeks Box",
       "inventor": "Rick Sanchez",
       "type": "Dispositivo",
-      "dangerlevel": 5,
+      "dangerLevel": 5,
       "desc": "Invoca"
     },
     {
@@ -438,7 +438,7 @@
       "name": "Cronenberg Serum",
       "inventor": "Rick Sanchez",
       "type": "Biotech",
-      "dangerlevel": 9,
+      "dangerLevel": 9,
       "desc": "Mutación"
     },
     {
@@ -446,7 +446,7 @@
       "name": "Time Crystal",
       "inventor": "Rick Sanchez",
       "type": "Tiempo",
-      "dangerlevel": 8,
+      "dangerLevel": 8,
       "desc": "Control"
     },
     {
@@ -454,7 +454,7 @@
       "name": "Laser Gun",
       "inventor": "Morty Smith",
       "type": "Arma",
-      "dangerlevel": 7,
+      "dangerLevel": 7,
       "desc": "Disparo"
     },
     {
@@ -462,7 +462,7 @@
       "name": "Mind Control Hat",
       "inventor": "Morty Smith",
       "type": "Control",
-      "dangerlevel": 8,
+      "dangerLevel": 8,
       "desc": "Control mental"
     },
     {
@@ -470,7 +470,7 @@
       "name": "Nano Suit",
       "inventor": "Rick Sanchez",
       "type": "Tecnología",
-      "dangerlevel": 6,
+      "dangerLevel": 6,
       "desc": "Mejora"
     },
     {
@@ -478,7 +478,7 @@
       "name": "Gravity Boots",
       "inventor": "Morty Smith",
       "type": "Tecnología",
-      "dangerlevel": 4,
+      "dangerLevel": 4,
       "desc": "Gravedad"
     },
     {
@@ -486,7 +486,7 @@
       "name": "Teleport Pad",
       "inventor": "Morty Smith",
       "type": "Viaje",
-      "dangerlevel": 7,
+      "dangerLevel": 7,
       "desc": "Teletransporte"
     },
     {
@@ -494,7 +494,7 @@
       "name": "AI Core",
       "inventor": "Rick Sanchez",
       "type": "IA",
-      "dangerlevel": 9,
+      "dangerLevel": 9,
       "desc": "IA avanzada"
     },
     {
@@ -502,7 +502,7 @@
       "name": "Mutation Ray",
       "inventor": "Morty Smith",
       "type": "Biotech",
-      "dangerlevel": 8,
+      "dangerLevel": 8,
       "desc": "Mutación"
     },
     {
@@ -510,7 +510,7 @@
       "name": "Hologram Projector",
       "inventor": "Rick Sanchez",
       "type": "Tecnología",
-      "dangerlevel": 3,
+      "dangerLevel": 3,
       "desc": "Ilusión"
     },
     {
@@ -518,7 +518,7 @@
       "name": "Dark Energy Cube",
       "inventor": "Morty Smith",
       "type": "Energía",
-      "dangerlevel": 10,
+      "dangerLevel": 10,
       "desc": "Oscuro"
     },
     {
@@ -526,7 +526,7 @@
       "name": "Hive Connector",
       "inventor": "Morty Smith",
       "type": "Colectivo",
-      "dangerlevel": 9,
+      "dangerLevel": 9,
       "desc": "Conecta mentes"
     }
   ],
