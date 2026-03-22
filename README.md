@@ -3,7 +3,9 @@
 ## Miembros del gupo:
 
 Alejandro Dorta Luís - alu0101478982
+
 Gonzalo Barroso González - alu0101137094
+
 Pablo González Martín - alu0101421179
 
 ## Modo de ejecución:
