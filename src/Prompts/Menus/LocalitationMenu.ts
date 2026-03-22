@@ -86,7 +86,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                     validate: name => name.length > 0 ? true : "Debe de tener un nombre"
                 },
                 {
-                    type: 'select',
+                    type: 'text',
                     name: 'type',
                     message: 'Selecciona el tipo del localización:',
                     validate: type => type.length > 0 ? true : "Debe de tener un tipo"
@@ -170,7 +170,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                     message: 'Nuevo nombre (Enter para no modificar):',
                 },
                 {
-                    type: 'select',
+                    type: 'text',
                     name: 'type',
                     message: 'Selecciona el nuevo tipo de la localización (Enter para no modificar):',
                 },
@@ -197,7 +197,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                 if(data.name) mod.name = data.name;
                 if(data.type) mod.type = data.type;
                 if(data.dimension) mod.dimension = data.dimension;
-                if(data.population !== null) mod.population = data.population;
+                if(!isNaN(data.population)) mod.population = data.population;
                 if(data.desc) mod.desc = data.desc;
     
                 const res = await manager.localitations.modify(data.id, mod);
@@ -247,7 +247,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                     type: 'text',
                     name: 'type',
                     message: 'Introduce el tipo de la localización a consultar:',
-                    validate: name => name.length > 0 ? true : "Debe de tener un tipo"
+                    validate: type => type.length > 0 ? true : "Debe de tener un tipo"
                 }
             ]);
             
@@ -275,37 +275,37 @@ export async function localitationMenu(manager: MultiverseManager) {
             }
         }
 
-    async function consultByDimension(manager: MultiverseManager) {
-        const data = await prompts([
-            {
-                type: 'text',
-                name: 'dimension',
-                message: 'Introduce el id de la dimensión a consultar:',
-                validate: dimension => dimension.length > 0 ? true : "Debe de tener una dimensión"
+        async function consultByDimension(manager: MultiverseManager) {
+            const data = await prompts([
+                {
+                    type: 'text',
+                    name: 'dimension',
+                    message: 'Introduce el id de la dimensión a consultar:',
+                    validate: dimension => dimension.length > 0 ? true : "Debe de tener una dimensión"
+                }
+            ]);
+
+            try {
+            const dimension: Dimensions = data.dimension;
+
+            const res: Planets[] = await manager.localitations.consultLocationByDimension(dimension);
+
+            if(res.length == 0) {
+                    console.log('No se encontraron resultados');
+                } else {
+                    console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${dimension}\n`);
+                    res.forEach((l: Planets, index: number) => {
+                    console.log(`${index + 1}. ${l.name} 
+                                ID: ${l.id} 
+                                Dimensión: ${l.dimension} 
+                                Tipo: ${l.type} 
+                                Población: ${l.population}
+                                Descripción: ${l.desc}\n`);
+                                });
+                }
+
+            } catch (error: any) {
+                console.log("Error", error.message);
             }
-        ]);
-
-        try {
-        const dimension: Dimensions = data.dimension;
-
-        const res: Planets[] = await manager.localitations.consultLocationByDimension(dimension);
-
-        if(res.length == 0) {
-                console.log('No se encontraron resultados');
-            } else {
-                console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${dimension}\n`);
-                res.forEach((l: Planets, index: number) => {
-                console.log(`${index + 1}. ${l.name} 
-                             ID: ${l.id} 
-                             Dimensión: ${l.dimension} 
-                             Tipo: ${l.type} 
-                             Población: ${l.population}
-                             Descripción: ${l.desc}\n`);
-                            });
-            }
-
-        } catch (error: any) {
-            console.log("Error", error.message);
         }
-    }
 }

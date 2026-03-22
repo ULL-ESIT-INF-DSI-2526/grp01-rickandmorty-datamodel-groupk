@@ -260,7 +260,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             if(data.name) mod.name = data.name;
             if(data.specie) mod.specie = data.specie;
             if(data.dimension) mod.dimension = data.dimension;
-            if(data.state !== null) mod.state = data.state;
+            if(data.state) mod.state = data.state;
             if(data.afiliation) mod.afiliation = data.afiliation;
             if(!isNaN(data.iq)) mod.iq = data.iq;
             if(data.desc) mod.desc = data.desc;

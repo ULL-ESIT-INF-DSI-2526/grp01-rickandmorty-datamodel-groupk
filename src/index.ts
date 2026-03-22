@@ -4,6 +4,8 @@ import { dimensionsMenu } from "./Prompts/Menus/DimensionsMenu.js";
 import { mainMenu } from "./Prompts/mainMenu.js";
 import { charactersMenu } from "./Prompts/Menus/CharactersMenu.js";
 import { localitationMenu } from "./Prompts/Menus/LocalitationMenu.js";
+import { speciesMenu } from "./Prompts/Menus/SpeciesMenu.js";
+import { inventsMenu } from "./Prompts/Menus/inventsMenu.js";
 
 async function main() {
     await db.read();
@@ -28,8 +30,12 @@ async function main() {
                 await localitationMenu(manager);
                 break;
             
-            case 'scpecies':
+            case 'species':
                 await speciesMenu(manager);
+                break;
+
+            case 'invents':
+                await inventsMenu(manager);
                 break;
 
             case 'exit':

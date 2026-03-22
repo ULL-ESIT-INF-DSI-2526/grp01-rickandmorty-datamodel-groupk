@@ -1,784 +1,115 @@
 {
   "characters": [
-    {
-      "id": "C1",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "C-137",
-      "status": "Vivo",
-      "afiliation": "Independiente",
-      "iq": 10,
-      "desc": "Genio"
-    },
-    {
-      "id": "C2",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "C-137",
-      "status": "Vivo",
-      "afiliation": "Familia",
-      "iq": 5,
-      "desc": "Nieto"
-    },
-    {
-      "id": "C3",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-101",
-      "status": "Vivo",
-      "afiliation": "Consejo",
-      "iq": 9,
-      "desc": "Alternativo"
-    },
-    {
-      "id": "C4",
-      "name": "Rick Sanchez",
-      "species": "S6",
-      "dimension": "D-303",
-      "status": "Robot",
-      "afiliation": "IA",
-      "iq": 10,
-      "desc": "Robot"
-    },
-    {
-      "id": "C5",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-606",
-      "status": "Vivo",
-      "afiliation": "Independiente",
-      "iq": 10,
-      "desc": "Oscuro"
-    },
-    {
-      "id": "C6",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-101",
-      "status": "Vivo",
-      "afiliation": "Familia",
-      "iq": 6,
-      "desc": "Alternativo"
-    },
-    {
-      "id": "C7",
-      "name": "Evil Morty",
-      "species": "S1",
-      "dimension": "D-606",
-      "status": "Vivo",
-      "afiliation": "Independiente",
-      "iq": 9,
-      "desc": "Malvado"
-    },
-    {
-      "id": "C8",
-      "name": "Summer Smith",
-      "species": "S1",
-      "dimension": "C-137",
-      "status": "Vivo",
-      "afiliation": "Familia",
-      "iq": 6,
-      "desc": "Hermana"
-    },
-    {
-      "id": "C9",
-      "name": "Beth Smith",
-      "species": "S1",
-      "dimension": "C-137",
-      "status": "Vivo",
-      "afiliation": "Familia",
-      "iq": 7,
-      "desc": "Madre"
-    },
-    {
-      "id": "C10",
-      "name": "Jerry Smith",
-      "species": "S1",
-      "dimension": "C-137",
-      "status": "Vivo",
-      "afiliation": "Familia",
-      "iq": 3,
-      "desc": "Padre"
-    },
-    {
-      "id": "C11",
-      "name": "Birdperson",
-      "species": "S3",
-      "dimension": "D-707",
-      "status": "Vivo",
-      "afiliation": "Amigo",
-      "iq": 7,
-      "desc": "Aliado"
-    },
-    {
-      "id": "C12",
-      "name": "Squanchy",
-      "species": "S3",
-      "dimension": "D-707",
-      "status": "Vivo",
-      "afiliation": "Amigo",
-      "iq": 6,
-      "desc": "Alien"
-    },
-    {
-      "id": "C13",
-      "name": "Unity",
-      "species": "S8",
-      "dimension": "D-505",
-      "status": "Vivo",
-      "afiliation": "Colectivo",
-      "iq": 8,
-      "desc": "Hivemind"
-    },
-    {
-      "id": "C14",
-      "name": "Mr. Meeseeks",
-      "species": "S4",
-      "dimension": "D-808",
-      "status": "Desconocido",
-      "afiliation": "Objeto",
-      "iq": 2,
-      "desc": "Temporal"
-    },
-    {
-      "id": "C15",
-      "name": "Abradolf Lincler",
-      "species": "S2",
-      "dimension": "D-909",
-      "status": "Muerto",
-      "afiliation": "Experimento",
-      "iq": 4,
-      "desc": "Fallido"
-    },
-    {
-      "id": "C16",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-808",
-      "status": "Vivo",
-      "afiliation": "Simulación",
-      "iq": 9,
-      "desc": "Virtual"
-    },
-    {
-      "id": "C17",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-808",
-      "status": "Vivo",
-      "afiliation": "Simulación",
-      "iq": 5,
-      "desc": "Virtual"
-    },
-    {
-      "id": "C18",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-909",
-      "status": "Vivo",
-      "afiliation": "Caos",
-      "iq": 10,
-      "desc": "Caótico"
-    },
-    {
-      "id": "C19",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-909",
-      "status": "Vivo",
-      "afiliation": "Caos",
-      "iq": 5,
-      "desc": "Caótico"
-    },
-    {
-      "id": "C20",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-010",
-      "status": "Vivo",
-      "afiliation": "Mini",
-      "iq": 9,
-      "desc": "Pequeño"
-    },
-    {
-      "id": "C21",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-010",
-      "status": "Vivo",
-      "afiliation": "Mini",
-      "iq": 5,
-      "desc": "Pequeño"
-    },
-    {
-      "id": "C22",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-111",
-      "status": "Vivo",
-      "afiliation": "Gigante",
-      "iq": 9,
-      "desc": "Gigante"
-    },
-    {
-      "id": "C23",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-111",
-      "status": "Vivo",
-      "afiliation": "Gigante",
-      "iq": 5,
-      "desc": "Gigante"
-    },
-    {
-      "id": "C24",
-      "name": "Rick Sanchez",
-      "species": "S1",
-      "dimension": "D-222",
-      "status": "Vivo",
-      "afiliation": "Acuático",
-      "iq": 9,
-      "desc": "Acuático"
-    },
-    {
-      "id": "C25",
-      "name": "Morty Smith",
-      "species": "S1",
-      "dimension": "D-222",
-      "status": "Vivo",
-      "afiliation": "Acuático",
-      "iq": 5,
-      "desc": "Acuático"
-    },
-    {
-      "id": "C26",
-      "name": "Robot Rick",
-      "species": "S6",
-      "dimension": "D-303",
-      "status": "Robot",
-      "afiliation": "IA",
-      "iq": 10,
-      "desc": "IA avanzada"
-    },
-    {
-      "id": "C27",
-      "name": "Cronenberg Morty",
-      "species": "S2",
-      "dimension": "C-500A",
-      "status": "Mutado",
-      "afiliation": "Ninguna",
-      "iq": 3,
-      "desc": "Mutado"
-    },
-    {
-      "id": "C28",
-      "name": "Zigerion Leader",
-      "species": "S5",
-      "dimension": "D-707",
-      "status": "Vivo",
-      "afiliation": "Imperio",
-      "iq": 7,
-      "desc": "Líder"
-    },
-    {
-      "id": "C29",
-      "name": "Parasite Alpha",
-      "species": "S7",
-      "dimension": "D-909",
-      "status": "Vivo",
-      "afiliation": "Parásito",
-      "iq": 6,
-      "desc": "Control mental"
-    },
-    {
-      "id": "C30",
-      "name": "Hive Queen",
-      "species": "S8",
-      "dimension": "D-505",
-      "status": "Vivo",
-      "afiliation": "Hivemind",
-      "iq": 9,
-      "desc": "Reina"
-    }
+    { "id": "C1", "name": "Rick Sanchez", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Genio" },
+    { "id": "C2", "name": "Morty Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 5, "desc": "Nieto" },
+
+    { "id": "C3", "name": "Rick Sanchez", "species": "S1", "dimension": "D-101", "status": "Vivo", "afiliation": "Consejo", "iq": 9, "desc": "Alternativo" },
+    { "id": "C4", "name": "Rick Sanchez", "species": "S6", "dimension": "D-303", "status": "Robot", "afiliation": "IA", "iq": 10, "desc": "Robot" },
+    { "id": "C5", "name": "Rick Sanchez", "species": "S1", "dimension": "D-606", "status": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Oscuro" },
+
+    { "id": "C6", "name": "Morty Smith", "species": "S1", "dimension": "D-101", "status": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Alternativo" },
+    { "id": "C7", "name": "Evil Morty", "species": "S1", "dimension": "D-606", "status": "Vivo", "afiliation": "Independiente", "iq": 9, "desc": "Malvado" },
+
+    { "id": "C8", "name": "Summer Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Hermana" },
+    { "id": "C9", "name": "Beth Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 7, "desc": "Madre" },
+    { "id": "C10", "name": "Jerry Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 3, "desc": "Padre" },
+
+    { "id": "C11", "name": "Birdperson", "species": "S3", "dimension": "D-707", "status": "Vivo", "afiliation": "Amigo", "iq": 7, "desc": "Aliado" },
+    { "id": "C12", "name": "Squanchy", "species": "S3", "dimension": "D-707", "status": "Vivo", "afiliation": "Amigo", "iq": 6, "desc": "Alien" },
+    { "id": "C13", "name": "Unity", "species": "S8", "dimension": "D-505", "status": "Vivo", "afiliation": "Colectivo", "iq": 8, "desc": "Hivemind" },
+    { "id": "C14", "name": "Mr. Meeseeks", "species": "S4", "dimension": "D-808", "status": "Desconocido", "afiliation": "Objeto", "iq": 2, "desc": "Temporal" },
+    { "id": "C15", "name": "Abradolf Lincler", "species": "S2", "dimension": "D-909", "status": "Muerto", "afiliation": "Experimento", "iq": 4, "desc": "Fallido" },
+
+    { "id": "C16", "name": "Rick Sanchez", "species": "S1", "dimension": "D-808", "status": "Vivo", "afiliation": "Simulación", "iq": 9, "desc": "Virtual" },
+    { "id": "C17", "name": "Morty Smith", "species": "S1", "dimension": "D-808", "status": "Vivo", "afiliation": "Simulación", "iq": 5, "desc": "Virtual" },
+
+    { "id": "C18", "name": "Rick Sanchez", "species": "S1", "dimension": "D-909", "status": "Vivo", "afiliation": "Caos", "iq": 10, "desc": "Caótico" },
+    { "id": "C19", "name": "Morty Smith", "species": "S1", "dimension": "D-909", "status": "Vivo", "afiliation": "Caos", "iq": 5, "desc": "Caótico" },
+
+    { "id": "C20", "name": "Rick Sanchez", "species": "S1", "dimension": "D-010", "status": "Vivo", "afiliation": "Mini", "iq": 9, "desc": "Pequeño" },
+    { "id": "C21", "name": "Morty Smith", "species": "S1", "dimension": "D-010", "status": "Vivo", "afiliation": "Mini", "iq": 5, "desc": "Pequeño" },
+
+    { "id": "C22", "name": "Rick Sanchez", "species": "S1", "dimension": "D-111", "status": "Vivo", "afiliation": "Gigante", "iq": 9, "desc": "Gigante" },
+    { "id": "C23", "name": "Morty Smith", "species": "S1", "dimension": "D-111", "status": "Vivo", "afiliation": "Gigante", "iq": 5, "desc": "Gigante" },
+
+    { "id": "C24", "name": "Rick Sanchez", "species": "S1", "dimension": "D-222", "status": "Vivo", "afiliation": "Acuático", "iq": 9, "desc": "Acuático" },
+    { "id": "C25", "name": "Morty Smith", "species": "S1", "dimension": "D-222", "status": "Vivo", "afiliation": "Acuático", "iq": 5, "desc": "Acuático" },
+
+    { "id": "C26", "name": "Robot Rick", "species": "S6", "dimension": "D-303", "status": "Robot", "afiliation": "IA", "iq": 10, "desc": "IA avanzada" },
+    { "id": "C27", "name": "Cronenberg Morty", "species": "S2", "dimension": "C-500A", "status": "Mutado", "afiliation": "Ninguna", "iq": 3, "desc": "Mutado" },
+    { "id": "C28", "name": "Zigerion Leader", "species": "S5", "dimension": "D-707", "status": "Vivo", "afiliation": "Imperio", "iq": 7, "desc": "Líder" },
+    { "id": "C29", "name": "Parasite Alpha", "species": "S7", "dimension": "D-909", "status": "Vivo", "afiliation": "Parásito", "iq": 6, "desc": "Control mental" },
+    { "id": "C30", "name": "Hive Queen", "species": "S8", "dimension": "D-505", "status": "Vivo", "afiliation": "Hivemind", "iq": 9, "desc": "Reina" }
   ],
   "dimensions": [
-    {
-      "id": "C-137",
-      "name": "Dimensión Principal",
-      "state": "ACTIVA",
-      "techlevel": 9,
-      "desc": "Origen de Rick"
-    },
-    {
-      "id": "C-500A",
-      "name": "Postapocalíptica",
-      "state": "DESTRUIDA",
-      "techlevel": 4,
-      "desc": "Devastada"
-    },
-    {
-      "id": "J19Z7",
-      "name": "Mutante",
-      "state": "CUARENTENA",
-      "techlevel": 7,
-      "desc": "Mutaciones"
-    },
-    {
-      "id": "D-101",
-      "name": "Futurista",
-      "state": "ACTIVA",
-      "techlevel": 10,
-      "desc": "Alta tecnología"
-    },
-    {
-      "id": "D-202",
-      "name": "Medieval",
-      "state": "ACTIVA",
-      "techlevel": 2,
-      "desc": "Baja tecnología"
-    },
-    {
-      "id": "D-303",
-      "name": "Robot",
-      "state": "ACTIVA",
-      "techlevel": 10,
-      "desc": "IA dominante"
-    },
-    {
-      "id": "D-404",
-      "name": "Perdida",
-      "state": "DESTRUIDA",
-      "techlevel": 5,
-      "desc": "Desaparecida"
-    },
-    {
-      "id": "D-505",
-      "name": "Hivemind",
-      "state": "ACTIVA",
-      "techlevel": 6,
-      "desc": "Mente colectiva"
-    },
-    {
-      "id": "D-606",
-      "name": "Oscura",
-      "state": "CUARENTENA",
-      "techlevel": 8,
-      "desc": "Energía oscura"
-    },
-    {
-      "id": "D-707",
-      "name": "Alien",
-      "state": "ACTIVA",
-      "techlevel": 7,
-      "desc": "Extraterrestres"
-    },
-    {
-      "id": "D-808",
-      "name": "Simulación",
-      "state": "ACTIVA",
-      "techlevel": 9,
-      "desc": "Virtual"
-    },
-    {
-      "id": "D-909",
-      "name": "Caótica",
-      "state": "ACTIVA",
-      "techlevel": 5,
-      "desc": "Sin leyes"
-    },
-    {
-      "id": "D-010",
-      "name": "Mini",
-      "state": "ACTIVA",
-      "techlevel": 6,
-      "desc": "Pequeño"
-    },
-    {
-      "id": "D-111",
-      "name": "Gigante",
-      "state": "ACTIVA",
-      "techlevel": 6,
-      "desc": "Grande"
-    },
-    {
-      "id": "D-222",
-      "name": "Acuática",
-      "state": "ACTIVA",
-      "techlevel": 5,
-      "desc": "Agua total"
-    },
-    {
-      "id": "prueba",
-      "name": "prueba",
-      "state": "Cuarentena",
-      "techlevel": "6",
-      "desc": "prueba"
-    }
+    { "id": "C-137", "name": "Dimensión Principal", "state": "ACTIVA", "techlevel": 9, "desc": "Origen de Rick" },
+    { "id": "C-500A", "name": "Postapocalíptica", "state": "DESTRUIDA", "techlevel": 4, "desc": "Devastada" },
+    { "id": "J19Z7", "name": "Mutante", "state": "CUARENTENA", "techlevel": 7, "desc": "Mutaciones" },
+    { "id": "D-101", "name": "Futurista", "state": "ACTIVA", "techlevel": 10, "desc": "Alta tecnología" },
+    { "id": "D-202", "name": "Medieval", "state": "ACTIVA", "techlevel": 2, "desc": "Baja tecnología" },
+    { "id": "D-303", "name": "Robot", "state": "ACTIVA", "techlevel": 10, "desc": "IA dominante" },
+    { "id": "D-404", "name": "Perdida", "state": "DESTRUIDA", "techlevel": 5, "desc": "Desaparecida" },
+    { "id": "D-505", "name": "Hivemind", "state": "ACTIVA", "techlevel": 6, "desc": "Mente colectiva" },
+    { "id": "D-606", "name": "Oscura", "state": "CUARENTENA", "techlevel": 8, "desc": "Energía oscura" },
+    { "id": "D-707", "name": "Alien", "state": "ACTIVA", "techlevel": 7, "desc": "Extraterrestres" },
+    { "id": "D-808", "name": "Simulación", "state": "ACTIVA", "techlevel": 9, "desc": "Virtual" },
+    { "id": "D-909", "name": "Caótica", "state": "ACTIVA", "techlevel": 5, "desc": "Sin leyes" },
+    { "id": "D-010", "name": "Mini", "state": "ACTIVA", "techlevel": 6, "desc": "Pequeño" },
+    { "id": "D-111", "name": "Gigante", "state": "ACTIVA", "techlevel": 6, "desc": "Grande" },
+    { "id": "D-222", "name": "Acuática", "state": "ACTIVA", "techlevel": 5, "desc": "Agua total" }
   ],
+
   "invents": [
-    {
-      "id": "A1",
-      "name": "Portal Gun",
-      "inventor": "C1",
-      "type": "Viaje",
-      "dangerlevel": 10,
-      "desc": "Dimensiones"
-    },
-    {
-      "id": "A2",
-      "name": "Plumbus",
-      "inventor": "C1",
-      "type": "Objeto",
-      "dangerlevel": 1,
-      "desc": "Raro"
-    },
-    {
-      "id": "A3",
-      "name": "Meeseeks Box",
-      "inventor": "C1",
-      "type": "Dispositivo",
-      "dangerlevel": 5,
-      "desc": "Invoca"
-    },
-    {
-      "id": "A4",
-      "name": "Cronenberg Serum",
-      "inventor": "C1",
-      "type": "Biotech",
-      "dangerlevel": 9,
-      "desc": "Mutación"
-    },
-    {
-      "id": "A5",
-      "name": "Time Crystal",
-      "inventor": "C3",
-      "type": "Tiempo",
-      "dangerlevel": 8,
-      "desc": "Control"
-    },
-    {
-      "id": "A6",
-      "name": "Laser Gun",
-      "inventor": "C1",
-      "type": "Arma",
-      "dangerlevel": 7,
-      "desc": "Disparo"
-    },
-    {
-      "id": "A7",
-      "name": "Mind Control Hat",
-      "inventor": "C18",
-      "type": "Control",
-      "dangerlevel": 8,
-      "desc": "Control mental"
-    },
-    {
-      "id": "A8",
-      "name": "Nano Suit",
-      "inventor": "C3",
-      "type": "Tecnología",
-      "dangerlevel": 6,
-      "desc": "Mejora"
-    },
-    {
-      "id": "A9",
-      "name": "Gravity Boots",
-      "inventor": "C16",
-      "type": "Tecnología",
-      "dangerlevel": 4,
-      "desc": "Gravedad"
-    },
-    {
-      "id": "A10",
-      "name": "Teleport Pad",
-      "inventor": "C1",
-      "type": "Viaje",
-      "dangerlevel": 7,
-      "desc": "Teletransporte"
-    },
-    {
-      "id": "A11",
-      "name": "AI Core",
-      "inventor": "C26",
-      "type": "IA",
-      "dangerlevel": 9,
-      "desc": "IA avanzada"
-    },
-    {
-      "id": "A12",
-      "name": "Mutation Ray",
-      "inventor": "C5",
-      "type": "Biotech",
-      "dangerlevel": 8,
-      "desc": "Mutación"
-    },
-    {
-      "id": "A13",
-      "name": "Hologram Projector",
-      "inventor": "C3",
-      "type": "Tecnología",
-      "dangerlevel": 3,
-      "desc": "Ilusión"
-    },
-    {
-      "id": "A14",
-      "name": "Dark Energy Cube",
-      "inventor": "C18",
-      "type": "Energía",
-      "dangerlevel": 10,
-      "desc": "Oscuro"
-    },
-    {
-      "id": "A15",
-      "name": "Hive Connector",
-      "inventor": "C30",
-      "type": "Colectivo",
-      "dangerlevel": 9,
-      "desc": "Conecta mentes"
-    }
+    { "id": "A1", "name": "Portal Gun", "inventor": "Rick Sanchez", "type": "Viaje", "dangerlevel": 10, "desc": "Dimensiones" },
+    { "id": "A2", "name": "Plumbus", "inventor": "Morty Smith", "type": "Objeto", "dangerlevel": 1, "desc": "Raro" },
+    { "id": "A3", "name": "Meeseeks Box", "inventor": "Rick Sanchez", "type": "Dispositivo", "dangerlevel": 5, "desc": "Invoca" },
+    { "id": "A4", "name": "Cronenberg Serum", "inventor": "Rick Sanchez", "type": "Biotech", "dangerlevel": 9, "desc": "Mutación" },
+    { "id": "A5", "name": "Time Crystal", "inventor": "Rick Sanchez", "type": "Tiempo", "dangerlevel": 8, "desc": "Control" },
+    { "id": "A6", "name": "Laser Gun", "inventor": "Morty Smith", "type": "Arma", "dangerlevel": 7, "desc": "Disparo" },
+    { "id": "A7", "name": "Mind Control Hat", "inventor": "Morty Smith", "type": "Control", "dangerlevel": 8, "desc": "Control mental" },
+    { "id": "A8", "name": "Nano Suit", "inventor": "Rick Sanchez", "type": "Tecnología", "dangerlevel": 6, "desc": "Mejora" },
+    { "id": "A9", "name": "Gravity Boots", "inventor": "Morty Smith", "type": "Tecnología", "dangerlevel": 4, "desc": "Gravedad" },
+    { "id": "A10", "name": "Teleport Pad", "inventor": "Morty Smith", "type": "Viaje", "dangerlevel": 7, "desc": "Teletransporte" },
+    { "id": "A11", "name": "AI Core", "inventor": "Rick Sanchez", "type": "IA", "dangerlevel": 9, "desc": "IA avanzada" },
+    { "id": "A12", "name": "Mutation Ray", "inventor": "Morty Smith", "type": "Biotech", "dangerlevel": 8, "desc": "Mutación" },
+    { "id": "A13", "name": "Hologram Projector", "inventor": "Rick Sanchez", "type": "Tecnología", "dangerlevel": 3, "desc": "Ilusión" },
+    { "id": "A14", "name": "Dark Energy Cube", "inventor": "Morty Smith", "type": "Energía", "dangerlevel": 10, "desc": "Oscuro" },
+    { "id": "A15", "name": "Hive Connector", "inventor": "Morty Smith", "type": "Colectivo", "dangerlevel": 9, "desc": "Conecta mentes" }
   ],
+
   "planets": [
-    {
-      "id": "P1",
-      "name": "Tierra C-137",
-      "type": "Planeta",
-      "dimension": "C-137",
-      "population": 7800000000,
-      "desc": "Principal"
-    },
-    {
-      "id": "P2",
-      "name": "Citadela",
-      "type": "Estación",
-      "dimension": "D-101",
-      "population": 10000,
-      "desc": "Ricks"
-    },
-    {
-      "id": "P3",
-      "name": "Gazorpazorp",
-      "type": "Planeta",
-      "dimension": "D-707",
-      "population": 500000,
-      "desc": "Alien"
-    },
-    {
-      "id": "P4",
-      "name": "Robot World",
-      "type": "Planeta",
-      "dimension": "D-303",
-      "population": 200000,
-      "desc": "IA"
-    },
-    {
-      "id": "P5",
-      "name": "Simulación 1",
-      "type": "Virtual",
-      "dimension": "D-808",
-      "population": 1000,
-      "desc": "Virtual"
-    },
-    {
-      "id": "P6",
-      "name": "Mundo Caos",
-      "type": "Planeta",
-      "dimension": "D-909",
-      "population": 300000,
-      "desc": "Caos"
-    },
-    {
-      "id": "P7",
-      "name": "Mini Tierra",
-      "type": "Planeta",
-      "dimension": "D-010",
-      "population": 10000,
-      "desc": "Pequeño"
-    },
-    {
-      "id": "P8",
-      "name": "Gigante Tierra",
-      "type": "Planeta",
-      "dimension": "D-111",
-      "population": 100000,
-      "desc": "Grande"
-    },
-    {
-      "id": "P9",
-      "name": "Ocean World",
-      "type": "Planeta",
-      "dimension": "D-222",
-      "population": 50000,
-      "desc": "Agua"
-    },
-    {
-      "id": "P10",
-      "name": "Hive Planet",
-      "type": "Planeta",
-      "dimension": "D-505",
-      "population": 1000000,
-      "desc": "Colectivo"
-    },
-    {
-      "id": "P11",
-      "name": "Dark Zone",
-      "type": "Zona",
-      "dimension": "D-606",
-      "population": 0,
-      "desc": "Oscuro"
-    },
-    {
-      "id": "P12",
-      "name": "Lost Planet",
-      "type": "Planeta",
-      "dimension": "D-404",
-      "population": 0,
-      "desc": "Destruido"
-    },
-    {
-      "id": "P13",
-      "name": "Medieval Land",
-      "type": "Planeta",
-      "dimension": "D-202",
-      "population": 20000,
-      "desc": "Medieval"
-    },
-    {
-      "id": "P14",
-      "name": "Future City",
-      "type": "Ciudad",
-      "dimension": "D-101",
-      "population": 2000000,
-      "desc": "Futuro"
-    },
-    {
-      "id": "P15",
-      "name": "Mutant Zone",
-      "type": "Zona",
-      "dimension": "J19Z7",
-      "population": 5000,
-      "desc": "Mutantes"
-    },
-    {
-      "id": "P16",
-      "name": "Alien Hub",
-      "type": "Estación",
-      "dimension": "D-707",
-      "population": 15000,
-      "desc": "Aliens"
-    },
-    {
-      "id": "P17",
-      "name": "Simulation 2",
-      "type": "Virtual",
-      "dimension": "D-808",
-      "population": 2000,
-      "desc": "Virtual"
-    },
-    {
-      "id": "P18",
-      "name": "Chaos Core",
-      "type": "Zona",
-      "dimension": "D-909",
-      "population": 0,
-      "desc": "Centro caos"
-    },
-    {
-      "id": "P19",
-      "name": "Mini Lab",
-      "type": "Laboratorio",
-      "dimension": "D-010",
-      "population": 100,
-      "desc": "Mini lab"
-    },
-    {
-      "id": "P20",
-      "name": "Giant Lab",
-      "type": "Laboratorio",
-      "dimension": "D-111",
-      "population": 100,
-      "desc": "Gigante lab"
-    }
+    { "id": "P1", "name": "Tierra C-137", "type": "Planeta", "dimension": "C-137", "population": 7800000000, "desc": "Principal" },
+    { "id": "P2", "name": "Citadela", "type": "Estación", "dimension": "D-101", "population": 10000, "desc": "Ricks" },
+    { "id": "P3", "name": "Gazorpazorp", "type": "Planeta", "dimension": "D-707", "population": 500000, "desc": "Alien" },
+    { "id": "P4", "name": "Robot World", "type": "Planeta", "dimension": "D-303", "population": 200000, "desc": "IA" },
+    { "id": "P5", "name": "Simulación 1", "type": "Virtual", "dimension": "D-808", "population": 1000, "desc": "Virtual" },
+    { "id": "P6", "name": "Mundo Caos", "type": "Planeta", "dimension": "D-909", "population": 300000, "desc": "Caos" },
+    { "id": "P7", "name": "Mini Tierra", "type": "Planeta", "dimension": "D-010", "population": 10000, "desc": "Pequeño" },
+    { "id": "P8", "name": "Gigante Tierra", "type": "Planeta", "dimension": "D-111", "population": 100000, "desc": "Grande" },
+    { "id": "P9", "name": "Ocean World", "type": "Planeta", "dimension": "D-222", "population": 50000, "desc": "Agua" },
+    { "id": "P10", "name": "Hive Planet", "type": "Planeta", "dimension": "D-505", "population": 1000000, "desc": "Colectivo" },
+    { "id": "P11", "name": "Dark Zone", "type": "Zona", "dimension": "D-606", "population": 0, "desc": "Oscuro" },
+    { "id": "P12", "name": "Lost Planet", "type": "Planeta", "dimension": "D-404", "population": 0, "desc": "Destruido" },
+    { "id": "P13", "name": "Medieval Land", "type": "Planeta", "dimension": "D-202", "population": 20000, "desc": "Medieval" },
+    { "id": "P14", "name": "Future City", "type": "Ciudad", "dimension": "D-101", "population": 2000000, "desc": "Futuro" },
+    { "id": "P15", "name": "Mutant Zone", "type": "Zona", "dimension": "J19Z7", "population": 5000, "desc": "Mutantes" },
+    { "id": "P16", "name": "Alien Hub", "type": "Estación", "dimension": "D-707", "population": 15000, "desc": "Aliens" },
+    { "id": "P17", "name": "Simulation 2", "type": "Virtual", "dimension": "D-808", "population": 2000, "desc": "Virtual" },
+    { "id": "P18", "name": "Chaos Core", "type": "Zona", "dimension": "D-909", "population": 0, "desc": "Centro caos" },
+    { "id": "P19", "name": "Mini Lab", "type": "Laboratorio", "dimension": "D-010", "population": 100, "desc": "Mini lab" },
+    { "id": "P20", "name": "Giant Lab", "type": "Laboratorio", "dimension": "D-111", "population": 100, "desc": "Gigante lab" }
   ],
+
   "species": [
-    {
-      "id": "S1",
-      "name": "Humano",
-      "origin": "Tierra",
-      "type": "Humanoide",
-      "expectancy": 80,
-      "desc": "Común"
-    },
-    {
-      "id": "S2",
-      "name": "Cronenberg",
-      "origin": "C-137",
-      "type": "Mutante",
-      "expectancy": 30,
-      "desc": "Fallidos"
-    },
-    {
-      "id": "S3",
-      "name": "Gazorpiano",
-      "origin": "Gazorpazorp",
-      "type": "Alienígena",
-      "expectancy": 60,
-      "desc": "Agresivos"
-    },
-    {
-      "id": "S4",
-      "name": "Meeseeks",
-      "origin": "Caja",
-      "type": "Artificial",
-      "expectancy": 1,
-      "desc": "Temporal"
-    },
-    {
-      "id": "S5",
-      "name": "Zigerion",
-      "origin": "Zigerion",
-      "type": "Alien",
-      "expectancy": 100,
-      "desc": "Estafadores"
-    },
-    {
-      "id": "S6",
-      "name": "Robot",
-      "origin": "D-303",
-      "type": "Robótico",
-      "expectancy": 200,
-      "desc": "IA"
-    },
-    {
-      "id": "S7",
-      "name": "Parásito",
-      "origin": "D-909",
-      "type": "Parásito",
-      "expectancy": 10,
-      "desc": "Manipula recuerdos"
-    },
-    {
-      "id": "S8",
-      "name": "Hivemind",
-      "origin": "D-505",
-      "type": "Colectivo",
-      "expectancy": 500,
-      "desc": "Conciencia compartida"
-    },
-    {
-      "id": "S9",
-      "name": "Gigante",
-      "origin": "D-111",
-      "type": "Gigante",
-      "expectancy": 120,
-      "desc": "Gran tamaño"
-    },
-    {
-      "id": "S10",
-      "name": "Mini",
-      "origin": "D-010",
-      "type": "Miniatura",
-      "expectancy": 50,
-      "desc": "Pequeños"
-    }
+    { "id": "S1", "name": "Humano", "origin": "Tierra", "type": "Humanoide", "expectancy": 80, "desc": "Común" },
+    { "id": "S2", "name": "Cronenberg", "origin": "C-137", "type": "Mutante", "expectancy": 30, "desc": "Fallidos" },
+    { "id": "S3", "name": "Gazorpiano", "origin": "Gazorpazorp", "type": "Alienígena", "expectancy": 60, "desc": "Agresivos" },
+    { "id": "S4", "name": "Meeseeks", "origin": "Caja", "type": "Artificial", "expectancy": 1, "desc": "Temporal" },
+    { "id": "S5", "name": "Zigerion", "origin": "Zigerion", "type": "Alien", "expectancy": 100, "desc": "Estafadores" },
+    { "id": "S6", "name": "Robot", "origin": "D-303", "type": "Robótico", "expectancy": 200, "desc": "IA" },
+    { "id": "S7", "name": "Parásito", "origin": "D-909", "type": "Parásito", "expectancy": 10, "desc": "Manipula recuerdos" },
+    { "id": "S8", "name": "Hivemind", "origin": "D-505", "type": "Colectivo", "expectancy": 500, "desc": "Conciencia compartida" },
+    { "id": "S9", "name": "Gigante", "origin": "D-111", "type": "Gigante", "expectancy": 120, "desc": "Gran tamaño" },
+    { "id": "S10", "name": "Mini", "origin": "D-010", "type": "Miniatura", "expectancy": 50, "desc": "Pequeños" }
   ]
 }
