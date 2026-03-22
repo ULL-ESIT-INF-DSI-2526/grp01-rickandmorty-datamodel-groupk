@@ -209,8 +209,8 @@ export class MultiverseManager {
         const dangerousArtifacts: { invent: Invents, locationId: string }[] = [];
         for (const [inventId, locationId] of deploymentStatus.entries()) {
             const invent = this._db.data.invents.find(i => {
-                const rawI = i as unknown as { id?: string, _id?: string };
-                return (rawI.id ?? rawI._id) === inventId;
+                const rawI = i as unknown as { id?: string };
+                return (rawI.id ) === inventId;
             });
 
             if (invent) {
@@ -219,10 +219,10 @@ export class MultiverseManager {
         }
         
         return dangerousArtifacts.sort((a, b) => {
-            const rawA = a.invent as { dangerLevel?: number, _dangerLevel?: number, _level?: number };
-            const rawB = b.invent as { dangerLevel?: number, _dangerLevel?: number, _level?: number };
-            const levelA = Number(rawA.dangerLevel ?? rawA._dangerLevel ?? rawA._level ?? 0);
-            const levelB = Number(rawB.dangerLevel ?? rawB._dangerLevel ?? rawB._level ?? 0);
+            const rawA = a.invent as { dangerLevel?: number };
+            const rawB = b.invent as { dangerLevel?: number};
+            const levelA = Number(rawA.dangerLevel ?? 0);
+            const levelB = Number(rawB.dangerLevel ?? 0);
             return levelB - levelA;
         });
     }

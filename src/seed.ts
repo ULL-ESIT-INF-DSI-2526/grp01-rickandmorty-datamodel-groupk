@@ -6,6 +6,13 @@ import { Invents } from "./Class/Invents.js";
 import { Character } from "./Class/Character.js";
 import { MultiverseManager } from "./Servicies/Multiverse.js";
 
+/**
+ * No funciona bien, guarda todos los atibutos como privados por lo que rompe el menu qye que no se pueden acceder a ellos
+ * **********************NO USAR*******************
+ * SI se quiere resstablecer la base de datos hay una dbSemilla.json (Copiar y pegar en la db.json)
+ */
+
+
 async function runSeed() {
     console.log("Iniciando Multiverso");
     await db.read();

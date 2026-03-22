@@ -104,7 +104,7 @@ export async function reportsMenu(manager: MultiverseManager) {
                 const orphans = await manager.checkOrphanCharacters();
                 console.log("\nAlerta: Personajes sin dimensión de origen o dimensión destruida:");
                 if (orphans.length > 0) {
-                    console.table(orphans, ["id", "name", "status"]);
+                    console.table(orphans, ["id", "name", "state"]);
                 } else {
                     console.log("Todos los personajes tienen su dimensión de origen intacta.");
                 }

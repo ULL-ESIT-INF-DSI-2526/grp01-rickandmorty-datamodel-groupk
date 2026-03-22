@@ -305,105 +305,105 @@
     {
       "id": "C-137",
       "name": "Dimensión Principal",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 9,
       "desc": "Origen de Rick"
     },
     {
       "id": "C-500A",
       "name": "Postapocalíptica",
-      "state": "DESTRUIDA",
+      "state": "Destruida",
       "techlevel": 4,
       "desc": "Devastada"
     },
     {
       "id": "J19Z7",
       "name": "Mutante",
-      "state": "CUARENTENA",
+      "state": "Cuarentena",
       "techlevel": 7,
       "desc": "Mutaciones"
     },
     {
       "id": "D-101",
       "name": "Futurista",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 10,
       "desc": "Alta tecnología"
     },
     {
       "id": "D-202",
       "name": "Medieval",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 2,
       "desc": "Baja tecnología"
     },
     {
       "id": "D-303",
       "name": "Robot",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 10,
       "desc": "IA dominante"
     },
     {
       "id": "D-404",
       "name": "Perdida",
-      "state": "DESTRUIDA",
+      "state": "Destruida",
       "techlevel": 5,
       "desc": "Desaparecida"
     },
     {
       "id": "D-505",
       "name": "Hivemind",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 6,
       "desc": "Mente colectiva"
     },
     {
       "id": "D-606",
       "name": "Oscura",
-      "state": "CUARENTENA",
+      "state": "Cuarentena",
       "techlevel": 8,
       "desc": "Energía oscura"
     },
     {
       "id": "D-707",
       "name": "Alien",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 7,
       "desc": "Extraterrestres"
     },
     {
       "id": "D-808",
       "name": "Simulación",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 9,
       "desc": "Virtual"
     },
     {
       "id": "D-909",
       "name": "Caótica",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 5,
       "desc": "Sin leyes"
     },
     {
       "id": "D-010",
       "name": "Mini",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 6,
       "desc": "Pequeño"
     },
     {
       "id": "D-111",
       "name": "Gigante",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 6,
       "desc": "Grande"
     },
     {
       "id": "D-222",
       "name": "Acuática",
-      "state": "ACTIVA",
+      "state": "Activa",
       "techlevel": 5,
       "desc": "Agua total"
     }
