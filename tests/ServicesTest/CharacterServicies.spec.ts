@@ -97,7 +97,7 @@ describe("Tests para la clase CharacterServices ", () => {
     expect(byNameAsc[0].name).toBe("Morty Smith"); 
     expect(byNameAsc[1].name).toBe("Rick Sanchez");
 
-    const allInDim1 = await characters.consultCharacterByDimension(dimension1, true, 2); 
+    const allInDim1 = await characters.consultCharacterByDimension(dimension1); 
     expect(allInDim1[0].name).toBe("Rick Sanchez"); // IQ más alto primero al ser desc
     expect(allInDim1[1].name).toBe("Morty Smith");
   });

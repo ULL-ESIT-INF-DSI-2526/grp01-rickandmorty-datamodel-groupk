@@ -5,7 +5,7 @@ import { Species } from "../../Class/Species.js";
 
 /**
  * Funcion del menu principal de especies
- * @param manager
+ * @param manager - Instancia del MultiverseManager que contiene todos los servicios
  */
 export async function speciesMenu(manager: MultiverseManager) {
     let back = false;
@@ -52,7 +52,7 @@ export async function speciesMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para anadir una nueva especie
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function addSpecie(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
@@ -136,7 +136,7 @@ export async function speciesMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para eliminar una especie
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function removeSpecie(manager: MultiverseManager) {
             const {id} = await prompts({
@@ -158,7 +158,7 @@ export async function speciesMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para modificar una especie
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function modifySpecie(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();

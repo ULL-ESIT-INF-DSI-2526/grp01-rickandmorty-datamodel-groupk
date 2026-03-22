@@ -6,7 +6,7 @@ import { DimensionState } from "../../Enums/DimensionState.js";
 
 /**
  * Función del menu principal de dimensiones
- * @param manager 
+ * @param manager - Instancia del MultiverseManager que contiene todos los servicios
  */
 export async function dimensionsMenu(manager: MultiverseManager) {
     let back = false;
@@ -52,7 +52,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
 
     /**
      * Prompt para añadir una nueva dimensión
-     * @param manager 
+     * @param manager - Instancia del MultiverseManager que contiene todos los servicios
      */
     async function addDimension(manager: MultiverseManager) {
         /** Información necesaria para poder añadir la dimensión */
@@ -135,7 +135,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
 
     /**
      * Prompt para modificar una dimensión
-     * @param manager 
+     * @param manager - Instancia del MultiverseManager que contiene todos los servicios
      */
     async function modifyDimension(manager: MultiverseManager) {
         /** Información necesario para poder modificar la dimensión */

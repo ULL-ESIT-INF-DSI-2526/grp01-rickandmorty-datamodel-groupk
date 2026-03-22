@@ -163,7 +163,7 @@ export class CharacterServices implements Services<Character> {
      * @param name - nombre del personaje a buscar
      * @returns array de personajes que coinciden con el nombre, incluyendo versiones alternativas
      */
-    async findAllVersions(name: string): Promise<Character[]> {
+    async findAlternativeVersions(name: string): Promise<Character[]> {
         await this._db.read();
         return this._db.data.characters.filter(c => c.name === name);
     }

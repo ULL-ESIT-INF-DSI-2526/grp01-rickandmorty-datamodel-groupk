@@ -6,9 +6,8 @@ import { Character } from "../../Class/Character.js";
 
 /**
  * Función del menu principal de inventos
- * @param manager 
+ * @param manager - Instancia del MultiverseManager que contiene todos los servicios
  */
-
 export async function inventsMenu(manager: MultiverseManager) {
     let back = false;
         /** Bucle para elegir la opción que se va a realizar */
@@ -73,7 +72,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para anadir un nuevo invento
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function addInvent(manager: MultiverseManager) {
             const character = await manager.characters.getAll();
@@ -147,7 +146,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para eliminar un invento
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function removeInvent(manager: MultiverseManager) {
             const {id} = await prompts({
@@ -236,7 +235,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar invento por el nombre
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consutlByName(manager: MultiverseManager) {
             const data = await prompts([
@@ -275,7 +274,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar invento por el tipo
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consutlByType(manager: MultiverseManager) {
             const data = await prompts([
@@ -314,7 +313,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar invento por el inventor
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consultByInventor(manager: MultiverseManager) {
             const data = await prompts([
@@ -353,7 +352,7 @@ export async function inventsMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar invento por el nivel de peligrosidad
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consultByDangerLevel(manager: MultiverseManager) {
             const data = await prompts([

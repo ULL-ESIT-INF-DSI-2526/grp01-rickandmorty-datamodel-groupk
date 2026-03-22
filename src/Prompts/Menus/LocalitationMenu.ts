@@ -6,7 +6,7 @@ import { Dimensions } from "../../Class/Dimensions.js";
 
 /**
  * Funcion del menu principal de localizaciones
- * @param manager
+ * @param manager - Instancia del MultiverseManager que contiene todos los servicios
  */
 export async function localitationMenu(manager: MultiverseManager) {
     let back = false;
@@ -68,7 +68,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para anadir una nueva localizacion
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function addLocalitation(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
@@ -141,7 +141,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para eliminar una localizacion
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function removeLocalitation(manager: MultiverseManager) {
             const {id} = await prompts({
@@ -163,7 +163,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para modificar una localizacion
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function modifyLocalitation(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
@@ -230,7 +230,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar localizacion por el nombre
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consutlByName(manager: MultiverseManager) {
             const data = await prompts([
@@ -269,7 +269,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar localizacion por el tipo
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consutlByType(manager: MultiverseManager) {
             const data = await prompts([
@@ -308,7 +308,7 @@ export async function localitationMenu(manager: MultiverseManager) {
 
         /**
          * Prompt para buscar localizacion por la dimension
-         * @param manager
+         * @param manager - Instancia del MultiverseManager que contiene todos los servicios
          */
         async function consultByDimension(manager: MultiverseManager) {
             const data = await prompts([
