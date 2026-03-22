@@ -115,4 +115,5 @@ describe("Tests para la clase CharacterServices ", () => {
     const alt = await characters.findAlternativeVersions("Rick Sanchez");
     expect(alt.length).toBe(2);
   });
+
 });

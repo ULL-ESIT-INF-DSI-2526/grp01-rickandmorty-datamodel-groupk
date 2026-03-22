@@ -80,7 +80,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
                 ]
             },
             {
-                type: 'text',
+                type: 'number',
                 name: 'techlevel',
                 message: 'Nivel tecnológico:',
                 validate: techlevel => techlevel >= 1 && techlevel <= 10 ? true : "Debe ser entre 1-10"
@@ -163,7 +163,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
                 ]
             },
             {
-                type: 'text',
+                type: 'number',
                 name: 'techlevel',
                 message: 'Nuevo nivel tecnológico (Enter para no modificar):'            
             },

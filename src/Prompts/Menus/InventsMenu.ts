@@ -90,7 +90,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                 {
                     type: 'text',
                     name: 'id',
-                    message: 'Introduce el ID de la invento a añadir:',
+                    message: 'Introduce el ID del invento a añadir:',
                     validate: id => id.length > 0 ? true : "Debe de tener un ID"
                 },
                 {
@@ -112,7 +112,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                     validate: type => type.length > 0 ? true : "Debe de tener un tipo"
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'dangerlevel',
                     message: 'Selecciona el nivel de peligrosidad:',
                     validate: techlevel => techlevel >= 1 && techlevel <= 10 ? true : "Debe ser entre 1-10"
@@ -186,7 +186,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                 {
                     type: 'text',
                     name: 'id',
-                    message: 'Introduce el ID de la invento a modificar:',
+                    message: 'Introduce el ID del invento a modificar:',
                     validate: id => id.length > 0 ? true : "Debe de tener un ID"
                 },
                 {
@@ -206,7 +206,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                     message: 'Selecciona el nuevo tipo:',
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'dangerlevel',
                     message: 'Nuevo nivel de peligrosidad (Enter para no modificar):'
                 },
