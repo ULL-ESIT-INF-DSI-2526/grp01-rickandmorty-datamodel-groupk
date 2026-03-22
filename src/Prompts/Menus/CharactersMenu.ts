@@ -5,9 +5,13 @@ import { Character } from '../../Class/Character.js';
 import { Species } from '../../Class/Species.js';
 import { Dimensions } from '../../Class/Dimensions.js';
 
+/**
+ * Función del menu principal de personajes
+ * @param manager 
+ */
 export async function charactersMenu(manager: MultiverseManager) {
     let back = false;
-
+    /** Bucle para elefir la opcion que se va a realizar */
     while(!back) {
         const res = await prompts({
             type: 'select',
@@ -29,6 +33,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             ]
         });
 
+        // Selección de la opción a realizar
         switch (res.option) {
             case 'list':
                 const characters = await manager.characters.getAll();
@@ -77,6 +82,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
     
+    /**
+     * Prompt para añadir un nuevo personaje
+     * @param manager 
+     */
     async function addCharacter(manager: MultiverseManager) {
         const dimensions = await manager.dimensions.getAll();
         const species = await manager.species.getAll();
@@ -99,6 +108,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             value: s
         }));
 
+        /** Información necesaria para poder añadir al personaje */
         const data = await prompts([
             {
                 type: 'text',
@@ -150,6 +160,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Construye character y validación de error */
         try {
             const newCharacter = new Character(
                 data.id,
@@ -170,6 +181,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para eliminar un personaje
+     * @param manager 
+     */
     async function removeCharacter(manager: MultiverseManager) {
         const {id} = await prompts({
             type: 'text',
@@ -178,6 +193,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             validate: id => id.length > 0 ? true : "Debe de tener un ID"
         });
 
+        /** Notifica que se elimino personaje o error */
         try {
             await manager.characters.remove(id);
             console.log(`El personaje ${id} ha sido eliminado correctamente\n`)
@@ -187,6 +203,10 @@ export async function charactersMenu(manager: MultiverseManager) {
 
     }
 
+    /**
+     * Prompt para eliminar un personaje
+     * @param manager 
+     */
     async function modifyCharacter(manager: MultiverseManager) {
         const dimensions = await manager.dimensions.getAll();
         const species = await manager.species.getAll();
@@ -209,6 +229,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             value: s
         }));
 
+        /** Información necesaria para poder modificar al personaje */
         const data = await prompts([
             {
                 type: 'text',
@@ -255,6 +276,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Modifica character y validación de error */
         try {
             const mod: any = {};
             if(data.name) mod.name = data.name;
@@ -272,6 +294,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         } 
     }
 
+    /**
+     * Prompt para buscar character por el nombre
+     * @param manager 
+     */
     async function consutlByName(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -282,6 +308,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
         
+        /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
         const names: string = data.name;
 
@@ -307,6 +334,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para buscar character por la Afilación
+     * @param manager 
+     */
     async function consutlByAfiliation(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -317,6 +348,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
         const affs: string = data.afiliation;
 
@@ -342,6 +374,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para buscar character por la especie
+     * @param manager 
+     */
     async function consutlBySpecies(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -352,6 +388,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
         const species: Species = data.specie;
 
@@ -377,6 +414,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para buscar character por el estado
+     * @param manager 
+     */
     async function consutlByState(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -387,6 +428,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
         const state: string = data.state;
 
@@ -412,6 +454,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para buscar character por la dimension
+     * @param manager 
+     */
     async function consultByDimension(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -422,6 +468,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
         const dimension: Dimensions = data.dimension;
 
@@ -447,6 +494,10 @@ export async function charactersMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para ordenar los resultados de búsqueda
+     * @param manager 
+     */
     async function sort(manager: MultiverseManager) {
         const data = await prompts([
             {
@@ -469,6 +520,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
+        /** Obtiene todos los personajes y aplica el criterio de orden elegido por el usuario y validación de error */
         try {
             const character = await manager.characters.getAll();
             const sort = await manager.characters.applySorting(character, data.sortDir, data.sortType);
