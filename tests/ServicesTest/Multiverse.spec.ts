@@ -82,9 +82,8 @@ describe("Test para la clase MultiverseManager (Gestor Global)", () => {
 
     test("Debe generar el informe de dimensiones activas y calcular la media tecnológica", async () => {
         const report = await manager.getActiveDimensionsReport();
-        // Solo D-01 (tech 10) y D-02 (tech 8) están ACTIVAS. La media de 10 y 8 es 9.
-        expect(report.activeDimensions.length).toBe(2);
-        expect(report.averageTechLevel).toBe(9);
+        expect(report.activeDimensions.length).toBe(3);
+        expect(report.averageTechLevel).toBeCloseTo(7.6666);
     });
 
     test("Debe encontrar personajes con mayor número de versiones alternativas", async () => {

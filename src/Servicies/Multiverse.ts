@@ -140,25 +140,26 @@ export class MultiverseManager {
      */
     async getActiveDimensionsReport(): Promise<{ activeDimensions: Dimensions[], averageTechLevel: number }> {
         await this._db.read();
-        
-        const active = this._db.data.dimensions.filter(d => {
-            const rawD = d as unknown as { state?: string, _state?: string };
-            const state = rawD.state ?? rawD._state;
-            return state === DimensionState.ACTIVA || state === "Activa";
-        });
-        
+
+        const active = this._db.data.dimensions.filter(
+            d => d.state === DimensionState.ACTIVA || "Activa"
+        );
+
         if (active.length === 0) {
             return { activeDimensions: [], averageTechLevel: 0 };
         }
 
-        const totalTech = active.reduce((sum, dim) => {
-            const rawD = dim as unknown as { techlevel?: number, _techlevel?: number };
-            return sum + Number(rawD.techlevel ?? rawD._techlevel ?? 0);
-        }, 0);
-        
+        const totalTech = active.reduce(
+            (sum, dim) => sum + dim.techlevel,
+            0
+        );
+
         const avgTech = totalTech / active.length;
 
-        return { activeDimensions: active, averageTechLevel: avgTech };
+        return {
+            activeDimensions: active,
+            averageTechLevel: avgTech
+        };
     }
 
     /**

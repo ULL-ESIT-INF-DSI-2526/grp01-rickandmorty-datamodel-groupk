@@ -31,12 +31,18 @@ export async function reportsMenu(manager: MultiverseManager) {
         switch (res.option) {
             case 'active_dims': {
                 const report1 = await manager.getActiveDimensionsReport();
-                console.log(`\nNivel Tecnológico Medio del Multiverso Activo: ${report1.averageTechLevel.toFixed(2)}`);
+
+                console.log("\nDIMENSIONES ACTIVAS");
+                console.log("=================================");
+
+                console.log(`Nivel Tecnológico Medio: ${report1.averageTechLevel.toFixed(2)}`);
+
                 if (report1.activeDimensions.length > 0) {
-                    console.table(report1.activeDimensions, ["id", "name", "techlevel", "description"]);
+                    console.table(report1.activeDimensions, ["id", "name", "techlevel", "desc"]);
                 } else {
                     console.log("No hay dimensiones activas en este momento.");
                 }
+
                 break;
             }
 
