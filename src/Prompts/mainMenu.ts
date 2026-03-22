@@ -15,7 +15,8 @@ export async function mainMenu(): Promise<string> {
             { title: 'Localizaciones', value: 'localitations' },
             { title: 'Especies', value: 'species' },
             { title: 'Inventos', value: 'invents' },
-            { title: 'Informes y eventos', value: 'reports' },
+            { title: 'Eventos', value: 'events' },
+            { title: 'Informes', value: 'reports' },
             { title: 'Salir', value: 'exit' }
         ]
     });

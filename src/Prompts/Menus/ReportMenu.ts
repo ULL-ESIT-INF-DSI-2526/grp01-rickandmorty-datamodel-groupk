@@ -23,7 +23,7 @@ export async function reportsMenu(manager: MultiverseManager) {
                 { title: '3. Inventos más peligrosos desplegados', value: 'danger_invents' },
                 { title: '4. Historial de viajes de un personaje', value: 'travel_history' },
                 { title: '5. Detectar personajes huérfanos (Alerta de Estado)', value: 'orphans' },
-                { title: '0. Volver al menú principal', value: 'back' }
+                { title: 'Volver al menú principal', value: 'back' }
             ]
         });
         if (!res.option) return;

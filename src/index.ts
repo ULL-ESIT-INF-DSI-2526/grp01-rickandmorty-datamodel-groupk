@@ -7,6 +7,7 @@ import { localitationMenu } from "./Prompts/Menus/LocalitationMenu.js";
 import { speciesMenu } from "./Prompts/Menus/SpeciesMenu.js";
 import { inventsMenu } from "./Prompts/Menus/InventsMenu.js";
 import { reportsMenu } from "./Prompts/Menus/ReportMenu.js";
+import { eventsMenu } from "./Prompts/Menus/EventsMenu.js";
 
 /**
  * Función principal para los menús que llama a los diferentes menús.
@@ -47,6 +48,11 @@ async function main() {
             case 'invents':
                 await inventsMenu(manager);
                 break;
+
+            case 'events': 
+                await eventsMenu(manager);
+                break;
+
             case 'reports':
                 await reportsMenu(manager);
                 break;
@@ -59,8 +65,4 @@ async function main() {
     }
 }
 
-/**
- * Llama a la función main() para que mediante la consola se puedan 
- * hacer las gestiones necesarias a partir de los menús implementados
- */
 main();
