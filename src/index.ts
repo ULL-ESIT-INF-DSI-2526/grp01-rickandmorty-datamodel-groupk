@@ -5,7 +5,7 @@ import { mainMenu } from "./Prompts/mainMenu.js";
 import { charactersMenu } from "./Prompts/Menus/CharactersMenu.js";
 import { localitationMenu } from "./Prompts/Menus/LocalitationMenu.js";
 import { speciesMenu } from "./Prompts/Menus/SpeciesMenu.js";
-import { inventsMenu } from "./Prompts/Menus/inventsMenu.js";
+import { inventsMenu } from "./Prompts/Menus/InventsMenu.js";
 
 async function main() {
     await db.read();

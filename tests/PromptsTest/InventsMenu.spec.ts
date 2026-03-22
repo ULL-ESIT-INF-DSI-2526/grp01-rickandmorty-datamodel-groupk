@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import prompts from 'prompts';
-import { inventsMenu } from '../../src/Prompts/Menus/inventsMenu.js';
+import { inventsMenu } from '../../src/Prompts/Menus/InventsMenu.js';
 import type { MultiverseManager } from '../../src/Servicies/Multiverse';
 import { Invents } from '../../src/Class/Invents';
 import { Character } from '../../src/Class/Character';

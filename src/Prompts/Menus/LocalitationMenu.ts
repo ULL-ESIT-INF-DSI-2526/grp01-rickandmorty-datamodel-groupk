@@ -4,9 +4,14 @@ import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Planets } from "../../Class/Planets.js";
 import { Dimensions } from "../../Class/Dimensions.js";
 
+/**
+ * Funcion del menu principal de localizaciones
+ * @param manager
+ */
 export async function localitationMenu(manager: MultiverseManager) {
     let back = false;
-    
+
+        /** Bucle para elegir la opcion que se va a realizar */
         while(!back) {
             const res = await prompts({
                 type: 'select',
@@ -23,7 +28,8 @@ export async function localitationMenu(manager: MultiverseManager) {
                     { title: 'Volver', value: 'back' }
                 ]
             });
-    
+
+            /** Seleccion de la opcion a realizar */
             switch (res.option) {
                 case 'list':
                     const localitations = await manager.localitations.getAll();
@@ -59,7 +65,11 @@ export async function localitationMenu(manager: MultiverseManager) {
                     break;
             }
         }
-        
+
+        /**
+         * Prompt para anadir una nueva localizacion
+         * @param manager
+         */
         async function addLocalitation(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
     
@@ -109,7 +119,8 @@ export async function localitationMenu(manager: MultiverseManager) {
                     validate: desc => desc.length > 0 ? true : "Debe de tener descripción"
                 }
             ]);
-    
+
+            /** Construye localizacion y validacion de error */
             try {
                 const newLocalitation = new Planets(
                     data.id,
@@ -127,7 +138,11 @@ export async function localitationMenu(manager: MultiverseManager) {
                 console.log("Error", error.message);
             }
         }
-    
+
+        /**
+         * Prompt para eliminar una localizacion
+         * @param manager
+         */
         async function removeLocalitation(manager: MultiverseManager) {
             const {id} = await prompts({
                 type: 'text',
@@ -135,16 +150,21 @@ export async function localitationMenu(manager: MultiverseManager) {
                 message: 'ID de la localización a eliminar',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             });
-    
+
+            /** Notifica que se elimino localizacion o error */
             try {
                 await manager.characters.remove(id);
                 console.log(`La localización ${id} ha sido eliminada correctamente\n`)
             } catch (error: any) {
                 console.log("Error", error.message);
             }
-    
+
         }
-    
+
+        /**
+         * Prompt para modificar una localizacion
+         * @param manager
+         */
         async function modifyLocalitation(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
     
@@ -191,7 +211,8 @@ export async function localitationMenu(manager: MultiverseManager) {
                     message: 'Nueva escripción (Enter para no modificar):'
                 }
             ]);
-    
+
+            /** Modifica la localizacion y validacion de error */
             try {
                 const mod: any = {};
                 if(data.name) mod.name = data.name;
@@ -206,7 +227,11 @@ export async function localitationMenu(manager: MultiverseManager) {
                 console.log("Error", error.message);
             } 
         }
-    
+
+        /**
+         * Prompt para buscar localizacion por el nombre
+         * @param manager
+         */
         async function consutlByName(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -216,7 +241,8 @@ export async function localitationMenu(manager: MultiverseManager) {
                     validate: name => name.length > 0 ? true : "Debe de tener un nombre"
                 }
             ]);
-            
+
+            /** Busca la localizacion, ya sea que la encuentre o no y validacion de error */
             try {
             const names: string = data.name;
     
@@ -241,6 +267,10 @@ export async function localitationMenu(manager: MultiverseManager) {
             }
         }
 
+        /**
+         * Prompt para buscar localizacion por el tipo
+         * @param manager
+         */
         async function consutlByType(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -250,7 +280,8 @@ export async function localitationMenu(manager: MultiverseManager) {
                     validate: type => type.length > 0 ? true : "Debe de tener un tipo"
                 }
             ]);
-            
+
+            /** Busca la localizacion, ya sea que la encuentre o no y validacion de error */
             try {
             const types: string = data.type;
     
@@ -275,6 +306,10 @@ export async function localitationMenu(manager: MultiverseManager) {
             }
         }
 
+        /**
+         * Prompt para buscar localizacion por la dimension
+         * @param manager
+         */
         async function consultByDimension(manager: MultiverseManager) {
             const data = await prompts([
                 {
@@ -285,6 +320,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                 }
             ]);
 
+            /** Busca la localizacion, ya sea que la encuentre o no y validacion de error */
             try {
             const dimension: Dimensions = data.dimension;
 
