@@ -43,6 +43,10 @@ export async function eventsMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Función que registra los viajes interdimensionales de los personajes
+     * @param manager - Instancia del MultiverseManager que contiene todos los servicios
+     */
     async function interdimentionalTravels(manager: MultiverseManager) {
         /** Información necesaria para poder añadir al evento de viaje */
                 const data = await prompts([
@@ -86,6 +90,10 @@ export async function eventsMenu(manager: MultiverseManager) {
                 }
             }
 
+    /**
+     * Función que registra anomalías detectadas en las dimensiones (Si han sido creadas o destruidas)
+     * @param manager - Instancia del MultiverseManager que contiene todos los servicios
+     */
     async function dimensionAnomaly(manager: MultiverseManager) {
         /** Información necesaria para poder añadir al evento de viaje */
                 const data = await prompts([
@@ -130,7 +138,11 @@ export async function eventsMenu(manager: MultiverseManager) {
                 }
             }
 
-async function artefactDeployment(manager: MultiverseManager) {
+    /**
+     * Función que registra el despliegue o neutralización de un invento/artefacto
+     * @param manager - Instancia del MultiverseManager que contiene todos los servicios
+     */
+    async function artefactDeployment(manager: MultiverseManager) {
         /** Información necesaria para poder añadir al evento de viaje */
                 const data = await prompts([
                     {
