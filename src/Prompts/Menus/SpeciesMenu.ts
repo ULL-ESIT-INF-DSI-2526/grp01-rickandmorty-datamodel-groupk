@@ -3,9 +3,14 @@ import prompts from "prompts";
 import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Species } from "../../Class/Species.js";
 
+/**
+ * Funcion del menu principal de especies
+ * @param manager
+ */
 export async function speciesMenu(manager: MultiverseManager) {
     let back = false;
-    
+
+        /** Bucle para elegir la opcion que se va a realizar */
         while(!back) {
             const res = await prompts({
                 type: 'select',
@@ -19,7 +24,8 @@ export async function speciesMenu(manager: MultiverseManager) {
                     { title: 'Volver', value: 'back' }
                 ]
             });
-    
+
+            /** Seleccion de la opcion a realizar */
             switch (res.option) {
                 case 'list':
                     const species = await manager.species.getAll();
@@ -43,7 +49,11 @@ export async function speciesMenu(manager: MultiverseManager) {
                     break;
             }
         }
-    
+
+        /**
+         * Prompt para anadir una nueva especie
+         * @param manager
+         */
         async function addSpecie(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
             const localitations = await manager.localitations.getAll();
@@ -104,7 +114,8 @@ export async function speciesMenu(manager: MultiverseManager) {
                     validate: desc => desc.length > 0 ? true : "Debe de tener descripción"
                 }
             ]);
-    
+
+            /** Construye especie y validacion de error */
             try {
                 const newSpecie = new Species(
                     data.id,
@@ -122,7 +133,11 @@ export async function speciesMenu(manager: MultiverseManager) {
                 console.log("Error", error.message);
             }
         }
-    
+
+        /**
+         * Prompt para eliminar una especie
+         * @param manager
+         */
         async function removeSpecie(manager: MultiverseManager) {
             const {id} = await prompts({
                 type: 'text',
@@ -130,16 +145,21 @@ export async function speciesMenu(manager: MultiverseManager) {
                 message: 'ID de la especie a eliminar',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             });
-    
+
+            /** Notifica que se elimino especie o error */
             try {
                 await manager.species.remove(id);
                 console.log(`La especie ${id} ha sido eliminada correctamente`)
             } catch (error: any) {
                 console.log("Error", error.message);
             }
-    
+
         }
-    
+
+        /**
+         * Prompt para modificar una especie
+         * @param manager
+         */
         async function modifySpecie(manager: MultiverseManager) {
             const dimensions = await manager.dimensions.getAll();
             const localitations = await manager.localitations.getAll();
@@ -199,7 +219,8 @@ export async function speciesMenu(manager: MultiverseManager) {
                     message: 'Nueva descripción (Enter para no modificar):'
                 }
             ]);
-    
+
+            /** Modifica la especie y validacion de error */
             try {
                 const mod: any = {};
                 if(data.name) mod.name = data.name;
