@@ -116,4 +116,20 @@ describe("Tests para la clase CharacterServices ", () => {
     expect(alt.length).toBe(2);
   });
 
+  test("Test para versiones alternativas de un personaje", async () => {
+    await characters.add(character2); 
+    await characters.add(character3); 
+    await characters.add(character4); 
+
+    const char = await characters.getAll();
+
+    const apply = await characters.applySorting(char, true, 1);
+    const apply2 = await characters.applySorting(char, true, 2);
+    expect(apply[0].name).toBe("Rick Sanchez");
+    expect(apply2[0].iq).toBe(10);
+
+    const iqsort = await characters.sortByIq(char, false);
+    expect(iqsort[0].iq).toBe(4);
+  });
+
 });

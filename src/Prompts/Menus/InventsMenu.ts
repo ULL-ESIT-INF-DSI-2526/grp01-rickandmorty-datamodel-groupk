@@ -320,7 +320,7 @@ export async function inventsMenu(manager: MultiverseManager) {
                 {
                     type: 'text',
                     name: 'inventor',
-                    message: 'Introduce el id del inventor a consultar:',
+                    message: 'Introduce el nombre del inventor a consultar:',
                     validate: inventor => inventor.length > 0 ? true : "Debe de tener un inventor"
                 }
             ]);
@@ -334,7 +334,7 @@ export async function inventsMenu(manager: MultiverseManager) {
             if(res.length == 0) {
                     console.log('No se encontraron resultados');
                 } else {
-                    console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${inventor}\n`);
+                    console.log(`Se encontraron ${res.length} inventos con el inventor ${inventor}\n`);
                     res.forEach((i: Invents, index: number) => {
                     console.log(`${index + 1}. ${i.name} 
                                 ID: ${i.id} 
@@ -373,7 +373,7 @@ export async function inventsMenu(manager: MultiverseManager) {
             if(res.length == 0) {
                 console.log('No se encontraron resultados');
             } else {
-                console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${dangerlevels}\n`);
+                console.log(`Se encontraron ${res.length} inventos con nivel de peligrosidad ${dangerlevels}\n`);
                     res.forEach((i: Invents, index: number) => {
                     console.log(`${index + 1}. ${i.name} 
                                 ID: ${i.id} 

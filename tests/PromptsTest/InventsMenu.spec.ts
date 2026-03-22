@@ -311,7 +311,7 @@ describe('InventsMenu', () => {
 		await inventsMenu(manager as unknown as MultiverseManager);
 
 		expect(manager.invents.consultInventByInventor).toHaveBeenCalledWith(baseCharacter);
-		expect(consoleLogSpy).toHaveBeenCalledWith(`Se encontraron 1 localizaciones en la dimensión ${baseCharacter}\n`);
+		expect(consoleLogSpy).toHaveBeenCalledWith(`Se encontraron 1 inventos con el inventor ${baseCharacter}\n`);
 	});
 
 	test('consulta inventos por peligrosidad con resultados', async () => {
@@ -329,6 +329,6 @@ describe('InventsMenu', () => {
 		await inventsMenu(manager as unknown as MultiverseManager);
 
 		expect(manager.invents.consultInventByDangerLevel).toHaveBeenCalledWith(10);
-		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones en la dimensión 10\n');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 inventos con nivel de peligrosidad 10\n');
 	});
 });
