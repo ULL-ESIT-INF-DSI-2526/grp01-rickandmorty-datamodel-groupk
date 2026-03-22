@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import prompts from 'prompts';
-import { inventsMenu } from '../../src/Prompts/Menus/InventsMenu.js';
+import { inventsMenu } from '../../src/Prompts/Menus/inventsMenu.js';
 import type { MultiverseManager } from '../../src/Servicies/Multiverse';
 import { Invents } from '../../src/Class/Invents';
 import { Character } from '../../src/Class/Character';
@@ -21,6 +21,10 @@ describe('InventsMenu', () => {
 		| 'add'
 		| 'remove'
 		| 'modify'
+		| 'consult by name'
+		| 'consult by type'
+		| 'consult by inventor'
+		| 'consult by dangerlevel'
 		| 'back';
 	}
 
@@ -37,7 +41,30 @@ describe('InventsMenu', () => {
 		id: string;
 	}
 
-	type PromptAnswer = MenuAnswer | InventFormAnswer | RemoveAnswer;
+	interface ConsultByNameAnswer {
+		name: string;
+	}
+
+	interface ConsultByTypeAnswer {
+		type: string;
+	}
+
+	interface ConsultByInventorAnswer {
+		inventor: Character;
+	}
+
+	interface ConsultByDangerLevelAnswer {
+		dangerlevel: number;
+	}
+
+	type PromptAnswer =
+		| MenuAnswer
+		| InventFormAnswer
+		| RemoveAnswer
+		| ConsultByNameAnswer
+		| ConsultByTypeAnswer
+		| ConsultByInventorAnswer
+		| ConsultByDangerLevelAnswer;
 
 	interface MockedManager {
 		invents: {
@@ -45,6 +72,10 @@ describe('InventsMenu', () => {
 			add: ReturnType<typeof vi.fn>;
 			remove: ReturnType<typeof vi.fn>;
 			modify: ReturnType<typeof vi.fn>;
+			consultInventByName: ReturnType<typeof vi.fn>;
+			consultInventByType: ReturnType<typeof vi.fn>;
+			consultInventByInventor: ReturnType<typeof vi.fn>;
+			consultInventByDangerLevel: ReturnType<typeof vi.fn>;
 		};
 		characters: {
 			getAll: ReturnType<typeof vi.fn>;
@@ -63,7 +94,11 @@ describe('InventsMenu', () => {
 			getAll: vi.fn(),
 			add: vi.fn(),
 			remove: vi.fn(),
-			modify: vi.fn()
+			modify: vi.fn(),
+			consultInventByName: vi.fn(),
+			consultInventByType: vi.fn(),
+			consultInventByInventor: vi.fn(),
+			consultInventByDangerLevel: vi.fn()
 		},
 		characters: {
 			getAll: vi.fn()
@@ -86,6 +121,10 @@ describe('InventsMenu', () => {
 		manager.invents.add.mockResolvedValue(undefined);
 		manager.invents.remove.mockResolvedValue(undefined);
 		manager.invents.modify.mockResolvedValue(true);
+		manager.invents.consultInventByName.mockResolvedValue([]);
+		manager.invents.consultInventByType.mockResolvedValue([]);
+		manager.invents.consultInventByInventor.mockResolvedValue([]);
+		manager.invents.consultInventByDangerLevel.mockResolvedValue([]);
 		manager.characters.getAll.mockResolvedValue([baseCharacter]);
 	});
 
@@ -204,5 +243,92 @@ describe('InventsMenu', () => {
 
 		expect(manager.invents.remove).toHaveBeenCalledWith('I-999');
 		expect(consoleLogSpy).toHaveBeenCalledWith('Error', 'No se puede eliminar ese invento');
+	});
+
+	test('consulta inventos por nombre con resultados', async () => {
+		const mockInvents: Invents[] = [
+			new Invents('I-020', 'Caja de Meeseeks', baseCharacter, 'Asistente', 6, 'Ayuda puntual')
+		];
+		manager.invents.consultInventByName.mockResolvedValue(mockInvents);
+
+		queuePrompts(
+			{ option: 'consult by name' },
+			{ name: 'Caja de Meeseeks' },
+			{ option: 'back' }
+		);
+
+		await inventsMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.invents.consultInventByName).toHaveBeenCalledWith('Caja de Meeseeks');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 inventos con el nombre Caja de Meeseeks\n');
+	});
+
+	test('consulta inventos por nombre sin resultados', async () => {
+		manager.invents.consultInventByName.mockResolvedValue([]);
+
+		queuePrompts(
+			{ option: 'consult by name' },
+			{ name: 'Inexistente' },
+			{ option: 'back' }
+		);
+
+		await inventsMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.invents.consultInventByName).toHaveBeenCalledWith('Inexistente');
+		expect(consoleLogSpy).toHaveBeenCalledWith('No se encontraron resultados');
+	});
+
+	test('consulta inventos por tipo con resultados', async () => {
+		const mockInvents: Invents[] = [
+			new Invents('I-021', 'Pistola de portales', baseCharacter, 'Transporte', 9, 'Viajes entre dimensiones')
+		];
+		manager.invents.consultInventByType.mockResolvedValue(mockInvents);
+
+		queuePrompts(
+			{ option: 'consult by type' },
+			{ type: 'Transporte' },
+			{ option: 'back' }
+		);
+
+		await inventsMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.invents.consultInventByType).toHaveBeenCalledWith('Transporte');
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 inventos con el nombre Transporte\n');
+	});
+
+	test('consulta inventos por inventor con resultados', async () => {
+		const mockInvents: Invents[] = [
+			new Invents('I-022', 'Microverso', baseCharacter, 'Energia', 8, 'Fuente de energia')
+		];
+		manager.invents.consultInventByInventor.mockResolvedValue(mockInvents);
+
+		queuePrompts(
+			{ option: 'consult by inventor' },
+			{ inventor: baseCharacter },
+			{ option: 'back' }
+		);
+
+		await inventsMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.invents.consultInventByInventor).toHaveBeenCalledWith(baseCharacter);
+		expect(consoleLogSpy).toHaveBeenCalledWith(`Se encontraron 1 localizaciones en la dimensión ${baseCharacter}\n`);
+	});
+
+	test('consulta inventos por peligrosidad con resultados', async () => {
+		const mockInvents: Invents[] = [
+			new Invents('I-023', 'Bomba neutrino', baseCharacter, 'Arma', 10, 'Altamente peligrosa')
+		];
+		manager.invents.consultInventByDangerLevel.mockResolvedValue(mockInvents);
+
+		queuePrompts(
+			{ option: 'consult by dangerlevel' },
+			{ dangerlevel: 10 },
+			{ option: 'back' }
+		);
+
+		await inventsMenu(manager as unknown as MultiverseManager);
+
+		expect(manager.invents.consultInventByDangerLevel).toHaveBeenCalledWith(10);
+		expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones en la dimensión 10\n');
 	});
 });
