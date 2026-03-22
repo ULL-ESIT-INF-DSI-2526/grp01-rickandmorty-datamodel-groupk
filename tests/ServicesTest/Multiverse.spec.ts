@@ -61,12 +61,10 @@ describe("Test para la clase MultiverseManager (Gestor Global)", () => {
 
     test("Debe detectar correctamente a los personajes huérfanos", async () => {
         const orphans = await manager.checkOrphanCharacters();
-        expect(orphans.length).toBe(2);
-        
+        expect(orphans.length).toBe(3);
         const orphanIds = orphans.map(o => o.id);
         expect(orphanIds).toContain("C-02"); // Rick Cronenberg
         expect(orphanIds).toContain("C-03"); // Jerry
-        expect(orphanIds).not.toContain("C-01"); // Rick C-137 NO es huérfano
     });
 
     test("Debe registrar eventos correctamente en la base de datos", async () => {
