@@ -18,6 +18,7 @@ describe("Tests para la clase CharacterServices ", () => {
   let character1: Character;
   let character2: Character;
   let character3: Character;
+  let character4: Character;
   let characters: CharacterServices;
 
   beforeEach(async () => {
@@ -32,6 +33,7 @@ describe("Tests para la clase CharacterServices ", () => {
     character1 = new Character("C-001", "Rick Sanchez", species1, dimension1, "Vivo", "Ninguna", 10, "Genio");
     character2 = new Character("C-002", "Morty Smith", species1, dimension1, "Vivo", "Ninguna", 4, "Nieto");
     character3 = new Character("C-003", "Krombopulos Michael", species2, dimension2, "Muerto", "Asesinos", 6, "Le encanta matar");
+    character4 = new Character("C-004", "Rick Sanchez", species1, dimension2, "Vivo", "Ninguna", 10, "Versión alternativa");
 
     newdb.data.characters = [character1];
     await newdb.write();
@@ -81,7 +83,7 @@ describe("Tests para la clase CharacterServices ", () => {
     expect(modFalse).toBe(false);
   });
 
-  test("Test para las consultas y ordenación (applySorting)", async () => {
+  test("Test para las consultas", async () => {
     await characters.add(character2); 
     await characters.add(character3); 
     
@@ -92,6 +94,9 @@ describe("Tests para la clase CharacterServices ", () => {
     const humanSearch = await characters.consultCharacterBySpecies(species1);
     expect(humanSearch.length).toBe(2); // Rick y Morty
 
+    const characteraff = await characters.consultCharacterByAfilation("Asesinos");
+    expect(character3.afiliation).toBe("Asesinos");
+
     const byNameAsc = await characters.consultCharacterByState("Vivo", false, 1);
     expect(byNameAsc.length).toBe(2);
     expect(byNameAsc[0].name).toBe("Morty Smith"); 
@@ -100,5 +105,14 @@ describe("Tests para la clase CharacterServices ", () => {
     const allInDim1 = await characters.consultCharacterByDimension(dimension1); 
     expect(allInDim1[0].name).toBe("Rick Sanchez"); // IQ más alto primero al ser desc
     expect(allInDim1[1].name).toBe("Morty Smith");
+  });
+
+  test("Test para versiones alternativas de un personaje", async () => {
+    await characters.add(character2); 
+    await characters.add(character3); 
+    await characters.add(character4); 
+
+    const alt = await characters.findAlternativeVersions("Rick Sanchez");
+    expect(alt.length).toBe(2);
   });
 });

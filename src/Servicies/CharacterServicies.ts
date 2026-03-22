@@ -194,7 +194,6 @@ export class CharacterServices implements Services<Character> {
      * @returns array de personajes ordenados por nombre
      */
     async sortByName(characters: Character[], direction: boolean): Promise<Character[]>{
-        // Usamos el método moderno y limpio de JS para ordenar (más seguro que el for manual)
         const sorted = [...characters].sort((a, b) => a.name.localeCompare(b.name));
         return direction ? sorted.reverse() : sorted;
     }
@@ -206,7 +205,6 @@ export class CharacterServices implements Services<Character> {
      * @returns array de personajes ordenados por IQ
      */
     async sortByIq(characters: Character[], direction: boolean = false): Promise<Character[]> {
-        // Usamos tu método comentado que es mucho más limpio y cumple SOLID
         return [...characters].sort((a, b) => direction ? b.iq - a.iq : a.iq - b.iq);
     }
 }
