@@ -1,5 +1,9 @@
 import prompts from "prompts";
 
+/**
+ * Menu principal de la consola
+ * @returns Opcion seleccionada
+ */
 export async function mainMenu(): Promise<string> {
     const res = await prompts({
         type: 'select',
