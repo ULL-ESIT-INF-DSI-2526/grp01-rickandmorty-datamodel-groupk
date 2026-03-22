@@ -1,45 +1,35 @@
 {
   "characters": [
-    { "id": "C1", "name": "Rick Sanchez", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Genio" },
-    { "id": "C2", "name": "Morty Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 5, "desc": "Nieto" },
-
-    { "id": "C3", "name": "Rick Sanchez", "species": "S1", "dimension": "D-101", "status": "Vivo", "afiliation": "Consejo", "iq": 9, "desc": "Alternativo" },
-    { "id": "C4", "name": "Rick Sanchez", "species": "S6", "dimension": "D-303", "status": "Robot", "afiliation": "IA", "iq": 10, "desc": "Robot" },
-    { "id": "C5", "name": "Rick Sanchez", "species": "S1", "dimension": "D-606", "status": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Oscuro" },
-
-    { "id": "C6", "name": "Morty Smith", "species": "S1", "dimension": "D-101", "status": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Alternativo" },
-    { "id": "C7", "name": "Evil Morty", "species": "S1", "dimension": "D-606", "status": "Vivo", "afiliation": "Independiente", "iq": 9, "desc": "Malvado" },
-
-    { "id": "C8", "name": "Summer Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Hermana" },
-    { "id": "C9", "name": "Beth Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 7, "desc": "Madre" },
-    { "id": "C10", "name": "Jerry Smith", "species": "S1", "dimension": "C-137", "status": "Vivo", "afiliation": "Familia", "iq": 3, "desc": "Padre" },
-
-    { "id": "C11", "name": "Birdperson", "species": "S3", "dimension": "D-707", "status": "Vivo", "afiliation": "Amigo", "iq": 7, "desc": "Aliado" },
-    { "id": "C12", "name": "Squanchy", "species": "S3", "dimension": "D-707", "status": "Vivo", "afiliation": "Amigo", "iq": 6, "desc": "Alien" },
-    { "id": "C13", "name": "Unity", "species": "S8", "dimension": "D-505", "status": "Vivo", "afiliation": "Colectivo", "iq": 8, "desc": "Hivemind" },
-    { "id": "C14", "name": "Mr. Meeseeks", "species": "S4", "dimension": "D-808", "status": "Desconocido", "afiliation": "Objeto", "iq": 2, "desc": "Temporal" },
-    { "id": "C15", "name": "Abradolf Lincler", "species": "S2", "dimension": "D-909", "status": "Muerto", "afiliation": "Experimento", "iq": 4, "desc": "Fallido" },
-
-    { "id": "C16", "name": "Rick Sanchez", "species": "S1", "dimension": "D-808", "status": "Vivo", "afiliation": "Simulación", "iq": 9, "desc": "Virtual" },
-    { "id": "C17", "name": "Morty Smith", "species": "S1", "dimension": "D-808", "status": "Vivo", "afiliation": "Simulación", "iq": 5, "desc": "Virtual" },
-
-    { "id": "C18", "name": "Rick Sanchez", "species": "S1", "dimension": "D-909", "status": "Vivo", "afiliation": "Caos", "iq": 10, "desc": "Caótico" },
-    { "id": "C19", "name": "Morty Smith", "species": "S1", "dimension": "D-909", "status": "Vivo", "afiliation": "Caos", "iq": 5, "desc": "Caótico" },
-
-    { "id": "C20", "name": "Rick Sanchez", "species": "S1", "dimension": "D-010", "status": "Vivo", "afiliation": "Mini", "iq": 9, "desc": "Pequeño" },
-    { "id": "C21", "name": "Morty Smith", "species": "S1", "dimension": "D-010", "status": "Vivo", "afiliation": "Mini", "iq": 5, "desc": "Pequeño" },
-
-    { "id": "C22", "name": "Rick Sanchez", "species": "S1", "dimension": "D-111", "status": "Vivo", "afiliation": "Gigante", "iq": 9, "desc": "Gigante" },
-    { "id": "C23", "name": "Morty Smith", "species": "S1", "dimension": "D-111", "status": "Vivo", "afiliation": "Gigante", "iq": 5, "desc": "Gigante" },
-
-    { "id": "C24", "name": "Rick Sanchez", "species": "S1", "dimension": "D-222", "status": "Vivo", "afiliation": "Acuático", "iq": 9, "desc": "Acuático" },
-    { "id": "C25", "name": "Morty Smith", "species": "S1", "dimension": "D-222", "status": "Vivo", "afiliation": "Acuático", "iq": 5, "desc": "Acuático" },
-
-    { "id": "C26", "name": "Robot Rick", "species": "S6", "dimension": "D-303", "status": "Robot", "afiliation": "IA", "iq": 10, "desc": "IA avanzada" },
-    { "id": "C27", "name": "Cronenberg Morty", "species": "S2", "dimension": "C-500A", "status": "Mutado", "afiliation": "Ninguna", "iq": 3, "desc": "Mutado" },
-    { "id": "C28", "name": "Zigerion Leader", "species": "S5", "dimension": "D-707", "status": "Vivo", "afiliation": "Imperio", "iq": 7, "desc": "Líder" },
-    { "id": "C29", "name": "Parasite Alpha", "species": "S7", "dimension": "D-909", "status": "Vivo", "afiliation": "Parásito", "iq": 6, "desc": "Control mental" },
-    { "id": "C30", "name": "Hive Queen", "species": "S8", "dimension": "D-505", "status": "Vivo", "afiliation": "Hivemind", "iq": 9, "desc": "Reina" }
+    { "id": "C1", "name": "Rick Sanchez", "species": "S1", "dimension": "C-137", "state": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Genio" },
+    { "id": "C2", "name": "Morty Smith", "species": "S1", "dimension": "C-137", "state": "Vivo", "afiliation": "Familia", "iq": 5, "desc": "Nieto" },
+    { "id": "C3", "name": "Rick Sanchez", "species": "S1", "dimension": "D-101", "state": "Vivo", "afiliation": "Consejo", "iq": 9, "desc": "Alternativo" },
+    { "id": "C4", "name": "Rick Sanchez", "species": "S6", "dimension": "D-303", "state": "Robot", "afiliation": "IA", "iq": 10, "desc": "Robot" },
+    { "id": "C5", "name": "Rick Sanchez", "species": "S1", "dimension": "D-606", "state": "Vivo", "afiliation": "Independiente", "iq": 10, "desc": "Oscuro" },
+    { "id": "C6", "name": "Morty Smith", "species": "S1", "dimension": "D-101", "state": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Alternativo" },
+    { "id": "C7", "name": "Evil Morty", "species": "S1", "dimension": "D-606", "state": "Vivo", "afiliation": "Independiente", "iq": 9, "desc": "Malvado" },
+    { "id": "C8", "name": "Summer Smith", "species": "S1", "dimension": "C-137", "state": "Vivo", "afiliation": "Familia", "iq": 6, "desc": "Hermana" },
+    { "id": "C9", "name": "Beth Smith", "species": "S1", "dimension": "C-137", "state": "Vivo", "afiliation": "Familia", "iq": 7, "desc": "Madre" },
+    { "id": "C10", "name": "Jerry Smith", "species": "S1", "dimension": "C-137", "state": "Vivo", "afiliation": "Familia", "iq": 3, "desc": "Padre" },
+    { "id": "C11", "name": "Birdperson", "species": "S3", "dimension": "D-707", "state": "Vivo", "afiliation": "Amigo", "iq": 7, "desc": "Aliado" },
+    { "id": "C12", "name": "Squanchy", "species": "S3", "dimension": "D-707", "state": "Vivo", "afiliation": "Amigo", "iq": 6, "desc": "Alien" },
+    { "id": "C13", "name": "Unity", "species": "S8", "dimension": "D-505", "state": "Vivo", "afiliation": "Colectivo", "iq": 8, "desc": "Hivemind" },
+    { "id": "C14", "name": "Mr. Meeseeks", "species": "S4", "dimension": "D-808", "state": "Desconocido", "afiliation": "Objeto", "iq": 2, "desc": "Temporal" },
+    { "id": "C15", "name": "Abradolf Lincler", "species": "S2", "dimension": "D-909", "state": "Muerto", "afiliation": "Experimento", "iq": 4, "desc": "Fallido" },
+    { "id": "C16", "name": "Rick Sanchez", "species": "S1", "dimension": "D-808", "state": "Vivo", "afiliation": "Simulación", "iq": 9, "desc": "Virtual" },
+    { "id": "C17", "name": "Morty Smith", "species": "S1", "dimension": "D-808", "state": "Vivo", "afiliation": "Simulación", "iq": 5, "desc": "Virtual" },
+    { "id": "C18", "name": "Rick Sanchez", "species": "S1", "dimension": "D-909", "state": "Vivo", "afiliation": "Caos", "iq": 10, "desc": "Caótico" },
+    { "id": "C19", "name": "Morty Smith", "species": "S1", "dimension": "D-909", "state": "Vivo", "afiliation": "Caos", "iq": 5, "desc": "Caótico" },
+    { "id": "C20", "name": "Rick Sanchez", "species": "S1", "dimension": "D-010", "state": "Vivo", "afiliation": "Mini", "iq": 9, "desc": "Pequeño" },
+    { "id": "C21", "name": "Morty Smith", "species": "S1", "dimension": "D-010", "state": "Vivo", "afiliation": "Mini", "iq": 5, "desc": "Pequeño" },
+    { "id": "C22", "name": "Rick Sanchez", "species": "S1", "dimension": "D-111", "state": "Vivo", "afiliation": "Gigante", "iq": 9, "desc": "Gigante" },
+    { "id": "C23", "name": "Morty Smith", "species": "S1", "dimension": "D-111", "state": "Vivo", "afiliation": "Gigante", "iq": 5, "desc": "Gigante" },
+    { "id": "C24", "name": "Rick Sanchez", "species": "S1", "dimension": "D-222", "state": "Vivo", "afiliation": "Acuático", "iq": 9, "desc": "Acuático" },
+    { "id": "C25", "name": "Morty Smith", "species": "S1", "dimension": "D-222", "state": "Vivo", "afiliation": "Acuático", "iq": 5, "desc": "Acuático" },
+    { "id": "C26", "name": "Robot Rick", "species": "S6", "dimension": "D-303", "state": "Robot", "afiliation": "IA", "iq": 10, "desc": "IA avanzada" },
+    { "id": "C27", "name": "Cronenberg Morty", "species": "S2", "dimension": "C-500A", "state": "Mutado", "afiliation": "Ninguna", "iq": 3, "desc": "Mutado" },
+    { "id": "C28", "name": "Zigerion Leader", "species": "S5", "dimension": "D-707", "state": "Vivo", "afiliation": "Imperio", "iq": 7, "desc": "Líder" },
+    { "id": "C29", "name": "Parasite Alpha", "species": "S7", "dimension": "D-909", "state": "Vivo", "afiliation": "Parásito", "iq": 6, "desc": "Control mental" },
+    { "id": "C30", "name": "Hive Queen", "species": "S8", "dimension": "D-505", "state": "Vivo", "afiliation": "Hivemind", "iq": 9, "desc": "Reina" }
   ],
   "dimensions": [
     { "id": "C-137", "name": "Dimensión Principal", "state": "ACTIVA", "techlevel": 9, "desc": "Origen de Rick" },

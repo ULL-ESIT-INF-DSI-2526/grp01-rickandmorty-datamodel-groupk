@@ -150,16 +150,12 @@ export class CharacterServices implements Services<Character> {
 
     /**
      * Método para consultar un personaje por su dimensión
-     * @param dimension - dimensión del personaje
-     * @param direction - dirección en la que ordenamos (false = asc, true = desc)
-     * @param sort - criterio de ordenación (1 = nombre, 2 = IQ)
-     * @returns array de personajes que coinciden con la dimensión
+     * @param dimension - dimensión del personaje a consultar
+     * @returns - array de personajes que coinciden con la dimensión
      */
-    async consultCharacterByDimension(dimension: Dimensions, direction: boolean = false, sort?: number): Promise<Character[]> {
+    async consultCharacterByDimension(dimension: Dimensions): Promise<Character[]> {
         await this._db.read();
-        // Comparamos por ID para evitar problemas de referencias
-        const characters = this._db.data.characters.filter(c => c.dimension.id === dimension.id);
-        return this.applySorting(characters, direction, sort);
+        return this._db.data.characters.filter(c => c.dimension === dimension);
     }
 
     /**

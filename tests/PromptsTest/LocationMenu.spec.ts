@@ -66,6 +66,7 @@ describe('LocationMenu', () => {
             modify: ReturnType<typeof vi.fn>;
             consultLocationByName: ReturnType<typeof vi.fn>;
             consultLocationByDimension: ReturnType<typeof vi.fn>;
+            consultLocationByType: ReturnType<typeof vi.fn>;
         };
         dimensions: {
             getAll: ReturnType<typeof vi.fn>;
@@ -87,7 +88,8 @@ describe('LocationMenu', () => {
             remove: vi.fn(),
             modify: vi.fn(),
             consultLocationByName: vi.fn(),
-            consultLocationByDimension: vi.fn()
+            consultLocationByDimension: vi.fn(),
+            consultLocationByType: vi.fn()
         },
         dimensions: {
             getAll: vi.fn()
@@ -115,6 +117,7 @@ describe('LocationMenu', () => {
         manager.localitations.modify.mockResolvedValue(true);
         manager.localitations.consultLocationByName.mockResolvedValue([]);
         manager.localitations.consultLocationByDimension.mockResolvedValue([]);
+        manager.localitations.consultLocationByType.mockResolvedValue([]);
         manager.dimensions.getAll.mockResolvedValue([baseDimension]);
         manager.characters.remove.mockResolvedValue(undefined);
     });
@@ -336,7 +339,7 @@ describe('LocationMenu', () => {
         const mockLocations: Planets[] = [
             new Planets('L-201', 'Gazorpazorp', 'Planeta', baseDimension, 500, 'Hostil')
         ];
-        manager.localitations.consultLocationByName.mockResolvedValue(mockLocations);
+        manager.localitations.consultLocationByType.mockResolvedValue(mockLocations);
 
         queuePrompts(
             { option: 'consult by type' },
@@ -346,8 +349,8 @@ describe('LocationMenu', () => {
 
         await localitationMenu(manager as unknown as MultiverseManager);
 
-        expect(manager.localitations.consultLocationByName).toHaveBeenCalledWith('Planeta');
-        expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones con el tipoPlaneta\n');
+        expect(manager.localitations.consultLocationByType).toHaveBeenCalledWith('Planeta');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Se encontraron 1 localizaciones con el tipo Planeta\n');
     });
 
     test('consulta por dimensión con resultados', async () => {

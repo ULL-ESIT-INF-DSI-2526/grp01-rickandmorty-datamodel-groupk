@@ -361,20 +361,20 @@ export async function inventsMenu(manager: MultiverseManager) {
                     type: 'text',
                     name: 'dangerlevel',
                     message: 'Introduce el nivel de peligrosidad del invento a consultar:',
-                    validate: techlevel => techlevel >= 1 && techlevel <= 10 ? true : "Debe ser entre 1-10"
+                    validate: dangerlevel => dangerlevel >= 1 && dangerlevel <= 10 ? true : "Debe ser entre 1-10"
                 }
             ]);
 
             /** Busca el invento, ya sea que lo encuentre o no y validacion de error */
             try {
-            const dangerlevel: number = data.dangerlevel;
+            const dangerlevels: number = data.dangerlevel;
     
-            const res: Invents[] = await manager.invents.consultInventByDangerLevel(dangerlevel);
+            const res: Invents[] = await manager.invents.consultInventByDangerLevel(dangerlevels);
     
             if(res.length == 0) {
                 console.log('No se encontraron resultados');
             } else {
-                console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${dangerlevel}\n`);
+                console.log(`Se encontraron ${res.length} localizaciones en la dimensión ${dangerlevels}\n`);
                     res.forEach((i: Invents, index: number) => {
                     console.log(`${index + 1}. ${i.name} 
                                 ID: ${i.id} 

@@ -74,13 +74,13 @@ describe ("Test para la clase LocationServices", () => {
     expect(res[0].name).toBe("Citadela de los Ricks");
 
     const res2 = await locations.consultLocationByType("Estación espacial");
-    expect(res.length).toBe(1);
-    expect(res[0].id).toBe("P-002");
-    expect(res[0].type).toBe("Estación espacial");
+    expect(res2.length).toBe(1);
+    expect(res2[0].id).toBe("P-002");
+    expect(res2[0].type).toBe("Estación espacial");
 
     const res3 = await locations.consultLocationByDimension(dimension2);
-    expect(res.length).toBe(1);
-    expect(res[0].id).toBe("P-002");
-    expect(res[0].dimension).toBe(dimension2);
+    expect(res3.length).toBe(1);
+    expect(res3[0].id).toBe("P-002");
+    expect(res3[0].dimension).toBe(dimension2);
   });
 });

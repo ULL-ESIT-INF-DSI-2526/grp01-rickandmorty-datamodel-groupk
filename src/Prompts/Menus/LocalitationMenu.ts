@@ -285,12 +285,12 @@ export async function localitationMenu(manager: MultiverseManager) {
             try {
             const types: string = data.type;
     
-            const res: Planets[] = await manager.localitations.consultLocationByName(types.trim());
+            const res: Planets[] = await manager.localitations.consultLocationByType(types.trim());
     
             if(res.length == 0) {
                 console.log('No se encontraron resultados');
             } else {
-                console.log(`Se encontraron ${res.length} localizaciones con el tipo${types}\n`);
+                console.log(`Se encontraron ${res.length} localizaciones con el tipo ${types}\n`);
                 res.forEach((l: Planets, index: number) => {
                 console.log(`${index + 1}. ${l.name} 
                              ID: ${l.id} 

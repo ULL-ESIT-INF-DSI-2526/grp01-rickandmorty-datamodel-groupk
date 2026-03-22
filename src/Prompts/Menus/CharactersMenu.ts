@@ -27,7 +27,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 { title: 'Consultar personajes por especie', value: 'consult by specie'},
                 { title: 'Consultar personajes por estado', value: 'consult by state'},
                 { title: 'Consultar personajes por dimensión', value: 'consult by dimension'},
-                { title: 'Encontrar versiones alternativas', value: 'fins alternative versions'},
+                { title: 'Encontrar versiones alternativas', value: 'find alternative versions'},
                 { title: 'Ordenar personajes', value: 'sort characters'},
                 { title: 'Volver', value: 'back' }
             ]
@@ -383,7 +383,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'specie',
-                message: 'Introduce el nombre de la especie a consultar:',
+                message: 'Introduce el ID de la especie a consultar:',
                 validate: specie => specie.length > 0 ? true : "Debe de tener una especie"
             }
         ]);
@@ -430,14 +430,14 @@ export async function charactersMenu(manager: MultiverseManager) {
 
         /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
-        const state: string = data.state;
+        const states: string = data.state;
 
-        const res: Character[] = await manager.characters.consultCharacterByState(state.trim());
+        const res: Character[] = await manager.characters.consultCharacterByState(states.trim());
 
         if(res.length == 0) {
             console.log('No se encontraron resultados');
         } else {
-            console.log(`Se encontraron ${res.length} personajes con el estado ${state}\n`);
+            console.log(`Se encontraron ${res.length} personajes con el estado ${states}\n`);
             res.forEach((c: Character, index: number) => {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
@@ -470,14 +470,14 @@ export async function charactersMenu(manager: MultiverseManager) {
 
         /** Busca al personaje, ya sea que lo encuentre o no y validación de error */
         try {
-        const dimension: Dimensions = data.dimension;
+        const dimensions: Dimensions = data.dimension;
 
-        const res: Character[] = await manager.characters.consultCharacterByDimension(dimension);
+        const res: Character[] = await manager.characters.consultCharacterByDimension(dimensions);
 
         if(res.length == 0) {
             console.log('No se encontraron resultados');
         } else {
-            console.log(`Se encontraron ${res.length} personajes con la dimensión ${dimension}\n`);
+            console.log(`Se encontraron ${res.length} personajes con la dimensión ${dimensions}\n`);
             res.forEach((c: Character, index: number) => {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
