@@ -43,21 +43,23 @@ export class MultiverseManager {
      * Detecta personajes cuya dimensión de origen ha sido destruida o borrada de los registros
      * @returns Array de personajes 
      */
-    async checkOrphanCharacters(): Promise<Character[]> {
+   async checkOrphanCharacters(): Promise<Character[]> {
         await this._db.read();
         const orphans: Character[] = [];
 
         for (const char of this._db.data.characters) {
-            // Leemos el ID de la dimensión de forma segura
-            const rawChar = char as unknown as { dimension?: { id?: string }, _dimension?: { _id?: string } };
-            const dimId = rawChar.dimension?.id ?? rawChar._dimension?._id;
-
+            const rawChar = char as unknown as { dimension?: string, _dimension?: string };
+            const dimId = rawChar.dimension ?? rawChar._dimension;
+            if (!dimId) {
+                orphans.push(char);
+                continue;
+            }
             const homeDim = this._db.data.dimensions.find(d => {
                 const rawD = d as unknown as { id?: string, _id?: string };
                 return (rawD.id ?? rawD._id) === dimId;
             });
             
-            const rawHomeDim = homeDim as { state?: string, _state?: string } | undefined;
+            const rawHomeDim = homeDim as unknown as { state?: string, _state?: string };
             const state = rawHomeDim?.state ?? rawHomeDim?._state;
 
             if (!homeDim || state === DimensionState.DESTRUIDA || state === "Destruida") {
@@ -66,7 +68,6 @@ export class MultiverseManager {
         }
         return orphans;
     }
-
     /**
      * Registra el viaje de un personaje de una dimensión a otra
      * @param characterId - ID del personaje que viaja
@@ -194,23 +195,31 @@ export class MultiverseManager {
 
         const deploymentStatus = new Map<string, string>(); 
         const sortedEvents = this._db.data.events
-            .filter(e => e.type === EventType.ARTIFACT_DEPLOYMENT)
+            .filter(e => {
+                const rawType = (e as unknown as { type: string | number }).type;
+                return rawType === EventType.ARTIFACT_DEPLOYMENT || rawType === "ARTIFACT_DEPLOYMENT";
+            })
             .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
             
         sortedEvents.forEach(e => {
-            const isDeployed = e.payload.isDeployed === "true";
-            if (isDeployed) {
-                deploymentStatus.set(e.payload.inventId, e.payload.locationId);
-            } else {
-                deploymentStatus.delete(e.payload.inventId); 
+            const payload = e.payload as unknown as { isDeployed?: string | boolean, inventId?: string, artifactId?: string, locationId?: string };
+            const isDeployed = payload.isDeployed === "true" || payload.isDeployed === true;
+            const invId = payload.inventId ?? payload.artifactId;
+
+            if (invId && payload.locationId) {
+                if (isDeployed) {
+                    deploymentStatus.set(invId, payload.locationId);
+                } else {
+                    deploymentStatus.delete(invId); 
+                }
             }
         });
         
         const dangerousArtifacts: { invent: Invents, locationId: string }[] = [];
         for (const [inventId, locationId] of deploymentStatus.entries()) {
             const invent = this._db.data.invents.find(i => {
-                const rawI = i as unknown as { id?: string };
-                return (rawI.id ) === inventId;
+                const rawI = i as unknown as { id?: string, _id?: string };
+                return (rawI.id ?? rawI._id) === inventId;
             });
 
             if (invent) {
@@ -219,10 +228,12 @@ export class MultiverseManager {
         }
         
         return dangerousArtifacts.sort((a, b) => {
-            const rawA = a.invent as { dangerLevel?: number };
-            const rawB = b.invent as { dangerLevel?: number};
-            const levelA = Number(rawA.dangerLevel ?? 0);
-            const levelB = Number(rawB.dangerLevel ?? 0);
+            const rawA = a.invent as unknown as { dangerLevel?: number, _dangerLevel?: number };
+            const rawB = b.invent as unknown as { dangerLevel?: number, _dangerLevel?: number };
+            
+            const levelA = Number(rawA.dangerLevel ?? rawA._dangerLevel ?? 0);
+            const levelB = Number(rawB.dangerLevel ?? rawB._dangerLevel ?? 0);
+            
             return levelB - levelA;
         });
     }

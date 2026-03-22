@@ -406,6 +406,13 @@
       "state": "Activa",
       "techlevel": 5,
       "desc": "Agua total"
+    },
+    {
+      "id": "1",
+      "name": "hola",
+      "state": "Activa",
+      "techlevel": 3,
+      "desc": "ejemplo"
     }
   ],
   "invents": [
@@ -803,7 +810,7 @@
       "date": "2026-03-22T13:49:12.850Z",
       "description": "Artefacto Desplegado en la localización especificada.",
       "payload": {
-        "inventId": "I-01",
+        "inventId": "A1",
         "locationId": "L-01",
         "isDeployed": "true"
       }
