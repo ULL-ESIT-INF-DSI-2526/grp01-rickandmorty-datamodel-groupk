@@ -4,9 +4,13 @@ import { MultiverseManager } from "../../Servicies/Multiverse.js";
 import { Dimensions } from "../../Class/Dimensions.js";
 import { DimensionState } from "../../Enums/DimensionState.js";
 
+/**
+ * Función del menu principal de dimensiones
+ * @param manager 
+ */
 export async function dimensionsMenu(manager: MultiverseManager) {
     let back = false;
-
+    /** Bucle para elefir la opcion que se va a realizar */
     while(!back) {
         const res = await prompts({
             type: 'select',
@@ -21,6 +25,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             ]
         });
 
+        // Selección de la opción a realizar
         switch (res.option) {
             case 'list':
                 const dimensions = await manager.dimensions.getAll();
@@ -45,7 +50,12 @@ export async function dimensionsMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para añadir una nueva dimensión
+     * @param manager 
+     */
     async function addDimension(manager: MultiverseManager) {
+        /** Información necesaria para poder añadir la dimensión */
         const data = await prompts([
             {
                 type: 'text',
@@ -82,7 +92,8 @@ export async function dimensionsMenu(manager: MultiverseManager) {
                 validate: desc => desc.length > 0 ? true : "Debe de tener descripción"
             }
         ]);
-
+        
+        /** Construye dimension y validación de error */
         try {
             const newDimension = new Dimensions(
                 data.id,
@@ -100,6 +111,10 @@ export async function dimensionsMenu(manager: MultiverseManager) {
         }
     }
 
+    /**
+     * Prompt para eliminar una dimensión 
+     * @param manager 
+     */
     async function removeDimension(manager: MultiverseManager) {
         const {id} = await prompts({
             type: 'text',
@@ -108,6 +123,7 @@ export async function dimensionsMenu(manager: MultiverseManager) {
             validate: id => id.length > 0 ? true : "Debe de tener un ID"
         });
 
+        /** Notifica que se elimino la dimensión o error */
         try {
             await manager.dimensions.remove(id);
             console.log(`La dimensión ${id} ha sido eliminada correctamente`)
@@ -117,7 +133,12 @@ export async function dimensionsMenu(manager: MultiverseManager) {
 
     }
 
+    /**
+     * Prompt para modificar una dimensión
+     * @param manager 
+     */
     async function modifyDimension(manager: MultiverseManager) {
+        /** Información necesario para poder modificar la dimensión */
         const data = await prompts([
             {
                 type: 'text',
@@ -152,7 +173,8 @@ export async function dimensionsMenu(manager: MultiverseManager) {
                 message: 'Nueva descripción (Enter para no modificar):'
             }
         ]);
-
+        
+        /** Modifica la dimensión y validación de errores */
         try {
             const mod: any = {};
             if(data.name) mod.name = data.name;

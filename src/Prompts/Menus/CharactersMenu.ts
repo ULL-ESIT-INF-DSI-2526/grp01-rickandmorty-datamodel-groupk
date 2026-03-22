@@ -204,7 +204,7 @@ export async function charactersMenu(manager: MultiverseManager) {
     }
 
     /**
-     * Prompt para eliminar un personaje
+     * Prompt para modificar un personaje
      * @param manager 
      */
     async function modifyCharacter(manager: MultiverseManager) {
@@ -276,7 +276,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             }
         ]);
 
-        /** Modifica character y validación de error */
+        /** Modifica el character y validación de error */
         try {
             const mod: any = {};
             if(data.name) mod.name = data.name;
