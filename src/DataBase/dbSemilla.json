@@ -101,5 +101,40 @@
     { "id": "S8", "name": "Hivemind", "origin": "D-505", "type": "Colectivo", "expectancy": 500, "desc": "Conciencia compartida" },
     { "id": "S9", "name": "Gigante", "origin": "D-111", "type": "Gigante", "expectancy": 120, "desc": "Gran tamaño" },
     { "id": "S10", "name": "Mini", "origin": "D-010", "type": "Miniatura", "expectancy": 50, "desc": "Pequeños" }
+  ],
+  "events": [
+    {
+      "id": "EVT-1774187352844-423",
+      "type": "Viaje Interdimensional",
+      "date": "2026-03-22T13:49:12.844Z",
+      "description": "Viaje interdimensional por motivo: Buscando cristales mega",
+      "payload": {
+        "characterId": "C-01",
+        "fromDimId": "D-C137",
+        "toDimId": "D-3"
+      }
+    },
+    {
+      "id": "EVT-1774187352847-832",
+      "type": "Viaje Interdimensional",
+      "date": "2026-03-22T13:49:12.847Z",
+      "description": "Viaje interdimensional por motivo: Escapando de la federación",
+      "payload": {
+        "characterId": "C-01",
+        "fromDimId": "D-3",
+        "toDimId": "D-4"
+      }
+    },
+    {
+      "id": "EVT-1774187352850-946",
+      "type": "Despliegue de Artefacto",
+      "date": "2026-03-22T13:49:12.850Z",
+      "description": "Artefacto Desplegado en la localización especificada.",
+      "payload": {
+        "inventId": "I-01",
+        "locationId": "L-01",
+        "isDeployed": "true"
+      }
+    }
   ]
 }
