@@ -7,14 +7,23 @@ import { localitationMenu } from "./Prompts/Menus/LocalitationMenu.js";
 import { speciesMenu } from "./Prompts/Menus/SpeciesMenu.js";
 import { inventsMenu } from "./Prompts/Menus/InventsMenu.js";
 
+/**
+ * Función principal para los menús que llama a los diferentes menús.
+ */
 async function main() {
     await db.read();
 
+    /**
+     * Inicializa el Multiverso con la base de datos.
+     */
     const manager = new MultiverseManager(db);
 
     let exit = false;
 
     while(!exit) {
+        /**
+         * Llama a las opciones del menú principal
+         */
         const option = await mainMenu();
 
         switch (option) {
@@ -46,4 +55,8 @@ async function main() {
     }
 }
 
+/**
+ * Llama a la función main() para que mediante la consola se puedan 
+ * hacer las gestiones necesarias a partir de los menús implementados
+ */
 main();
