@@ -102,10 +102,10 @@ export async function speciesMenu(manager: MultiverseManager) {
                     validate: type => type.length > 0 ? true : "Debe de tener un tipo"
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'expectancy',
                     message: 'Esperanza de vida de la especie:',
-                    validate: expectancy => expectancy.length > 0 ? true : "Debe de tener una esperanza de vida media"
+                    validate: expectancy => expectancy > 0 ? true : "Debe de tener una esperanza de vida media"
                 },
                 {
                     type: 'text',
@@ -209,7 +209,7 @@ export async function speciesMenu(manager: MultiverseManager) {
                     message: 'Nuevo tipo (Enter para no modificar):'            
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'expectancy',
                     message: 'Nueva esperanza de vida (Enter para no modificar):'            
                 },

@@ -118,9 +118,7 @@ export class CharacterServices implements Services<Character> {
      */
     async consultCharacterBySpecies(specie: Species, direction: boolean = false, sort?: number): Promise<Character[]> {
         await this._db.read();
-        // Comparamos por ID para evitar problemas de referencias de objetos en memoria vs BBDD
-        const characters = this._db.data.characters.filter(c => c.species.id === specie.id);
-        return this.applySorting(characters, direction, sort);
+        return this._db.data.characters.filter(c => c.species === specie);
     }
 
     /**

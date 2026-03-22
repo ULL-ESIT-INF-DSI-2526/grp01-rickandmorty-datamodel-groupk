@@ -117,7 +117,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'id',
-                message: 'Introduce el ID de la personaje a modificar:',
+                message: 'Introduce el ID del personaje a añadir:',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             },
             {
@@ -151,7 +151,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 validate: afiliation => afiliation.length > 0 ? true : "Debe de tener afiliación"
             },
             {
-                type: 'text',
+                type: 'number',
                 name: 'iq',
                 message: 'IQ del personaje:',
                 validate: iq => iq >= 1 && iq <= 10 ? true : "Debe ser entre 1-10"
@@ -238,7 +238,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'id',
-                message: 'Introduce el ID de la personaje a añadir:',
+                message: 'Introduce el ID del personaje a añadir:',
                 validate: id => id.length > 0 ? true : "Debe de tener un ID"
             },
             {
@@ -269,7 +269,7 @@ export async function charactersMenu(manager: MultiverseManager) {
                 message: 'Nueva afiliación (Enter para no modificar):'
             },
             {
-                type: 'text',
+                type: 'number',
                 name: 'iq',
                 message: 'Nuevo IQ del personaje (Enter para no modificar):'
             },
@@ -326,6 +326,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}
@@ -366,6 +367,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}
@@ -387,7 +389,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             {
                 type: 'text',
                 name: 'specie',
-                message: 'Introduce el ID de la especie a consultar:',
+                message: 'Introduce el id de la especie a consultar:',
                 validate: specie => specie.length > 0 ? true : "Debe de tener una especie"
             }
         ]);
@@ -406,6 +408,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}
@@ -446,6 +449,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}
@@ -486,6 +490,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}
@@ -581,6 +586,7 @@ export async function charactersMenu(manager: MultiverseManager) {
             console.log(`${index + 1}. ${c.name} 
                          ID: ${c.id} 
                          Dimensión: ${c.dimension} 
+                         Estado: ${c.state}
                          Especie: ${c.species} 
                          Afiliación: ${c.afiliation} 
                          IQ: ${c.iq}

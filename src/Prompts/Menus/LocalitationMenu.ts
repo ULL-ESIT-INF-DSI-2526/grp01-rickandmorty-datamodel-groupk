@@ -108,7 +108,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                     choices: dimensionChoices
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'population',
                     message: 'Población:',
                 },
@@ -201,7 +201,7 @@ export async function localitationMenu(manager: MultiverseManager) {
                     choices: [{ title: 'No cambiar', value: null }, ...dimensionChoices]
                 },
                 {
-                    type: 'text',
+                    type: 'number',
                     name: 'population',
                     message: 'Nueva población (Enter para no modificar):'
                 },
